@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>משימת סייבר: חדר הבריחה והידע המלא</title>
+    <title>משימת סייבר: חדר הבריחה המלא</title>
     <style>
         :root {
             --primary: #00ffcc;
@@ -13,123 +13,79 @@
             --text: #c5c6c7;
             --success: #2ec4b6;
             --danger: #e63946;
-            --light-bg: rgba(255, 255, 255, 0.05);
+            --warning: #f4a261;
+            --light-bg: rgba(255,255,255,0.05);
         }
-
+        * { box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
             color: var(--text);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; padding: 20px;
+            display: flex; justify-content: center; align-items: flex-start;
             min-height: 100vh;
         }
-
         .game-box {
-            width: 100%;
-            max-width: 750px;
+            width: 100%; max-width: 800px;
             background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
+            padding: 30px; border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0,255,204,0.2);
             border: 2px solid var(--primary);
         }
-
-        /* מערכת לשוניות */
+        /* Tabs */
         .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
-            padding-bottom: 15px;
+            display: flex; justify-content: center; gap: 15px;
+            margin-bottom: 25px; border-bottom: 1px solid rgba(0,255,204,0.2);
+            padding-bottom: 15px; flex-wrap: wrap;
         }
-
         .tab-btn {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid transparent;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
+            background: transparent; color: var(--text);
+            border: 2px solid transparent; padding: 8px 16px;
+            font-size: 1rem; font-weight: bold; border-radius: 8px;
+            cursor: pointer; transition: 0.3s;
         }
-
-        .tab-btn.active {
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
-        }
-
+        .tab-btn.active { border-color: var(--primary); color: var(--primary); box-shadow: 0 0 10px rgba(0,255,204,0.2); }
         .tab-content { display: none; text-align: center; }
         .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 { color: var(--primary); margin-top: 0; text-shadow: 0 0 10px rgba(0,255,204,0.3); text-align: center; }
-        h2 { color: var(--secondary); text-align: center; }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+        h1 { color: var(--primary); margin-top:0; text-shadow: 0 0 10px rgba(0,255,204,0.3); text-align:center; }
+        h2 { color: var(--secondary); text-align:center; }
         p { line-height: 1.6; }
-
-        /* סגנון דף מידע */
         .info-section { text-align: right; margin-bottom: 25px; }
         .info-card {
-            background: var(--light-bg);
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-            border-right: 4px solid var(--primary);
+            background: var(--light-bg); padding: 15px 20px; border-radius: 10px;
+            margin-top: 15px; border-right: 4px solid var(--primary);
         }
-        .info-card h3 { margin-top: 0; color: var(--primary); }
-
+        .info-card h3 { margin-top:0; color: var(--primary); }
         .hidden { display: none !important; }
-        
         button.action-btn {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s ease;
+            background: transparent; color: var(--primary);
+            border: 2px solid var(--primary); padding: 12px 30px;
+            font-size: 1.1rem; font-weight: bold; border-radius: 10px;
+            cursor: pointer; transition: 0.3s ease;
         }
-        button.action-btn:hover {
-            background: var(--primary);
-            color: var(--bg);
-            box-shadow: 0 0 15px var(--primary);
-        }
-
-        /* משחק הזיכרון */
+        button.action-btn:hover { background: var(--primary); color: var(--bg); box-shadow: 0 0 15px var(--primary); }
+        /* Memory Game */
         .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
         .memory-card {
             height: 100px; background: #111; border: 1px solid var(--secondary); border-radius: 8px;
-            display: flex; justify-content: center; align-items: center; font-size: 0.95rem; font-weight: bold;
-            cursor: pointer; color: transparent; user-select: none; transition: background 0.3s, color 0.1s; padding: 5px;
+            display: flex; justify-content: center; align-items: center; font-size: 0.9rem; font-weight: bold;
+            cursor: pointer; color: transparent; user-select: none; transition: background 0.3s, color 0.1s; padding: 5px; text-align:center;
         }
         .memory-card.flipped { background: var(--secondary); color: white; }
         .memory-card.matched { background: var(--success); color: var(--bg); cursor: default; border-color: var(--success); }
-
-        /* משחק המיון */
+        /* Sorting Game */
         .sorting-container {
             background: #111; padding: 25px; border-radius: 12px; margin: 20px 0;
-            border: 1px dashed var(--primary); min-height: 120px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+            border: 1px dashed var(--primary); min-height: 100px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
         }
         .sort-btn-group { display: flex; gap: 20px; justify-content: center; }
         .btn-safe { border-color: var(--success); color: var(--success); }
         .btn-safe:hover { background: var(--success); color: #fff; box-shadow: 0 0 15px var(--success); }
         .btn-danger { border-color: var(--danger); color: var(--danger); }
         .btn-danger:hover { background: var(--danger); color: #fff; box-shadow: 0 0 15px var(--danger); }
-
-        /* המקלדת הנומרית */
+        /* Keypad */
         .keypad { display: grid; grid-template-columns: repeat(3, 60px); gap: 10px; justify-content: center; margin: 20px 0; }
         .key {
             height: 60px; background: #111; border: 1px solid var(--primary); color: var(--primary);
@@ -138,255 +94,1072 @@
         .key:active { background: var(--primary); color: #000; }
         #code-display {
             font-size: 2rem; letter-spacing: 10px; background: #000; padding: 10px; width: 180px;
-            margin: 0 auto 15px; border-radius: 5px; color: var(--danger); height: 40px;
+            margin: 0 auto 15px; border-radius: 5px; color: var(--danger); height: 50px; display:flex; align-items:center; justify-content:center;
         }
+        #feedback { min-height: 25px; font-weight: bold; margin-top: 15px; text-align: center; }
 
-        #feedback { height: 25px; font-weight: bold; margin-top: 15px; text-align: center; }
+        /* ============ ROOM 4: DIGITAL FOOTPRINT ============ */
+        .social-profile {
+            background: #0a0a1a; border-radius: 16px; padding: 20px; margin: 15px 0;
+            border: 1px solid #333; text-align: right;
+        }
+        .profile-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .profile-avatar {
+            width: 50px; height: 50px; border-radius: 50%;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+        }
+        .profile-name { font-weight: bold; color: white; font-size: 1rem; }
+        .profile-handle { color: #888; font-size: 0.85rem; }
+        .post-item {
+            background: #111; border-radius: 10px; padding: 12px; margin: 8px 0;
+            border: 2px solid transparent; cursor: pointer; transition: 0.3s; text-align: right;
+            position: relative;
+        }
+        .post-item:hover { border-color: var(--warning); }
+        .post-item.selected-bad { border-color: var(--success); background: rgba(46,196,182,0.1); }
+        .post-item.selected-good { border-color: #555; opacity: 0.5; }
+        .post-item .post-tag {
+            font-size: 0.75rem; color: var(--warning); margin-bottom: 5px; display: block;
+        }
+        .post-item .post-text { font-size: 0.9rem; color: #ccc; }
+        .post-item .risk-badge {
+            position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+            font-size: 0.75rem; padding: 3px 8px; border-radius: 20px;
+        }
+        .risk-high { background: rgba(230,57,70,0.2); color: var(--danger); border: 1px solid var(--danger); }
+        .risk-low { background: rgba(46,196,182,0.2); color: var(--success); border: 1px solid var(--success); }
+        .footprint-instructions {
+            background: rgba(157,78,221,0.15); border: 1px solid var(--secondary);
+            border-radius: 10px; padding: 12px; margin: 15px 0; font-size: 0.9rem; text-align: right;
+        }
+        .footprint-progress { color: var(--primary); font-size: 0.9rem; margin: 10px 0; }
+
+        /* ============ ROOM 5: MALWARE LAB ============ */
+        .desktop-sim {
+            background: #1a1a2e; border-radius: 12px; padding: 20px; margin: 15px 0;
+            border: 1px solid #333; min-height: 200px;
+        }
+        .desktop-toolbar {
+            background: #16213e; border-radius: 8px; padding: 8px 12px; margin-bottom: 15px;
+            display: flex; align-items: center; gap: 10px; font-size: 0.85rem;
+        }
+        .toolbar-icon { font-size: 1rem; }
+        .scan-btn {
+            background: var(--secondary); color: white; border: none; padding: 4px 10px;
+            border-radius: 5px; cursor: pointer; font-size: 0.8rem; font-weight: bold;
+        }
+        .download-card {
+            background: #0d1117; border-radius: 8px; padding: 12px; margin: 8px 0;
+            border: 1px solid #333; display: flex; align-items: center; gap: 12px;
+            cursor: pointer; transition: 0.3s; text-align: right;
+        }
+        .download-card:hover { border-color: var(--primary); }
+        .download-icon { font-size: 2rem; min-width: 40px; text-align: center; }
+        .download-info { flex: 1; }
+        .download-name { font-weight: bold; color: #ddd; font-size: 0.95rem; }
+        .download-source { font-size: 0.8rem; color: #888; margin-top: 3px; }
+        .download-ext { font-size: 0.75rem; padding: 2px 7px; border-radius: 4px; margin-top: 4px; display: inline-block; }
+        .ext-safe { background: rgba(46,196,182,0.2); color: var(--success); }
+        .ext-danger { background: rgba(230,57,70,0.2); color: var(--danger); }
+        .scanner-result {
+            background: #0b0c10; border-radius: 8px; padding: 12px; margin-top: 10px;
+            font-size: 0.85rem; font-family: monospace; text-align: right; display: none;
+        }
+        .malware-btns { display: flex; gap: 10px; justify-content: center; margin-top: 10px; }
+        .btn-download { border-color: var(--success); color: var(--success); padding: 8px 18px; font-size: 0.9rem; }
+        .btn-download:hover { background: var(--success); color: #000; }
+        .btn-delete { border-color: var(--danger); color: var(--danger); padding: 8px 18px; font-size: 0.9rem; }
+        .btn-delete:hover { background: var(--danger); color: #fff; }
+
+        /* ============ ROOM 6: DEEPFAKE ============ */
+        .phone-sim {
+            background: #1a1a2e; border-radius: 20px; padding: 15px; margin: 0 auto;
+            max-width: 320px; border: 2px solid #333;
+        }
+        .phone-header {
+            background: #0d1117; border-radius: 10px; padding: 8px 12px;
+            margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+        }
+        .whatsapp-icon { color: #25d366; font-size: 1.2rem; }
+        .phone-contact { font-weight: bold; color: #ddd; font-size: 0.9rem; }
+        .phone-status { font-size: 0.7rem; color: var(--warning); }
+        .voice-message {
+            background: #075e54; border-radius: 12px 12px 12px 2px;
+            padding: 12px; margin: 10px 0; text-align: right; cursor: pointer;
+        }
+        .vm-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+        .vm-wave { color: #25d366; font-size: 1rem; }
+        .vm-duration { font-size: 0.8rem; color: #aaa; }
+        .vm-text { font-size: 0.9rem; color: #eee; line-height: 1.5; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; margin-top: 8px; }
+        .warning-flags {
+            background: rgba(230,57,70,0.1); border: 1px solid var(--danger);
+            border-radius: 10px; padding: 12px; margin: 10px 0; text-align: right; font-size: 0.85rem;
+        }
+        .warning-flags h4 { color: var(--danger); margin: 0 0 8px 0; }
+        .flag-item { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+        .deepfake-actions { display: flex; flex-direction: column; gap: 8px; margin: 15px 0; }
+        .deepfake-btn {
+            background: #111; border: 2px solid #444; color: #ccc; padding: 10px 15px;
+            border-radius: 8px; cursor: pointer; transition: 0.3s; font-size: 0.9rem; text-align: right;
+        }
+        .deepfake-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .deepfake-btn.correct { border-color: var(--success); background: rgba(46,196,182,0.1); }
+        .deepfake-btn.wrong { border-color: var(--danger); background: rgba(230,57,70,0.1); }
+        .deepfake-progress { color: var(--primary); font-size: 0.85rem; margin: 5px 0; }
+
+        /* ============ ROOM 7: WIFI TRAP ============ */
+        .location-banner {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 12px; padding: 15px; margin: 15px 0;
+            text-align: center; border: 1px solid #444;
+        }
+        .location-icon { font-size: 2.5rem; }
+        .location-text { color: #aaa; font-size: 0.9rem; margin-top: 5px; }
+        .wifi-list { margin: 15px 0; }
+        .wifi-card {
+            background: #0d1117; border-radius: 10px; padding: 14px;
+            margin: 8px 0; border: 2px solid #333; cursor: pointer; transition: 0.3s; text-align: right;
+        }
+        .wifi-card:hover { border-color: var(--primary); transform: translateX(-3px); }
+        .wifi-card.selected { border-color: var(--primary); background: rgba(0,255,204,0.05); }
+        .wifi-header { display: flex; align-items: center; gap: 10px; }
+        .wifi-icon { font-size: 1.3rem; }
+        .wifi-name { font-weight: bold; color: #eee; font-size: 0.95rem; }
+        .wifi-details { font-size: 0.8rem; color: #888; margin-top: 5px; }
+        .wifi-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; margin-top: 4px; display: inline-block; }
+        .wifi-open { background: rgba(230,57,70,0.15); color: var(--danger); border: 1px solid var(--danger); }
+        .wifi-secured { background: rgba(46,196,182,0.15); color: var(--success); border: 1px solid var(--success); }
+        .wifi-suspicious { background: rgba(244,162,97,0.15); color: var(--warning); border: 1px solid var(--warning); }
+        .vpn-toggle {
+            background: #1a1a2e; border-radius: 12px; padding: 15px; margin: 15px 0;
+            display: flex; align-items: center; justify-content: space-between; border: 1px solid #444;
+        }
+        .vpn-info { text-align: right; }
+        .vpn-label { font-weight: bold; color: #eee; }
+        .vpn-desc { font-size: 0.8rem; color: #888; margin-top: 3px; }
+        .toggle-switch {
+            width: 60px; height: 30px; background: #333; border-radius: 15px;
+            cursor: pointer; position: relative; transition: 0.3s; border: 2px solid #555;
+        }
+        .toggle-switch.on { background: var(--success); border-color: var(--success); }
+        .toggle-knob {
+            width: 22px; height: 22px; background: white; border-radius: 50%;
+            position: absolute; top: 2px; right: 2px; transition: 0.3s;
+        }
+        .toggle-switch.on .toggle-knob { right: 32px; }
+        .wifi-confirm-btn { margin-top: 10px; }
+
+        /* ============ SCOREBOARD ============ */
+        .score-bar {
+            background: #111; border-radius: 8px; padding: 8px 15px; margin-bottom: 20px;
+            display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem;
+            border: 1px solid rgba(0,255,204,0.2);
+        }
+        .score-item { display: flex; align-items: center; gap: 6px; }
+        .score-label { color: #888; }
+        .score-value { color: var(--primary); font-weight: bold; font-size: 1.1rem; }
+        .timer-value { color: var(--warning); font-weight: bold; }
+
+        /* ============ VICTORY & CERTIFICATE ============ */
+        #victory-screen { animation: fadeIn 0.5s ease; }
+        .victory-title { color: var(--success); font-size: 2.5rem; }
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0; }
+        .stat-card {
+            background: var(--light-bg); border-radius: 10px; padding: 15px;
+            border: 1px solid rgba(0,255,204,0.2); text-align: center;
+        }
+        .stat-num { font-size: 2rem; font-weight: bold; color: var(--primary); }
+        .stat-label { font-size: 0.85rem; color: #888; margin-top: 3px; }
+        .name-input-box { margin: 20px 0; }
+        .name-input-box input {
+            background: #111; border: 2px solid var(--primary); color: white;
+            padding: 10px 15px; border-radius: 8px; font-size: 1rem; width: 250px;
+            text-align: center; direction: rtl;
+        }
+        .name-input-box input:focus { outline: none; box-shadow: 0 0 10px rgba(0,255,204,0.3); }
+
+        /* ============ CERTIFICATE ============ */
+        #certificate-area { margin-top: 20px; }
+        .cert-box {
+            background: linear-gradient(135deg, #0a0a1a, #1a1a2e);
+            border: 3px solid var(--primary); border-radius: 20px; padding: 30px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .cert-box::before {
+            content: ''; position: absolute; inset: 8px;
+            border: 1px dashed rgba(0,255,204,0.3); border-radius: 15px; pointer-events: none;
+        }
+        .cert-top { color: #888; font-size: 0.85rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 5px; }
+        .cert-title { color: var(--primary); font-size: 1.8rem; font-weight: bold; margin: 10px 0; text-shadow: 0 0 20px rgba(0,255,204,0.5); }
+        .cert-sub { color: var(--text); font-size: 0.9rem; margin-bottom: 15px; }
+        .cert-name { color: white; font-size: 2rem; font-weight: bold; margin: 15px 0; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; }
+        .cert-details { display: flex; justify-content: center; gap: 30px; margin: 15px 0; flex-wrap: wrap; }
+        .cert-detail { text-align: center; }
+        .cert-detail-val { color: var(--primary); font-size: 1.2rem; font-weight: bold; }
+        .cert-detail-label { color: #888; font-size: 0.75rem; margin-top: 2px; }
+        .cert-badge { font-size: 3rem; margin: 10px 0; }
+        .cert-rooms { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin: 15px 0; }
+        .cert-room-badge {
+            background: rgba(0,255,204,0.1); border: 1px solid var(--primary);
+            border-radius: 20px; padding: 4px 12px; font-size: 0.75rem; color: var(--primary);
+        }
+        .print-area { margin-top: 20px; display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+        .rank-title { color: var(--warning); font-size: 1rem; margin: 10px 0; }
+
+        /* Progress bar */
+        .room-progress {
+            display: flex; justify-content: center; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
+        }
+        .room-dot {
+            width: 12px; height: 12px; border-radius: 50%;
+            border: 2px solid var(--primary); background: transparent; transition: 0.3s;
+        }
+        .room-dot.done { background: var(--primary); box-shadow: 0 0 8px var(--primary); }
+        .room-dot.current { background: var(--warning); border-color: var(--warning); animation: pulse 1s infinite; }
+        @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.5; } }
+
+        /* Tooltip */
+        .hint-box {
+            background: rgba(157,78,221,0.15); border: 1px solid var(--secondary);
+            border-radius: 8px; padding: 10px; margin: 10px 0; font-size: 0.85rem; text-align: right;
+            display: none;
+        }
+        .hint-btn { font-size: 0.8rem; padding: 5px 12px; margin-top: 10px; opacity: 0.7; }
+        .hint-btn:hover { opacity: 1; }
     </style>
 </head>
 <body>
-
 <div class="game-box">
-    <!-- תפריט לשוניות עליון -->
+    <!-- Tabs -->
     <div class="tabs">
         <button class="tab-btn active" id="tab-link-info" onclick="switchTab('info-tab')">📋 דף רקע ומידע</button>
         <button class="tab-btn" id="tab-link-game" onclick="switchTab('game-tab')">🔐 חדר הבריחה</button>
     </div>
 
-    <!-- לשונית 1: דף רקע ומידע -->
+    <!-- INFO TAB -->
     <div id="info-tab" class="tab-content active">
         <h1>🌐 מרכז המידע: הגנה במרחב הדיגיטלי</h1>
-        <p>קראו בעיון את חומרי הרקע. המידע כאן יעזור לכם לא רק לגלוש בבטחה, אלא גם יספק לכם רמזים קריטיים לפיצוח מנעול הקוד בהמשך!</p>
-        
+        <p>קראו בעיון את חומרי הרקע. המידע יעזור לכם לגלוש בבטחה ולפצח את כל חדרי הבריחה!</p>
         <div class="info-section">
             <div class="info-card">
-                <h3>🚨 רקע המשימה: מתקפת הסייבר</h3>
-                <p>קבוצת האקרים אלמונית נעלה את שרתי בית הספר והצפינה את כל הציונים והנתונים. הם השאירו מאחוריהם מערכת הגנה משולשת המבוססת על עקרונות הגנת הסייבר. רק מי שמכיר את חוקי הבטיחות ברשת יוכל לעבור את האתגרים, להשיג את קוד הנטרול ולשחרר את המערכת.</p>
+                <h3>🚨 רקע המשימה</h3>
+                <p>קבוצת האקרים אלמונית נעלה את שרתי בית הספר. רק מי שמכיר את חוקי הבטיחות ברשת יוכל לעבור את 7 החדרים, להשיג את קוד הנטרול ולשחרר את המערכת.</p>
             </div>
-
             <div class="info-card">
-                <h3>🎣 איום הפישינג (דיוג) וקישורים חשודים</h3>
-                <p>פישינג הוא שיטה שבה תוקפים מתחזים לחברות מוכרות (כמו גוגל, בנקים או חברות משלוחים) ושולחים הודעות מבהילות או מפתות (כמו "זכית באייפון" או "חשבונך נחסם"). המטרה שלהם היא לגרום לכם ללחוץ על <strong>קישור מזויף</strong> ולהקליד בו את הסיסמה או הפרטים האישיים שלכם.</p>
+                <h3>🎣 פישינג וקישורים חשודים</h3>
+                <p>פישינג הוא שיטה שבה תוקפים מתחזים לחברות מוכרות ושולחים הודעות מבהילות. המטרה: לגרום לכם ללחוץ על <strong>קישור מזויף</strong> ולהקליד פרטים אישיים. סימנים: בקשה דחופה, כתובת URL לא מוכרת, שגיאות כתיב.</p>
             </div>
-
             <div class="info-card">
-                <h3>🧱 חומת הסיסמאות והמנעול הכפול</h3>
-                <p>סיסמה חלשה (כמו השם שלכם, או "123456") מקבלת ציון בטיחות נמוך מאוד וניתן לפרוץ אותה בשניות. סיסמה חזקה באמת חייבת לשלב אותיות גדולות וקטנות, מספרים וסימנים מיוחדים.</p>
-                <p>כדי להתמגן באמת, מפעילים בכל האפליקציות <strong>אימות דו-שלבי (2FA)</strong>. זהו מנגנון הגנה בעל <strong>שני שלבים</strong>: מעבר לסיסמה הרגילה, המערכת דורשת קוד זמני שנשלח ישירות לטלפון הנייד שלכם, מה שמונע מהאקרים להיכנס גם אם הם גילו את הסיסמה.</p>
+                <h3>🧱 סיסמאות ואימות דו-שלבי (2FA)</h3>
+                <p>סיסמה חלשה כמו "123456" ניתן לפרוץ תוך שניות. סיסמה חזקה כוללת אותיות גדולות וקטנות, מספרים וסימנים מיוחדים. <strong>אימות דו-שלבי (2FA)</strong> מוסיף שלב הגנה נוסף – קוד זמני שנשלח לטלפון שלכם. המנגנון מכיל <strong>שני שלבים</strong>.</p>
             </div>
-
             <div class="info-card">
-                <h3>🆘 קו ההגנה הלאומי - מוקד 105</h3>
-                <p>בכל מקרה של פגיעה, סחיטה, בריונות, שיימינג או חשיפה לתוכן מאיים ברשת, יש למי לפנות. מדינת ישראל מפעילה את <strong>מוקד 105</strong> - המטה הלאומי להגנה על ילדים ברשת. המוקד מאויש על ידי שוטרים ומומחים 24/7 ומסייע בטיפול מיידי באירועים פוגעניים.</p>
+                <h3>👣 טביעת הרגל הדיגיטלית</h3>
+                <p>כל מה שמפרסמים ברשת נשאר שם לנצח ויכול לשמש נגדנו. מידע רגיש כולל: כתובת בית, מיקום בזמן אמת, תאריך לידה מלא, שם בית הספר, תמונות מהבית. האקרים משתמשים במידע זה להנדסה חברתית – ניסיון לרכוש את האמון שלנו כדי לתקוף.</p>
+            </div>
+            <div class="info-card">
+                <h3>🦠 נוזקות ותוכנות זדוניות</h3>
+                <p>קבצים מסוכנים מגיעים לרוב בסיומות: <strong>.exe, .bat, .vbs, .scr</strong>. קבצים בטוחים יותר: <strong>.pdf, .docx, .jpg</strong> – אך גם אלה יכולים להיות מזוהמים. תמיד הורידו ממקורות רשמיים בלבד ובדקו את כתובת האתר.</p>
+            </div>
+            <div class="info-card">
+                <h3>🤖 דיפייק ובינה מלאכותית</h3>
+                <p>טכנולוגיית AI מאפשרת לזייף קולות ופנים בצורה מושלמת. סימני אזהרה: בקשה דחופה להעביר כסף/קוד, לחץ זמן, הודעה ממספר לא מוכר, קול שנשמע "קצת לא טבעי". פתרון: תמיד <strong>התקשרו ישירות</strong> למספר המוכר לכם.</p>
+            </div>
+            <div class="info-card">
+                <h3>📶 סכנות Wi-Fi ציבורי ו-VPN</h3>
+                <p>רשתות Wi-Fi פתוחות (ללא סיסמה) מאפשרות להאקרים לצותת לתקשורת שלכם ולגנוב סיסמאות. <strong>VPN</strong> (רשת פרטית וירטואלית) מצפינה את הגלישה ומגנה עליכם גם ברשתות ציבוריות. תמיד העדיפו רשתות מאובטחות עם סיסמה.</p>
+            </div>
+            <div class="info-card">
+                <h3>🆘 מוקד 105 – הגנה לאומית</h3>
+                <p>בכל מקרה של פגיעה, סחיטה, בריונות, שיימינג או חשיפה לתוכן מאיים, פנו למוקד <strong>105</strong> – המטה הלאומי להגנה על ילדים ברשת, הפועל 24/7.</p>
             </div>
         </div>
         <button class="action-btn" onclick="switchTab('game-tab')">עברו לחדר הבריחה 🚀</button>
     </div>
 
-    <!-- לשונית 2: המשחק -->
+    <!-- GAME TAB -->
     <div id="game-tab" class="tab-content">
-        <!-- מסך פתיחה של המשחק -->
-        <div id="intro-screen">
-            <h1>🔐 חדר הבריחה הדיגיטלי</h1>
-            <p>הגעתם למסך הפיקוד. לפניכם 3 חדרים נעולים. עברו אותם אחד אחד כדי להציל את המערכת.</p>
-            <button class="action-btn" onclick="startRoom(1)">התחל בפריצה</button>
+
+        <!-- Score Bar -->
+        <div class="score-bar" id="score-bar" style="display:none;">
+            <div class="score-item">⭐ <span class="score-label">ניקוד:</span> <span class="score-value" id="score-display">0</span></div>
+            <div class="score-item">🏠 <span class="score-label">חדר:</span> <span class="score-value" id="room-display">-</span></div>
+            <div class="score-item">⏱ <span class="score-value timer-value" id="timer-display">00:00</span></div>
         </div>
 
-        <!-- חדר 1: משחק הזיכרון -->
+        <!-- Room Progress Dots -->
+        <div class="room-progress" id="progress-dots" style="display:none;">
+            <div class="room-dot" id="dot-1" title="חדר 1: זיכרון"></div>
+            <div class="room-dot" id="dot-2" title="חדר 2: מיון"></div>
+            <div class="room-dot" id="dot-3" title="חדר 3: טביעת רגל"></div>
+            <div class="room-dot" id="dot-4" title="חדר 4: נוזקות"></div>
+            <div class="room-dot" id="dot-5" title="חדר 5: דיפייק"></div>
+            <div class="room-dot" id="dot-6" title="חדר 6: Wi-Fi"></div>
+            <div class="room-dot" id="dot-7" title="חדר 7: קוד סופי"></div>
+        </div>
+
+        <!-- INTRO -->
+        <div id="intro-screen">
+            <h1>🔐 חדר הבריחה הדיגיטלי</h1>
+            <p>הגעתם למסך הפיקוד. לפניכם <strong>7 חדרים נעולים</strong>. עברו אותם אחד אחד כדי להציל את המערכת ולזכות בתעודת לוחם/ת הסייבר!</p>
+            <div style="margin: 15px 0; font-size: 0.9rem; color: #888;">
+                כל חדר שתעברו יוסיף לניקוד שלכם. מהירות = ניקוד גבוה יותר!
+            </div>
+            <button class="action-btn" onclick="startGame()">🚀 התחל במשימה</button>
+        </div>
+
+        <!-- ROOM 1: Memory -->
         <div id="room1" class="hidden">
-            <h2>חדר 1: משחק הזיכרון הדיגיטלי</h2>
-            <p>מצאו את הזוגות המתאימים בין איומי הרשת לדרכי ההתגוננות כדי לפתוח את השער הראשון.</p>
+            <h2>🧠 חדר 1: משחק הזיכרון הדיגיטלי</h2>
+            <p>מצאו את הזוגות המתאימים בין איומי הרשת לדרכי ההתגוננות.</p>
             <div class="memory-grid" id="memory-grid"></div>
         </div>
 
-        <!-- חדר 2: משחק המיון -->
+        <!-- ROOM 2: Sorting -->
         <div id="room2" class="hidden">
-            <h2>חדר 2: מסננת הסייבר</h2>
-            <p>לפניכם הודעות ומצבים מהרשת. מיינו אותם במהירות: האם המצב <strong>בטוח</strong> או <strong>חשוד/מסוכן</strong>?</p>
+            <h2>🔍 חדר 2: מסננת הסייבר</h2>
+            <p>מיינו כל מצב: <strong>בטוח</strong> או <strong>מסוכן</strong>? שגיאה אחת מאפסת את ההתקדמות!</p>
             <div id="sort-progress" style="font-size: 0.9rem; color: var(--primary);"></div>
-            <div class="sorting-container" id="scenarios-box">טוען מצב...</div>
+            <div class="sorting-container" id="scenarios-box">טוען...</div>
             <div class="sort-btn-group">
-                <button class="btn-safe action-btn" style="padding: 10px 20px;" onclick="handleSort(true)">🟢 בטוח לגמרי</button>
-                <button class="btn-danger action-btn" style="padding: 10px 20px;" onclick="handleSort(false)">🔴 חשוד / מסוכן</button>
+                <button class="btn-safe action-btn" style="padding:10px 20px;" onclick="handleSort(true)">🟢 בטוח</button>
+                <button class="btn-danger action-btn" style="padding:10px 20px;" onclick="handleSort(false)">🔴 מסוכן</button>
             </div>
         </div>
 
-        <!-- חדר 3: פיצוח הקוד -->
+        <!-- ROOM 3: Digital Footprint -->
         <div id="room3" class="hidden">
-            <h2>חדר 3: מנעול הקוד הסופי</h2>
-            <p>כדי לנטרל את הווירוס, עליכם לגלות קוד בן 3 ספרות בעזרת המידע שקראתם בדף הרקע:</p>
-            <div style="text-align: right; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.95rem;">
+            <h2>👣 חדר 3: טביעת הרגל הדיגיטלית</h2>
+            <div class="footprint-instructions">
+                🕵️ <strong>משימה:</strong> לפניכם פרופיל הרשת החברתית של "מיכל". זהו ולחצו על כל הפוסטים שחושפים מידע רגיש שעלול לשמש האקרים! מצאו את <strong id="fp-required">?</strong> האלמנטים המסוכנים.
+            </div>
+            <div class="footprint-progress">זיהיתם: <span id="fp-found">0</span> / <span id="fp-total">?</span></div>
+            <div class="social-profile">
+                <div class="profile-header">
+                    <div class="profile-avatar">👧</div>
+                    <div>
+                        <div class="profile-name">מיכל כהן</div>
+                        <div class="profile-handle">@michal_real · 847 עוקבים</div>
+                    </div>
+                </div>
+                <div id="posts-container"></div>
+            </div>
+            <button class="action-btn hint-btn" onclick="toggleHint('hint3')">💡 רמז</button>
+            <div class="hint-box" id="hint3">חפשו: כתובות, מיקומים מדויקים, תאריך לידה מלא, ותמונות שחושפות את הסביבה שלכם.</div>
+            <button class="action-btn" id="fp-submit-btn" onclick="checkFootprint()" style="margin-top:10px; display:none;">✅ בדוק את הבחירות שלי</button>
+        </div>
+
+        <!-- ROOM 4: Malware Lab -->
+        <div id="room4" class="hidden">
+            <h2>🦠 חדר 4: מעבדת הנוזקות</h2>
+            <p>לפניכם 4 קבצים להורדה. השתמשו ב<strong>סורק</strong> לבדוק כל קובץ, ואז החליטו: הורד או מחק!</p>
+            <div class="desktop-sim">
+                <div class="desktop-toolbar">
+                    <span class="toolbar-icon">🖥️</span>
+                    <span style="color:#aaa; font-size:0.8rem;">CyberGuard Scanner v2.1</span>
+                    <span style="margin-right:auto; font-size:0.8rem; color: var(--warning);">קבצים שנותרו: <span id="malware-remaining">4</span></span>
+                </div>
+                <div id="malware-cards"></div>
+            </div>
+            <button class="action-btn hint-btn" onclick="toggleHint('hint4')">💡 רמז</button>
+            <div class="hint-box" id="hint4">סיומות מסוכנות: .exe .bat .scr .vbs – אלה קבצים הרצה שיכולים לפגוע במחשב. PDF ו-JPG ממקורות רשמיים – בדרך כלל בטוחים.</div>
+        </div>
+
+        <!-- ROOM 5: Deepfake -->
+        <div id="room5" class="hidden">
+            <h2>🤖 חדר 5: הנדסה חברתית ו-AI</h2>
+            <p>תקבלו מספר הודעות חשודות. עבור כל אחת, בחרו את פעולת המניעה הנכונה!</p>
+            <div class="deepfake-progress">תרחיש <span id="df-current">1</span> מתוך <span id="df-total">3</span></div>
+            <div id="df-scenario-box"></div>
+            <div class="deepfake-actions" id="df-actions"></div>
+            <button class="action-btn hint-btn" onclick="toggleHint('hint5')">💡 רמז</button>
+            <div class="hint-box" id="hint5">סימני אזהרה לדיפייק: לחץ זמן קיצוני, בקשה להעברת כסף/קוד, הודעה ממספר לא מוכר, קול לא טבעי. הפתרון הנכון תמיד – אמת ישירות!</div>
+        </div>
+
+        <!-- ROOM 6: WiFi Trap -->
+        <div id="room6" class="hidden">
+            <h2>📶 חדר 6: מלכודת ה-Wi-Fi</h2>
+            <p>אתם נמצאים בקניון וצריכים לשלוח קובץ חשוב. בחרו את הרשת הבטוחה ביותר!</p>
+            <div class="location-banner">
+                <div class="location-icon">🛍️</div>
+                <div style="font-weight:bold; color:#ddd;">קניון הזהב</div>
+                <div class="location-text">📍 רמת גן · נמצאו 3 רשתות Wi-Fi</div>
+            </div>
+            <div class="wifi-list" id="wifi-list"></div>
+            <div class="vpn-toggle">
+                <div class="vpn-info">
+                    <div class="vpn-label">🛡️ הפעל VPN</div>
+                    <div class="vpn-desc">מצפין את הגלישה שלך ומגן מפני האזנות</div>
+                </div>
+                <div class="toggle-switch" id="vpn-toggle" onclick="toggleVPN()">
+                    <div class="toggle-knob"></div>
+                </div>
+            </div>
+            <div id="vpn-status" style="font-size:0.85rem; color:#888; text-align:right;"></div>
+            <button class="action-btn wifi-confirm-btn" id="wifi-confirm" onclick="confirmWifi()" style="display:none;">📤 שלח את הקובץ</button>
+            <button class="action-btn hint-btn" onclick="toggleHint('hint6')">💡 רמז</button>
+            <div class="hint-box" id="hint6">רשת מאובטחת = יש סיסמה + מקור מהימן. גם אם בחרתם רשת מאובטחת, הפעלת VPN מוסיפה שכבת הגנה נוספת!</div>
+        </div>
+
+        <!-- ROOM 7: Final Code -->
+        <div id="room7" class="hidden">
+            <h2>🔐 חדר 7: מנעול הקוד הסופי</h2>
+            <p>פצחו קוד בן 3 ספרות בעזרת המידע שקראתם:</p>
+            <div style="text-align:right; background:rgba(255,255,255,0.05); padding:15px; border-radius:8px; margin-bottom:15px; font-size:0.95rem; line-height:2;">
                 📌 <strong>ספרה ראשונה:</strong> מספר המוקד הלאומי להגנה על ילדים ברשת פחות 100.<br>
                 📌 <strong>ספרה שנייה:</strong> כמה שלבים יש במנגנון האימות הדו-שלבי?<br>
-                📌 <strong>ספרה שלישית:</strong> אם הסיסמה המורכבת "A@b3#k9" קיבלה ציון בטיחות מעולה, איזה ציון מגיע לסיסמה חלשה ונפוצה כמו "123456"?
+                📌 <strong>ספרה שלישית:</strong> סיסמה חלשה כמו "123456" קיבלה ציון בטיחות – <em>אפס</em>.
             </div>
             <div id="code-display"></div>
             <div class="keypad">
                 <div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div>
                 <div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div>
                 <div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div>
-                <div class="key" style="border:none;"></div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearCode()" style="font-size:1rem; color:var(--danger); border-color:var(--danger)">C</div>
+                <div class="key" style="border:none;"></div><div class="key" onclick="pressKey('0')">0</div>
+                <div class="key" onclick="clearCode()" style="font-size:1rem; color:var(--danger); border-color:var(--danger)">C</div>
             </div>
         </div>
 
-        <!-- מסך ניצחון -->
+        <!-- VICTORY -->
         <div id="victory-screen" class="hidden">
-            <h1 style="color: var(--success); font-size: 3rem;">🏆 המערכת שוחררה! 🏆</h1>
-            <p>הצלחתם לפצח את כל החדרים, להביס את ההאקר ולהוכיח שאתם אלופי אבטחה דיגיטלית!</p>
-            <button class="action-btn" onclick="location.reload()">שחק שוב</button>
+            <div class="victory-title">🏆 המערכת שוחררה! 🏆</div>
+            <p>הצלחתם לפצח את כל 7 החדרים ולהביס את ההאקרים!</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-num" id="final-score">0</div>
+                    <div class="stat-label">נקודות</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" id="final-time">-</div>
+                    <div class="stat-label">זמן סיום</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num">7</div>
+                    <div class="stat-label">חדרים שנפרצו</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-num" id="final-rank-icon">🥇</div>
+                    <div class="stat-label">דרגה</div>
+                </div>
+            </div>
+            <div class="rank-title" id="final-rank-label"></div>
+            <div class="name-input-box">
+                <p>הזינו את שמכם לתעודה:</p>
+                <input type="text" id="player-name" placeholder="שם מלא" maxlength="30" />
+                <br><button class="action-btn" style="margin-top:10px;" onclick="generateCertificate()">🎖️ צור תעודה</button>
+            </div>
+            <div id="certificate-area" style="display:none;">
+                <div class="cert-box" id="cert-box">
+                    <div class="cert-top">🛡️ אנתרופיק · מרכז הסייבר הלאומי לנוער</div>
+                    <div class="cert-title">תעודת לוחם/ת סייבר</div>
+                    <div class="cert-sub">מוענקת בגאווה לידי</div>
+                    <div class="cert-name" id="cert-name-display">—</div>
+                    <div class="cert-badge">🏅</div>
+                    <div class="cert-details">
+                        <div class="cert-detail">
+                            <div class="cert-detail-val" id="cert-score">0</div>
+                            <div class="cert-detail-label">נקודות</div>
+                        </div>
+                        <div class="cert-detail">
+                            <div class="cert-detail-val" id="cert-time">-</div>
+                            <div class="cert-detail-label">זמן סיום</div>
+                        </div>
+                        <div class="cert-detail">
+                            <div class="cert-detail-val" id="cert-rank">-</div>
+                            <div class="cert-detail-label">דרגה</div>
+                        </div>
+                    </div>
+                    <div class="cert-rooms">
+                        <span class="cert-room-badge">✅ זיכרון דיגיטלי</span>
+                        <span class="cert-room-badge">✅ מסננת סייבר</span>
+                        <span class="cert-room-badge">✅ טביעת רגל</span>
+                        <span class="cert-room-badge">✅ מעבדת נוזקות</span>
+                        <span class="cert-room-badge">✅ AI ודיפייק</span>
+                        <span class="cert-room-badge">✅ מלכודת Wi-Fi</span>
+                        <span class="cert-room-badge">✅ קוד סופי</span>
+                    </div>
+                    <div style="font-size:0.75rem; color:#666; margin-top:10px;" id="cert-date"></div>
+                </div>
+                <div class="print-area">
+                    <button class="action-btn" onclick="window.print()">🖨️ הדפס תעודה</button>
+                    <button class="action-btn" onclick="location.reload()">🔄 שחק שוב</button>
+                </div>
+            </div>
         </div>
 
-        <!-- משוב כללי -->
         <div id="feedback"></div>
     </div>
 </div>
 
 <script>
-    let feedbackBox = document.getElementById('feedback');
+// ===================== STATE =====================
+let feedbackBox = document.getElementById('feedback');
+let score = 0;
+let timerInterval = null;
+let startTime = null;
+let elapsedSeconds = 0;
+let currentRoom = 0;
+let vpnOn = false;
+let selectedWifi = null;
 
-    // ניהול לשוניות
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        
-        document.getElementById(tabId).classList.add('active');
-        if(tabId === 'info-tab') document.getElementById('tab-link-info').classList.add('active');
-        if(tabId === 'game-tab') document.getElementById('tab-link-game').classList.add('active');
+// ===================== UTILS =====================
+function switchTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    if(tabId === 'info-tab') document.getElementById('tab-link-info').classList.add('active');
+    if(tabId === 'game-tab') document.getElementById('tab-link-game').classList.add('active');
+}
+
+function showFeedback(text, isSuccess) {
+    feedbackBox.innerText = text;
+    feedbackBox.style.color = isSuccess ? 'var(--success)' : 'var(--danger)';
+    if(!isSuccess) setTimeout(() => feedbackBox.innerText = '', 2500);
+}
+
+function addScore(pts) {
+    score += pts;
+    document.getElementById('score-display').innerText = score;
+}
+
+function toggleHint(id) {
+    let h = document.getElementById(id);
+    h.style.display = h.style.display === 'block' ? 'none' : 'block';
+    addScore(-5); // hint penalty
+}
+
+function updateDots(roomNum) {
+    for(let i = 1; i <= 7; i++) {
+        let dot = document.getElementById('dot-' + i);
+        if(i < roomNum) { dot.className = 'room-dot done'; }
+        else if(i === roomNum) { dot.className = 'room-dot current'; }
+        else { dot.className = 'room-dot'; }
     }
+    document.getElementById('room-display').innerText = roomNum + '/7';
+}
 
-    function showFeedback(text, isSuccess) {
-        feedbackBox.innerText = text;
-        feedbackBox.style.color = isSuccess ? 'var(--success)' : 'var(--danger)';
-        if(!isSuccess) setTimeout(() => feedbackBox.innerText = '', 2000);
-    }
+function startTimer() {
+    startTime = Date.now();
+    timerInterval = setInterval(() => {
+        elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
+        let m = String(Math.floor(elapsedSeconds/60)).padStart(2,'0');
+        let s = String(elapsedSeconds%60).padStart(2,'0');
+        document.getElementById('timer-display').innerText = m + ':' + s;
+    }, 1000);
+}
 
-    function startRoom(roomNum) {
-        document.getElementById('intro-screen').classList.add('hidden');
-        document.getElementById('room1').classList.add('hidden');
-        document.getElementById('room2').classList.add('hidden');
-        document.getElementById('room3').classList.add('hidden');
-        document.getElementById('victory-screen').classList.add('hidden');
-        feedbackBox.innerText = '';
+function formatTime(secs) {
+    let m = Math.floor(secs/60), s = secs%60;
+    return (m > 0 ? m + ' דק\' ' : '') + s + ' שנ\'';
+}
 
-        if(roomNum === 1) { document.getElementById('room1').classList.remove('hidden'); initMemoryGame(); }
-        if(roomNum === 2) { document.getElementById('room2').classList.remove('hidden'); initSortingGame(); }
-        if(roomNum === 3) { document.getElementById('room3').classList.remove('hidden'); }
-        if(roomNum === 'win') { document.getElementById('victory-screen').classList.remove('hidden'); }
-    }
+function hideAllRooms() {
+    ['intro-screen','room1','room2','room3','room4','room5','room6','room7','victory-screen']
+        .forEach(id => document.getElementById(id).classList.add('hidden'));
+    feedbackBox.innerText = '';
+}
 
-    // ==================== חדר 1: משחק הזיכרון ====================
-    const memoryData = [
-        { text: "פישינג (דיוג)", pairId: 1 }, { text: "קישור מזויף במייל", pairId: 1 },
-        { text: "סיסמה חזקה", pairId: 2 }, { text: "אותיות, מספרים וסימנים", pairId: 2 },
-        { text: "מוקד 105", pairId: 3 }, { text: "דיווח על פגיעה ברשת", pairId: 3 },
-        { text: "Wi-Fi ציבורי", pairId: 4 }, { text: "סכנת גניבת סיסמאות", pairId: 4 }
-    ];
-    let flippedCards = [];
-    let matchedPairs = 0;
+function startGame() {
+    document.getElementById('score-bar').style.display = 'flex';
+    document.getElementById('progress-dots').style.display = 'flex';
+    startTimer();
+    goToRoom(1);
+}
 
-    function initMemoryGame() {
-        const grid = document.getElementById('memory-grid');
-        grid.innerHTML = '';
-        let shuffled = [...memoryData].sort(() => Math.random() - 0.5);
-        
-        shuffled.forEach((card, index) => {
-            const cardEl = document.createElement('div');
-            cardEl.className = 'memory-card';
-            cardEl.innerText = card.text;
-            cardEl.dataset.pairId = card.pairId;
-            cardEl.dataset.index = index;
-            cardEl.onclick = () => flipCard(cardEl);
-            grid.appendChild(cardEl);
-        });
-    }
+function goToRoom(num) {
+    hideAllRooms();
+    currentRoom = num;
+    updateDots(num);
+    if(num === 1) { document.getElementById('room1').classList.remove('hidden'); initMemoryGame(); }
+    else if(num === 2) { document.getElementById('room2').classList.remove('hidden'); initSortingGame(); }
+    else if(num === 3) { document.getElementById('room3').classList.remove('hidden'); initFootprintGame(); }
+    else if(num === 4) { document.getElementById('room4').classList.remove('hidden'); initMalwareGame(); }
+    else if(num === 5) { document.getElementById('room5').classList.remove('hidden'); initDeepfakeGame(); }
+    else if(num === 6) { document.getElementById('room6').classList.remove('hidden'); initWifiGame(); }
+    else if(num === 7) { document.getElementById('room7').classList.remove('hidden'); }
+    else if(num === 'win') { clearInterval(timerInterval); showVictory(); }
+}
 
-    function flipCard(card) {
-        if(card.classList.contains('flipped') || card.classList.contains('matched') || flippedCards.length >= 2) return;
+// ===================== ROOM 1: MEMORY =====================
+const memoryData = [
+    { text: "פישינג (דיוג)", pairId: 1 }, { text: "קישור מזויף במייל", pairId: 1 },
+    { text: "סיסמה חזקה", pairId: 2 }, { text: "אותיות, מספרים וסימנים", pairId: 2 },
+    { text: "מוקד 105", pairId: 3 }, { text: "דיווח על פגיעה ברשת", pairId: 3 },
+    { text: "Wi-Fi ציבורי", pairId: 4 }, { text: "סכנת גניבת סיסמאות", pairId: 4 }
+];
+let flippedCards = [], matchedPairs = 0;
 
-        card.classList.add('flipped');
-        flippedCards.push(card);
+function initMemoryGame() {
+    const grid = document.getElementById('memory-grid');
+    grid.innerHTML = '';
+    flippedCards = []; matchedPairs = 0;
+    let shuffled = [...memoryData].sort(() => Math.random() - 0.5);
+    shuffled.forEach((card, index) => {
+        const el = document.createElement('div');
+        el.className = 'memory-card';
+        el.innerText = card.text;
+        el.dataset.pairId = card.pairId;
+        el.onclick = () => flipCard(el);
+        grid.appendChild(el);
+    });
+}
 
-        if(flippedCards.length === 2) {
-            if(flippedCards[0].dataset.pairId === flippedCards[1].dataset.pairId) {
-                flippedCards[0].classList.add('matched');
-                flippedCards[1].classList.add('matched');
-                flippedCards = [];
-                matchedPairs++;
-                if(matchedPairs === 4) {
-                    showFeedback("🔓 השער הראשון נפתח! עוברים לחדר הבא...", true);
-                    setTimeout(() => startRoom(2), 1500);
-                }
-            } else {
-                setTimeout(() => {
-                    flippedCards[0].classList.remove('flipped');
-                    flippedCards[1].classList.remove('flipped');
-                    flippedCards = [];
-                }, 1000);
-            }
-        }
-    }
-
-    // ==================== חדר 2: משחק המיון ====================
-    const scenarios = [
-        { text: "הודעה מסיבוס/גוגל: 'החשבון שלך נחסם, לחץ כאן לשחרור והזן סיסמה'", isSafe: false },
-        { text: "חבר מהכיתה שולח לך סרטון מטיול שהייתם בו שבוע שעבר", isSafe: true },
-        { text: "אפליקציית פנקס רשימות מבקשת גישה לאנשי קשר, מצלמה ומיקום", isSafe: false },
-        { text: "הודעה בוואטסאפ: 'שלחתי לך קוד בטעות, תעביר לי אותו מהר'", isSafe: false },
-        { text: "אתר רשמי של משרד החינוך (עם סיומת gov.il) מבקש הזדהות משרד החינוך", isSafe: true }
-    ];
-    let currentScenarioIdx = 0;
-
-    function initSortingGame() {
-        currentScenarioIdx = 0;
-        showScenario();
-    }
-
-    function showScenario() {
-        document.getElementById('sort-progress').innerText = `איום ${currentScenarioIdx + 1} מתוך ${scenarios.length}`;
-        document.getElementById('scenarios-box').innerText = scenarios[currentScenarioIdx].text;
-    }
-
-    function handleSort(userSaidSafe) {
-        let current = scenarios[currentScenarioIdx];
-        if(userSaidSafe === current.isSafe) {
-            currentScenarioIdx++;
-            if(currentScenarioIdx >= scenarios.length) {
-                showFeedback("🔓 השער השני נפתח! המערכת כמעט משוחררת...", true);
-                setTimeout(() => startRoom(3), 1500);
-            } else {
-                showScenario();
+function flipCard(card) {
+    if(card.classList.contains('flipped') || card.classList.contains('matched') || flippedCards.length >= 2) return;
+    card.classList.add('flipped');
+    flippedCards.push(card);
+    if(flippedCards.length === 2) {
+        if(flippedCards[0].dataset.pairId === flippedCards[1].dataset.pairId) {
+            flippedCards[0].classList.add('matched'); flippedCards[1].classList.add('matched');
+            flippedCards = []; matchedPairs++;
+            addScore(50);
+            if(matchedPairs === 4) {
+                showFeedback("🔓 השער הראשון נפתח! +200 נקודות", true);
+                addScore(200);
+                setTimeout(() => goToRoom(2), 1500);
             }
         } else {
-            showFeedback("❌ זיהוי שגוי! המערכת זיהתה סיכון. נסה שוב.", false);
+            setTimeout(() => { flippedCards.forEach(c => c.classList.remove('flipped')); flippedCards = []; }, 1000);
         }
     }
+}
 
-    // ==================== חדר 3: פיצוח הקוד הסופי ====================
-    const correctCode = "520"; // 105-100 = 5, אימות דו שלבי = 2, סיסמה 123456 = 0
-    let currentInputCode = "";
+// ===================== ROOM 2: SORTING =====================
+const scenarios = [
+    { text: "הודעה מגוגל: 'החשבון שלך נחסם, לחץ כאן לשחרור והזן סיסמה'", isSafe: false },
+    { text: "חבר מהכיתה שולח לך סרטון מטיול שהייתם בו שבוע שעבר", isSafe: true },
+    { text: "אפליקציית פנקס רשימות מבקשת גישה לאנשי קשר, מצלמה ומיקום", isSafe: false },
+    { text: "הודעה בוואטסאפ: 'שלחתי לך קוד בטעות, תעביר לי אותו מהר'", isSafe: false },
+    { text: "אתר רשמי של משרד החינוך (gov.il) מבקש הזדהות", isSafe: true }
+];
+let currentScenarioIdx = 0;
 
-    function pressKey(num) {
-        if(currentInputCode.length >= 3) return;
-        currentInputCode += num;
-        document.getElementById('code-display').innerText = currentInputCode;
+function initSortingGame() { currentScenarioIdx = 0; showScenario(); }
 
-        if(currentInputCode.length === 3) {
-            if(currentInputCode === correctCode) {
-                showFeedback("🔓 הקוד נכון! הנגיף הושמד!", true);
-                setTimeout(() => startRoom('win'), 1200);
-            } else {
-                showFeedback("❌ קוד שגוי! המערכת ננעלה. נקה ונסה שוב.", false);
-                document.getElementById('code-display').style.color = 'var(--danger)';
-            }
+function showScenario() {
+    document.getElementById('sort-progress').innerText = `איום ${currentScenarioIdx+1} מתוך ${scenarios.length}`;
+    document.getElementById('scenarios-box').innerText = scenarios[currentScenarioIdx].text;
+}
+
+function handleSort(userSaidSafe) {
+    let cur = scenarios[currentScenarioIdx];
+    if(userSaidSafe === cur.isSafe) {
+        addScore(40);
+        currentScenarioIdx++;
+        if(currentScenarioIdx >= scenarios.length) {
+            showFeedback("🔓 מסננת הסייבר עברה! +150 נקודות", true);
+            addScore(150);
+            setTimeout(() => goToRoom(3), 1500);
+        } else { showScenario(); }
+    } else {
+        showFeedback("❌ זיהוי שגוי! נסה שוב.", false);
+        addScore(-20);
+    }
+}
+
+// ===================== ROOM 3: DIGITAL FOOTPRINT =====================
+const posts = [
+    { icon: "📍", tag: "Instagram · לפני שעה", text: "יצאנו לאכול! רחוב הרצל 42, תל אביב 🍕 מי בא?", isDangerous: true, reason: "חושף כתובת מדויקת בזמן אמת" },
+    { icon: "🎂", tag: "Facebook · אתמול", text: "היום יום הולדת שלי! 14 בנובמבר 2010 – 14 שנה!! 🎉", isDangerous: true, reason: "חושף תאריך לידה מלא" },
+    { icon: "🏫", tag: "TikTok · לפני 3 ימים", text: "הבאתי לכם סיור בבית הספר שלי! תראו איזה קמפוס מגניב 😍 חיפה", isDangerous: true, reason: "חושף את שם ומיקום בית הספר" },
+    { icon: "🌅", tag: "Instagram · לפני שבוע", text: "שקיעה יפה היום! 🌺", isDangerous: false, reason: "" },
+    { icon: "🏠", tag: "Snapchat · לפני 5 ימים", text: "אוהבת את החדר החדש שלי! תראו את החלון 🪟 נוף לרחוב מהקומה השנייה", isDangerous: true, reason: "מידע על מבנה הבית ומיקומו" },
+    { icon: "😂", tag: "Twitter · לפני יומיים", text: "מה הדבר הכי מצחיק שקרה לכם השבוע? 😅", isDangerous: false, reason: "" }
+];
+let fpSelected = new Set();
+const dangerCount = posts.filter(p => p.isDangerous).length;
+
+function initFootprintGame() {
+    fpSelected.clear();
+    let container = document.getElementById('posts-container');
+    container.innerHTML = '';
+    document.getElementById('fp-required').innerText = dangerCount;
+    document.getElementById('fp-total').innerText = dangerCount;
+    document.getElementById('fp-found').innerText = 0;
+    document.getElementById('fp-submit-btn').style.display = 'none';
+
+    posts.forEach((post, i) => {
+        let div = document.createElement('div');
+        div.className = 'post-item';
+        div.dataset.index = i;
+        div.innerHTML = `
+            <span class="post-tag">${post.icon} ${post.tag}</span>
+            <div class="post-text">${post.text}</div>
+        `;
+        div.onclick = () => togglePost(div, i, post.isDangerous);
+        container.appendChild(div);
+    });
+}
+
+function togglePost(div, idx, isDangerous) {
+    if(fpSelected.has(idx)) {
+        fpSelected.delete(idx);
+        div.classList.remove('selected-bad');
+    } else {
+        fpSelected.add(idx);
+        div.classList.add('selected-bad');
+    }
+    document.getElementById('fp-found').innerText = fpSelected.size;
+    document.getElementById('fp-submit-btn').style.display = fpSelected.size > 0 ? 'inline-block' : 'none';
+}
+
+function checkFootprint() {
+    let correct = 0, wrong = 0;
+    fpSelected.forEach(idx => {
+        if(posts[idx].isDangerous) correct++;
+        else wrong++;
+    });
+    let missed = dangerCount - correct;
+    if(wrong === 0 && missed === 0) {
+        showFeedback("🔓 מצוין! זיהיתם את כל המידע הרגיש! +200 נקודות", true);
+        addScore(200);
+        setTimeout(() => goToRoom(4), 1500);
+    } else {
+        let msg = '';
+        if(wrong > 0) msg += `${wrong} בחירות שגויות. `;
+        if(missed > 0) msg += `פספסתם ${missed} פוסטים מסוכנים. `;
+        showFeedback("❌ " + msg + "נסה שוב!", false);
+        addScore(-30);
+    }
+}
+
+// ===================== ROOM 4: MALWARE =====================
+const malwareFiles = [
+    { icon: "⚠️", name: "Chrome_Update_URGENT.exe", source: "update-chrome-now.ru/download", ext: ".exe", safe: false, scanResult: "🔴 נוזקה זוהתה: Trojan.Downloader · מקור: דומיין רוסי לא מוכר · סיומת: .exe" },
+    { icon: "📄", name: "עבודה_בגיאוגרפיה.pdf", source: "classroom.google.com", ext: ".pdf", safe: true, scanResult: "🟢 קובץ נקי · מקור: Google Classroom מאומת · סיומת: .pdf · גודל: 2.3MB" },
+    { icon: "🎮", name: "Minecraft_FreeHack_v5.scr", source: "free-games-hacks.net", ext: ".scr", safe: false, scanResult: "🔴 נוזקה קריטית: Ransomware · מקור: אתר מפוצל לא מאובת · סיומת: .scr" },
+    { icon: "🖼️", name: "תמונת_הטיול.jpg", source: "whatsapp.com (נשלח מחבר)", ext: ".jpg", safe: true, scanResult: "🟢 קובץ נקי · תמונה רגילה ממקור מוכר · סיומת: .jpg · גודל: 4.1MB" }
+];
+let malwareDone = 0;
+
+function initMalwareGame() {
+    malwareDone = 0;
+    let container = document.getElementById('malware-cards');
+    container.innerHTML = '';
+    document.getElementById('malware-remaining').innerText = malwareFiles.length;
+
+    malwareFiles.forEach((file, i) => {
+        let extClass = file.safe ? 'ext-safe' : 'ext-danger';
+        let div = document.createElement('div');
+        div.id = 'mfile-' + i;
+        div.className = 'download-card';
+        div.innerHTML = `
+            <div class="download-icon">${file.icon}</div>
+            <div class="download-info">
+                <div class="download-name">${file.name}</div>
+                <div class="download-source">📎 מקור: ${file.source}</div>
+                <span class="download-ext ${extClass}">${file.ext}</span>
+            </div>
+            <button class="scan-btn" onclick="scanFile(${i}, event)">🔍 סרוק</button>
+        `;
+        container.appendChild(div);
+
+        let resultDiv = document.createElement('div');
+        resultDiv.className = 'scanner-result';
+        resultDiv.id = 'scan-result-' + i;
+        resultDiv.innerHTML = file.scanResult;
+        container.appendChild(resultDiv);
+
+        let btnDiv = document.createElement('div');
+        btnDiv.className = 'malware-btns hidden';
+        btnDiv.id = 'malware-btns-' + i;
+        btnDiv.innerHTML = `
+            <button class="action-btn btn-download" onclick="handleMalware(${i}, ${file.safe}, true)">⬇️ הורד</button>
+            <button class="action-btn btn-delete" onclick="handleMalware(${i}, ${file.safe}, false)">🗑️ מחק</button>
+        `;
+        container.appendChild(btnDiv);
+    });
+}
+
+function scanFile(idx, e) {
+    e.stopPropagation();
+    document.getElementById('scan-result-' + idx).style.display = 'block';
+    document.getElementById('malware-btns-' + idx).classList.remove('hidden');
+}
+
+function handleMalware(idx, isSafe, userDownloads) {
+    let correct = (isSafe && userDownloads) || (!isSafe && !userDownloads);
+    let card = document.getElementById('mfile-' + idx);
+    if(correct) {
+        addScore(60);
+        card.style.opacity = '0.4'; card.style.pointerEvents = 'none';
+        document.getElementById('malware-btns-' + idx).classList.add('hidden');
+        malwareDone++;
+        document.getElementById('malware-remaining').innerText = malwareFiles.length - malwareDone;
+        showFeedback("✅ " + (userDownloads ? "הורדה בטוחה!" : "מחיקה נכונה!") + " +60", true);
+        if(malwareDone >= malwareFiles.length) {
+            setTimeout(() => {
+                showFeedback("🔓 מעבדת הנוזקות נוטרלה! +200 נקודות", true);
+                addScore(200);
+                setTimeout(() => goToRoom(5), 1500);
+            }, 800);
+        }
+    } else {
+        showFeedback("❌ שגוי! " + (userDownloads ? "הורדת נוזקה!" : "מחקת קובץ תקין!"), false);
+        addScore(-40);
+    }
+}
+
+// ===================== ROOM 5: DEEPFAKE =====================
+const deepfakeScenarios = [
+    {
+        type: "whatsapp",
+        contact: "אמא 👩",
+        message: "מיכל יקרה, אני בבנק עכשיו ואנחנו צריכים בדחיפות את קוד הכרטיס שלי. שלחי לי מהר, יש תור מחכה לי ואני לא יכולה לדבר בטלפון!",
+        warning: "בקשה דחופה לקוד · לחץ זמן · 'לא יכולה לדבר'",
+        actions: [
+            { text: "📤 שלחי את הקוד מהר לפני שיפסידו את התור", correct: false },
+            { text: "📞 התקשרי ישירות לאמא למספר שמור בטלפון שלך", correct: true },
+            { text: "💬 שאלי 'איזה קוד?'", correct: false }
+        ],
+        explanation: "תמיד אמתו ישירות! אמא אמיתית לא תבקש קוד בהודעה. זה עשוי להיות דיפייק קולי."
+    },
+    {
+        type: "call",
+        contact: "מספר לא מוכר: 050-1234567",
+        message: "היי! אני יוסי מהכיתה שלך. קרה לי משהו נורא ואני צריך שתעביר לי 200 שקל דרך ביט. אני מחזיר לך מחר, אני מבטיח. מהר, זה דחוף!",
+        warning: "מספר לא מוכר · בקשת כסף · 'מחר אחזיר' · לחץ",
+        actions: [
+            { text: "💰 שלח 200 ₪ דרך ביט מיד", correct: false },
+            { text: "📞 סגור ויצור קשר עם יוסי דרך המספר שיש לך בטלפון", correct: true },
+            { text: "🙋 שאל 'באיזו כיתה אנחנו?'", correct: false }
+        ],
+        explanation: "מספר לא מוכר + בקשת כסף = דגל אדום. תמיד אמתו דרך ערוץ מוכר."
+    },
+    {
+        type: "video",
+        contact: "📹 סרטון בדרייב",
+        message: "סרטון בשם 'אתה_חייב_לראות_זאת.mp4' נשלח אליך מ'חבר'. הלינק מוביל לאתר: videos-free-share.xyz/watch?id=82739",
+        warning: "שם קובץ מסתורי · אתר לא מוכר · מקור לא ברור",
+        actions: [
+            { text: "▶️ לחץ על הלינק לצפייה", correct: false },
+            { text: "🔍 בדוק עם החבר ישירות אם הוא שלח את הסרטון", correct: true },
+            { text: "📤 שתף עם חברים נוספים", correct: false }
+        ],
+        explanation: "אתרים לא מוכרים עם שמות קבצים מסתוריים = פישינג קלאסי. תמיד אמתו עם השולח!"
+    }
+];
+let dfIndex = 0;
+
+function initDeepfakeGame() {
+    dfIndex = 0;
+    document.getElementById('df-total').innerText = deepfakeScenarios.length;
+    showDeepfakeScenario();
+}
+
+function showDeepfakeScenario() {
+    document.getElementById('df-current').innerText = dfIndex + 1;
+    let sc = deepfakeScenarios[dfIndex];
+    let scenarioBox = document.getElementById('df-scenario-box');
+    scenarioBox.innerHTML = `
+        <div class="phone-sim">
+            <div class="phone-header">
+                <span class="whatsapp-icon">💬</span>
+                <div>
+                    <div class="phone-contact">${sc.contact}</div>
+                    <div class="phone-status">⚠️ סימני אזהרה: ${sc.warning}</div>
+                </div>
+            </div>
+            <div class="voice-message">
+                <div class="vm-header"><span class="vm-wave">🔊</span><span class="vm-duration">הודעה</span></div>
+                <div class="vm-text">${sc.message}</div>
+            </div>
+        </div>
+        <div class="warning-flags">
+            <h4>🚩 סימני האזהרה שזיהינו:</h4>
+            ${sc.warning.split(' · ').map(w => `<div class="flag-item">⚠️ ${w}</div>`).join('')}
+        </div>
+        <p style="font-size:0.9rem;">מה תעשה?</p>
+    `;
+
+    let actionsEl = document.getElementById('df-actions');
+    actionsEl.innerHTML = '';
+    sc.actions.forEach((action, i) => {
+        let btn = document.createElement('button');
+        btn.className = 'deepfake-btn';
+        btn.innerText = action.text;
+        btn.onclick = () => handleDeepfake(action.correct, btn, sc.explanation, actionsEl);
+        actionsEl.appendChild(btn);
+    });
+}
+
+function handleDeepfake(isCorrect, btn, explanation, actionsEl) {
+    // disable all
+    actionsEl.querySelectorAll('.deepfake-btn').forEach(b => b.onclick = null);
+    if(isCorrect) {
+        btn.classList.add('correct');
+        addScore(80);
+        showFeedback("✅ נכון מאוד! " + explanation, true);
+        dfIndex++;
+        if(dfIndex >= deepfakeScenarios.length) {
+            setTimeout(() => {
+                addScore(200);
+                showFeedback("🔓 עמדת בפני כל מתקפות הדיפייק! +200", true);
+                setTimeout(() => goToRoom(6), 1800);
+            }, 2000);
+        } else {
+            setTimeout(() => showDeepfakeScenario(), 2500);
+        }
+    } else {
+        btn.classList.add('wrong');
+        addScore(-30);
+        showFeedback("❌ לא נכון. " + explanation, false);
+        setTimeout(() => {
+            actionsEl.querySelectorAll('.deepfake-btn').forEach(b => {
+                b.onclick = null; b.classList.remove('wrong');
+            });
+            showDeepfakeScenario();
+        }, 2500);
+    }
+}
+
+// ===================== ROOM 6: WIFI =====================
+const wifiNetworks = [
+    { id: 'w1', icon: '📶', name: 'Free_Mall_WiFi', details: 'רשת ציבורית · 312 מחוברים · ללא סיסמה', badge: 'wifi-open', badgeText: '🔓 פתוחה – מסוכנת', safe: false, needsVPN: true },
+    { id: 'w2', icon: '🔐', name: 'Super_Café_Private', details: 'רשת מאובטחת · סיסמה: על הקבלה · WPA2', badge: 'wifi-secured', badgeText: '🔒 מאובטחת', safe: true, needsVPN: false },
+    { id: 'w3', icon: '⚠️', name: 'Free_HighSpeed_Internet_NoPassword', details: 'רשת חשודה · מקור לא ידוע · אין סיסמה', badge: 'wifi-suspicious', badgeText: '☠️ חשודה מאוד', safe: false, needsVPN: false }
+];
+
+function initWifiGame() {
+    vpnOn = false; selectedWifi = null;
+    let list = document.getElementById('wifi-list');
+    list.innerHTML = '';
+    document.getElementById('vpn-toggle').classList.remove('on');
+    document.getElementById('vpn-status').innerText = '';
+    document.getElementById('wifi-confirm').style.display = 'none';
+
+    wifiNetworks.forEach(net => {
+        let div = document.createElement('div');
+        div.className = 'wifi-card';
+        div.id = net.id;
+        div.innerHTML = `
+            <div class="wifi-header">
+                <span class="wifi-icon">${net.icon}</span>
+                <div>
+                    <div class="wifi-name">${net.name}</div>
+                    <div class="wifi-details">${net.details}</div>
+                    <span class="wifi-badge ${net.badge}">${net.badgeText}</span>
+                </div>
+            </div>
+        `;
+        div.onclick = () => selectWifi(net.id);
+        list.appendChild(div);
+    });
+}
+
+function selectWifi(id) {
+    document.querySelectorAll('.wifi-card').forEach(c => c.classList.remove('selected'));
+    document.getElementById(id).classList.add('selected');
+    selectedWifi = id;
+    document.getElementById('wifi-confirm').style.display = 'inline-block';
+}
+
+function toggleVPN() {
+    vpnOn = !vpnOn;
+    let toggle = document.getElementById('vpn-toggle');
+    toggle.classList.toggle('on', vpnOn);
+    document.getElementById('vpn-status').innerText = vpnOn ? '🛡️ VPN פעיל – הגלישה שלך מוצפנת ומאובטחת!' : '';
+    if(vpnOn) addScore(30);
+}
+
+function confirmWifi() {
+    if(!selectedWifi) return;
+    let net = wifiNetworks.find(n => n.id === selectedWifi);
+    if(net.safe) {
+        showFeedback("🔓 בחרת נכון! +150 נקודות. עוברים לחדר הסופי!", true);
+        addScore(150);
+        setTimeout(() => goToRoom(7), 1800);
+    } else if(!net.safe && vpnOn) {
+        showFeedback("⚠️ הרשת מסוכנת אבל ה-VPN מגן עליך! +80 נקודות. עוברים הלאה.", true);
+        addScore(80);
+        setTimeout(() => goToRoom(7), 2000);
+    } else {
+        showFeedback("❌ " + (net.id === 'w3' ? "זוהי רשת ניטור של האקר!" : "רשת פתוחה ללא VPN – הסיסמה שלך נגנבה!"), false);
+        addScore(-50);
+    }
+}
+
+// ===================== ROOM 7: FINAL CODE =====================
+const correctCode = "520";
+let currentInputCode = "";
+
+function pressKey(num) {
+    if(currentInputCode.length >= 3) return;
+    currentInputCode += num;
+    document.getElementById('code-display').innerText = currentInputCode;
+    if(currentInputCode.length === 3) {
+        if(currentInputCode === correctCode) {
+            addScore(300);
+            showFeedback("🔓 הקוד נכון! הנגיף הושמד!", true);
+            setTimeout(() => goToRoom('win'), 1200);
+        } else {
+            showFeedback("❌ קוד שגוי! נקה ונסה שוב.", false);
+            addScore(-20);
+            document.getElementById('code-display').style.color = 'var(--danger)';
         }
     }
+}
 
-    function clearCode() {
-        currentInputCode = "";
-        document.getElementById('code-display').innerText = "";
-        document.getElementById('code-display').style.color = 'var(--danger)';
-    }
+function clearCode() {
+    currentInputCode = "";
+    document.getElementById('code-display').innerText = "";
+    document.getElementById('code-display').style.color = 'var(--danger)';
+}
+
+// ===================== VICTORY & CERTIFICATE =====================
+function getRank(sc) {
+    if(sc >= 1500) return { icon: '🥇', label: 'מומחה סייבר עליון' };
+    if(sc >= 1000) return { icon: '🥈', label: 'לוחם סייבר בכיר' };
+    if(sc >= 500) return { icon: '🥉', label: 'לוחם סייבר' };
+    return { icon: '🎖️', label: 'מתמחה בסייבר' };
+}
+
+function showVictory() {
+    hideAllRooms();
+    document.getElementById('victory-screen').classList.remove('hidden');
+    // bonus for time
+    let timeBonus = Math.max(0, 300 - elapsedSeconds) * 2;
+    addScore(timeBonus);
+    let timeStr = formatTime(elapsedSeconds);
+    let rank = getRank(score);
+    document.getElementById('final-score').innerText = score;
+    document.getElementById('final-time').innerText = timeStr;
+    document.getElementById('final-rank-icon').innerText = rank.icon;
+    document.getElementById('final-rank-label').innerText = rank.label;
+    // update dots - all done
+    for(let i = 1; i <= 7; i++) document.getElementById('dot-' + i).className = 'room-dot done';
+}
+
+function generateCertificate() {
+    let name = document.getElementById('player-name').value.trim() || 'גיבור/ת הסייבר';
+    let rank = getRank(score);
+    let timeStr = formatTime(elapsedSeconds);
+    let now = new Date();
+    let dateStr = now.toLocaleDateString('he-IL');
+
+    document.getElementById('cert-name-display').innerText = name;
+    document.getElementById('cert-score').innerText = score;
+    document.getElementById('cert-time').innerText = timeStr;
+    document.getElementById('cert-rank').innerText = rank.icon + ' ' + rank.label;
+    document.getElementById('cert-date').innerText = 'הוענק ב-' + dateStr + ' · משימת סייבר: חדר הבריחה המלא';
+    document.getElementById('certificate-area').style.display = 'block';
+    document.getElementById('certificate-area').scrollIntoView({ behavior: 'smooth' });
+}
 </script>
 
+<style>
+@media print {
+    body { background: white; padding: 0; }
+    .game-box { box-shadow: none; border: none; padding: 0; }
+    .tabs, .score-bar, .room-progress, .tab-content:not(.active), #victory-screen > *:not(#certificate-area), .print-area button:last-child { display: none !important; }
+    #certificate-area { display: block !important; }
+    .cert-box { border: 3px solid #00cc99; background: white; color: black; }
+    .cert-title { color: #007755; }
+    .cert-name { color: #111; border-color: #007755; }
+    .cert-detail-val, .cert-room-badge { color: #007755; }
+    .cert-top, .cert-sub, .cert-date { color: #555; }
+}
+</style>
 </body>
 </html>
