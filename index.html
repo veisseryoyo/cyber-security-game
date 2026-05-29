@@ -864,12 +864,12 @@
             let btn = document.createElement('button');
             btn.className = 'deepfake-choice';
             btn.innerText = action.text;
-            btn.onclick = () => handleDFChoice(action.correct, btn, sc.explanation, choicesEl);
+            btn.onclick = () => handleDFChoice(action.correct, btn, sc.explanation, sc.contact, choicesEl);
             choicesEl.appendChild(btn);
         });
     }
 
-    function handleDFChoice(isCorrect, btn, explanation, choicesEl) {
+    function handleDFChoice(isCorrect, btn, explanation, contact, choicesEl) {
         choicesEl.querySelectorAll('.deepfake-choice').forEach(b => b.onclick = null);
         if(isCorrect) {
             btn.classList.add('correct');
@@ -884,7 +884,7 @@
         } else {
             btn.classList.add('wrong');
             showFeedback("❌ לא נכון. " + explanation, false);
-            mistakes.push('דיפייק: ' + sc.contact);
+            mistakes.push('דיפייק: ' + contact);
             setTimeout(() => { choicesEl.querySelectorAll('.deepfake-choice').forEach(b => { b.classList.remove('wrong'); b.onclick = null; }); showDFScenario(); }, 2500);
         }
     }
