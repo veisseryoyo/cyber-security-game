@@ -396,12 +396,6 @@
             <h2>חדר 3: טביעת הרגל הדיגיטלית</h2>
             <p>לפניכם פרופיל הרשת החברתית של "מיכל". <strong>לחצו על כל הפוסטים שחושפים מידע רגיש</strong> שעלול לשמש האקרים לפני שהם מנצלים אותו!</p>
             <div id="fp-counter" style="font-size:0.9rem; color:var(--primary); margin-bottom:8px;"></div>
-            <div class="profile-header">
-                <div class="profile-avatar">👧</div>
-                <div style="text-align:right;">
-                    <div class="profile-name">מיכל כהן</div>
-                    <div class="profile-handle">@michal_real · 847 עוקבים</div>
-                </div>
             </div>
             <div id="posts-container"></div>
             <br>
@@ -615,25 +609,83 @@
     }
 
     // ==================== חדר 1: משחק הזיכרון ====================
-    const memoryData = [
-        { text: "פישינג (דיוג)", pairId: 1 }, { text: "קישור מזויף במייל", pairId: 1 },
-        { text: "סיסמה חזקה", pairId: 2 }, { text: "אותיות, מספרים וסימנים", pairId: 2 },
-        { text: "מוקד 105", pairId: 3 }, { text: "דיווח על פגיעה ברשת", pairId: 3 },
-        { text: "Wi-Fi ציבורי", pairId: 4 }, { text: "סכנת גניבת סיסמאות", pairId: 4 }
+    const memoryDataSets = [
+        // סט 1: יסודות ההגנה
+        [
+            { text: "דיוג (פישינג)", pairId: 1 }, { text: "קישור מזויף במייל", pairId: 1 },
+            { text: "סיסמה חזקה", pairId: 2 }, { text: "אותיות, מספרים וסימנים", pairId: 2 },
+            { text: "מוקד 105", pairId: 3 }, { text: "דיווח על פגיעה ברשת", pairId: 3 },
+            { text: "רשת ווַיי-פַיי ציבורית", pairId: 4 }, { text: "סכנת גניבת סיסמאות", pairId: 4 }
+        ],
+        // סט 2: טכנולוגיות הגנה מתקדמות
+        [
+            { text: "רשת פרטית וירטואלית", pairId: 1 }, { text: "הצפנת הגלישה והנתונים", pairId: 1 },
+            { text: "אימות דו-שלבי", pairId: 2 }, { text: "קוד זמני על הטלפון", pairId: 2 },
+            { text: "תוכנה זדונית", pairId: 3 }, { text: "תוכנה גוננבת נתונים", pairId: 3 },
+            { text: "דיפייק", pairId: 4 }, { text: "התחזות לפנים וקול בעזרת בינה מלאכותית", pairId: 4 }
+        ],
+        // סט 3: VPN והגנה ברשת
+        [
+            { text: "כתובת IP", pairId: 1 }, { text: "הכתובת היחודית של המחשב ברשת", pairId: 1 },
+            { text: "הצפנה", pairId: 2 }, { text: "קידוד נתונים כדי להסתיר אותם", pairId: 2 },
+            { text: "שרת VPN מהימן", pairId: 3 }, { text: "הגנה מפני מעקבים והאקרים", pairId: 3 },
+            { text: "VPN חינם", pairId: 4 }, { text: "סכנה: יכול לגנוב נתונים", pairId: 4 }
+        ],
+        // סט 4: הורדות ועדכונים בטוחים
+        [
+            { text: "מקור רשמי", pairId: 1 }, { text: "הורידו רק מאתר רשמי או חנות אפליקציות", pairId: 1 },
+            { text: "סיומת קובץ", pairId: 2 }, { text: "בדקו סיומת לפני פתיחה (.exe מסוכנת)", pairId: 2 },
+            { text: "עדכונים רשמיים", pairId: 3 }, { text: "עדכונים מהמפיץ מורידים פירצות", pairId: 3 },
+            { text: "סרוק באנטי-וירוס", pairId: 4 }, { text: "סריקת קבצים לפני פתיחה", pairId: 4 }
+        ]
     ];
+
+    let memoryData = [];
     let flippedCards = [];
     let matchedPairs = 0;
+    let totalPairs = 0;
 
     function initMemoryGame() {
         const grid = document.getElementById('memory-grid');
         grid.innerHTML = '';
-        flippedCards = []; matchedPairs = 0;
-        let shuffled = [...memoryData].sort(() => Math.random() - 0.5);
+        flippedCards = [];
+        matchedPairs = 0;
+
+        // בחר בדיוק 4 סטים שונים להצגה (דגימה ללא החלפה)
+        const totalAvailable = memoryDataSets.length;
+        let indices = Array.from({length: totalAvailable}, (_, i) => i);
+        // ערבוב אינדקסים
+        indices.sort(() => Math.random() - 0.5);
+        const pickCount = Math.min(4, totalAvailable);
+        const selectedSets = indices.slice(0, pickCount).map(i => memoryDataSets[i]);
+
+        // בניית מערך כרטיסים משולב עם מזהי קבוצה ייחודיים לכל זוג
+        let combined = [];
+        let groupCounter = 0;
+        selectedSets.forEach(set => {
+            const ids = [...new Set(set.map(c => c.pairId))];
+            ids.forEach(id => {
+                groupCounter++;
+                set.filter(c => c.pairId === id).forEach(card => {
+                    combined.push({ text: card.text, groupId: groupCounter });
+                });
+            });
+        });
+
+        // הגבל ל-4 זוגות (8 כרטיסים) כדי להציג 2 שורות × 4 כרטיסים
+        const uniqueGroups = [...new Set(combined.map(c => c.groupId))];
+        uniqueGroups.sort(() => Math.random() - 0.5);
+        const chosenGroups = uniqueGroups.slice(0, 4);
+        combined = combined.filter(c => chosenGroups.includes(c.groupId));
+        totalPairs = chosenGroups.length;
+
+        // ערבוב ותצוגה
+        let shuffled = combined.sort(() => Math.random() - 0.5);
         shuffled.forEach((card, index) => {
             const cardEl = document.createElement('div');
             cardEl.className = 'memory-card';
             cardEl.innerText = card.text;
-            cardEl.dataset.pairId = card.pairId;
+            cardEl.dataset.groupId = card.groupId;
             cardEl.dataset.index = index;
             cardEl.onclick = () => flipCard(cardEl);
             grid.appendChild(cardEl);
@@ -645,13 +697,13 @@
         card.classList.add('flipped');
         flippedCards.push(card);
         if(flippedCards.length === 2) {
-            if(flippedCards[0].dataset.pairId === flippedCards[1].dataset.pairId) {
+            if(flippedCards[0].dataset.groupId === flippedCards[1].dataset.groupId) {
                 flippedCards[0].classList.add('matched');
                 flippedCards[1].classList.add('matched');
                 flippedCards = [];
                 matchedPairs++;
                 addScore(50);
-                if(matchedPairs === 4) {
+                if(matchedPairs === totalPairs) {
                     showFeedback("🔓 השער הראשון נפתח! עוברים לחדר הבא...", true);
                     setTimeout(() => startRoom(2), 1500);
                 }
@@ -666,16 +718,28 @@
     }
 
     // ==================== חדר 2: משחק המיון ====================
-    const scenarios = [
+    const allScenarios = [
         { text: "הודעה מסיבוס/גוגל: 'החשבון שלך נחסם, לחץ כאן לשחרור והזן סיסמה'", isSafe: false },
         { text: "חבר מהכיתה שולח לך סרטון מטיול שהייתם בו שבוע שעבר", isSafe: true },
         { text: "אפליקציית פנקס רשימות מבקשת גישה לאנשי קשר, מצלמה ומיקום", isSafe: false },
         { text: "הודעה בוואטסאפ: 'שלחתי לך קוד בטעות, תעביר לי אותו מהר'", isSafe: false },
-        { text: "אתר רשמי של משרד החינוך (עם סיומת gov.il) מבקש הזדהות משרד החינוך", isSafe: true }
+        { text: "אתר רשמי של משרד החינוך (עם סיומת gov.il) מבקש הזדהות משרד החינוך", isSafe: true },
+        { text: "אפליקציית ספר דיגיטלי מהספריה הלאומית שלוש לחץ על סימן הביטחון באתר", isSafe: true },
+        { text: "הודעה מ'בנק לאומי': 'עודכן: בדיקה דחיפה נדרשת עכשיו או יוסד החשבון בעוד 24 שעות'", isSafe: false },
+        { text: "מורה שלך שולח קובץ טקסט עם שיעורי בית דרך דוא״ל בעל כתובת @school.ac.il", isSafe: true },
     ];
+    let scenarios = [];
     let currentScenarioIdx = 0;
 
-    function initSortingGame() { currentScenarioIdx = 0; showScenario(); }
+    function initSortingGame() {
+        // בחר דגימה אקראית של עד 5 תרחישים ללא חזרות
+        const indices = Array.from({ length: allScenarios.length }, (_, i) => i);
+        indices.sort(() => Math.random() - 0.5);
+        const pickCount = Math.min(5, allScenarios.length);
+        scenarios = indices.slice(0, pickCount).map(i => allScenarios[i]);
+        currentScenarioIdx = 0;
+        showScenario();
+    }
 
     function showScenario() {
         document.getElementById('sort-progress').innerText = `איום ${currentScenarioIdx + 1} מתוך ${scenarios.length}`;
@@ -698,44 +762,114 @@
     }
 
     // ==================== חדר 3: טביעת הרגל הדיגיטלית ====================
-    const posts = [
-        { icon: "📍", tag: "Instagram · לפני שעה", text: "יצאנו לאכול! רחוב הרצל 42, תל אביב 🍕 מי בא?", isDangerous: true },
-        { icon: "🎂", tag: "Facebook · אתמול", text: "היום יום הולדת שלי! 14 בנובמבר 2010 – 14 שנה!! 🎉", isDangerous: true },
-        { icon: "🏫", tag: "TikTok · לפני 3 ימים", text: "הבאתי לכם סיור בבית הספר שלי! חיפה 😍", isDangerous: true },
-        { icon: "🌅", tag: "Instagram · לפני שבוע", text: "שקיעה יפה היום! 🌺", isDangerous: false },
-        { icon: "🏠", tag: "Snapchat · לפני 5 ימים", text: "אוהבת את החדר החדש שלי! תראו את החלון 🪟 נוף לרחוב מהקומה השנייה", isDangerous: true },
-        { icon: "😂", tag: "Twitter · לפני יומיים", text: "מה הדבר הכי מצחיק שקרה לכם השבוע? 😅", isDangerous: false }
+    const profiles = [
+        {
+            name: "מיכל כהן",
+            avatar: "👧",
+            handle: "@michal_real",
+            followers: "847",
+            posts: [
+                { icon: "📍", tag: "Instagram · לפני שעה", text: "יצאנו לאכול! רחוב הרצל 42, תל אביב 🍕 מי בא?", isDangerous: true },
+                { icon: "🎂", tag: "Facebook · אתמול", text: "היום יום הולדת שלי! 14 בנובמבר 2010 – 14 שנה!! 🎉", isDangerous: true },
+                { icon: "🏠", tag: "Snapchat · לפני 5 ימים", text: "אוהבת את החדר החדש שלי! תראו את החלון 🪟 נוף לרחוב מהקומה השנייה", isDangerous: true }
+            ]
+        },
+        {
+            name: "עדן לוי",
+            avatar: "👦",
+            handle: "@eden.levi",
+            followers: "1,230",
+            posts: [
+                { icon: "🏫", tag: "TikTok · לפני 3 ימים", text: "הבאתי לכם סיור בבית הספר שלי! חיפה 😍", isDangerous: true },
+                { icon: "🎓", tag: "Facebook · לפני שבוע", text: "מתחיל בבית הספר חדש - 'תיכון רמז בתל אביב'", isDangerous: true },
+                { icon: "🌅", tag: "Instagram · לפני שבוע", text: "שקיעה יפה היום! 🌺", isDangerous: false }
+            ]
+        },
+        {
+            name: "שרה גדליהו",
+            avatar: "👩",
+            handle: "@sarah_travel",
+            followers: "2,105",
+            posts: [
+                { icon: "✈️", tag: "Instagram · לפני 10 ימים", text: "עוזבת לנסיעה! בחזרה בעוד שבועיים 🌴", isDangerous: true },
+                { icon: "❤️", tag: "Instagram · לפני יום", text: "אוהבת את החברה החדשה שלי 💕", isDangerous: false },
+                { icon: "😂", tag: "Twitter · לפני יומיים", text: "מה הדבר הכי מצחיק שקרה לכם השבוע? 😅", isDangerous: false }
+            ]
+        },
+        {
+            name: "אלי מימון",
+            avatar: "👱",
+            handle: "@eli_tech",
+            followers: "892",
+            posts: [
+                { icon: "👨‍💻", tag: "LinkedIn · לפני 4 ימים", text: "בגיל 15 כבר התחלתי לעבוד בחברת טכנולוגיה בתל אביב!", isDangerous: true },
+                { icon: "🔐", tag: "Twitter · לפני 3 ימים", text: "סיסמת ווטס שלי היא: Eli@1234", isDangerous: true },
+                { icon: "🎵", tag: "TikTok · אתמול", text: "סרטון מחדר השינה שלי 🎤", isDangerous: false }
+            ]
+        }
     ];
-    const dangerCount = posts.filter(p => p.isDangerous).length;
+    
+    let allPosts = [];
+    let dangerCount = 0;
     let fpSelected = new Set();
 
     function initFootprintGame() {
         fpSelected.clear();
+        allPosts = [];
+        dangerCount = 0;
+        
+        // איסוף כל הפוסטים עם מזהה פרופיל
+        profiles.forEach((profile, profileIdx) => {
+            profile.posts.forEach((post) => {
+                allPosts.push({ ...post, profileIdx });
+                if(post.isDangerous) dangerCount++;
+            });
+        });
+        
         document.getElementById('fp-counter').innerText = `זיהיתם: 0 / ${dangerCount} פוסטים מסוכנים`;
         document.getElementById('fp-check-btn').style.display = 'none';
         let container = document.getElementById('posts-container');
         container.innerHTML = '';
-        posts.forEach((post, i) => {
-            let div = document.createElement('div');
-            div.className = 'post-item';
-            div.innerHTML = `<div class="post-tag">${post.icon} ${post.tag}</div><div class="post-text">${post.text}</div>`;
-            div.onclick = () => {
-                if(fpSelected.has(i)) { fpSelected.delete(i); div.classList.remove('selected'); }
-                else { fpSelected.add(i); div.classList.add('selected'); }
-                document.getElementById('fp-counter').innerText = `זיהיתם: ${fpSelected.size} / ${dangerCount} פוסטים מסוכנים`;
-                document.getElementById('fp-check-btn').style.display = fpSelected.size > 0 ? 'inline-block' : 'none';
-            };
-            container.appendChild(div);
+        
+        // הצגת כל הפרופילים ופוסטים שלהם
+        profiles.forEach((profile, profileIdx) => {
+            // כותרת פרופיל
+            let profileHeader = document.createElement('div');
+            profileHeader.className = 'profile-header';
+            profileHeader.style.marginTop = '15px';
+            profileHeader.innerHTML = `
+                <div class="profile-avatar">${profile.avatar}</div>
+                <div style="text-align:right;">
+                    <div class="profile-name">${profile.name}</div>
+                    <div class="profile-handle">${profile.handle} · ${profile.followers} עוקבים</div>
+                </div>
+            `;
+            container.appendChild(profileHeader);
+            
+            // פוסטים של הפרופיל
+            profile.posts.forEach((post, postIdx) => {
+                let postIdx_global = allPosts.findIndex(p => p.profileIdx === profileIdx && p.text === post.text);
+                let div = document.createElement('div');
+                div.className = 'post-item';
+                div.innerHTML = `<div class="post-tag">${post.icon} ${post.tag}</div><div class="post-text">${post.text}</div>`;
+                div.onclick = () => {
+                    if(fpSelected.has(postIdx_global)) { fpSelected.delete(postIdx_global); div.classList.remove('selected'); }
+                    else { fpSelected.add(postIdx_global); div.classList.add('selected'); }
+                    document.getElementById('fp-counter').innerText = `זיהיתם: ${fpSelected.size} / ${dangerCount} פוסטים מסוכנים`;
+                    document.getElementById('fp-check-btn').style.display = fpSelected.size > 0 ? 'inline-block' : 'none';
+                };
+                container.appendChild(div);
+            });
         });
     }
 
     function checkFootprint() {
         let correct = 0, wrong = 0;
-        fpSelected.forEach(i => { if(posts[i].isDangerous) correct++; else wrong++; });
+        fpSelected.forEach(i => { if(allPosts[i].isDangerous) correct++; else wrong++; });
         let missed = dangerCount - correct;
         if(wrong === 0 && missed === 0) {
             addScore(150);
-            showFeedback("🔓 מצוין! ניקיתם את הפרופיל! עוברים הלאה...", true);
+            showFeedback("🔓 מצוין! ניקיתם את הפרופילים! עוברים הלאה...", true);
             setTimeout(() => startRoom(4), 1500);
         } else {
             let msg = '';
@@ -838,6 +972,39 @@
                 { text: "📤 שתף עם חברים נוספים", correct: false }
             ],
             explanation: "✅ נכון! אתרים לא מוכרים עם שמות מסתוריים = פישינג קלאסי. תמיד אמתו!"
+        },
+        {
+            contact: "🎮 Discord · מישהו שלא אתה",
+            message: "היי! צפיתי בסטרים שלך והם מדהימים! בואו נשחק יחד במולטיפלייר. הורידו את תוכנת הנגן הזאת כדי שנוכל לשתף מסך: gaming-overlay-pro.com/download",
+            flags: "מחמאה חיצונית · בקשה להורדת תוכנה מ-URL · מקור לא מוכר · אתר חשוד",
+            actions: [
+                { text: "⬇️ הורד את התוכנה מהקישור", correct: false },
+                { text: "❌ סגור את ההודעה ולעולם אל תורד תוכנות מ-URLs", correct: true },
+                { text: "✍️ שאל: 'מה הקוד של הגיים?'", correct: false }
+            ],
+            explanation: "✅ נכון! בקשה להורדת תוכנה = דגל אדום ענק. תוכנות יש להוריד רק מ-AppStore/PlayStore!"
+        },
+        {
+            contact: "📧 Telegram · אדמין בוט",
+            message: "🎁 ברכה! נבחרת לזכות ב-500 ₪ במתנה יומית! לחץ כאן כדי לתבוע: t.me/claim-free-money?token=7f3k9",
+            flags: "הצעה בלתי סבירה · קישור חיצוני · בוט לא מוכר · טוקן בקישור",
+            actions: [
+                { text: "🔗 לחץ על הקישור לתביעה", correct: false },
+                { text: "🗑️ מחק את ההודעה – זה spam לא אמיתי", correct: true },
+                { text: "💬 שאל את הבוט: 'אני בטוח?'", correct: false }
+            ],
+            explanation: "✅ נכון! זוגות בחינם בלתי סבירות = סכנה. אם נראה טוב מכדי להיות אמיתי, כנראה שזה לא!"
+        },
+        {
+            contact: "אבא 👨 · טלפון לא מוכר",
+            message: "היי! אני בנסיעה בחו״ל ונפל לי הטלפון. אני משתמש בטלפון של חברון. אני חייב בדחיפות את קוד הגישה שלי ל-Duolingo כדי להמשיך בשיעורי השפה. שלח מהר!",
+            flags: "טלפון לא מוכר · בקשה לקוד גישה · סיפור מצורף · לחץ זמן",
+            actions: [
+                { text: "🔐 שלח את קוד הגישה שלך", correct: false },
+                { text: "📞 התקשר לאבא למספר הבית או הנייד שלו לאימות", correct: true },
+                { text: "📲 שאל: 'אפליקציה זו יוצרת קוד ספציפי?'", correct: false }
+            ],
+            explanation: "✅ נכון! קודי גישה אינם שיתופיים אפילו עם בני משפחה. אבא אמיתי יבין את הסיכון!"
         }
     ];
     let dfIndex = 0;
