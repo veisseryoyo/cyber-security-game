@@ -313,7 +313,7 @@
         <div class="info-section">
             <div class="info-card">
                 <h3>🚨 רקע המשימה: מתקפת הסייבר</h3>
-                <p>קבוצת האקרים אלמונית נעלה את שרתי בית הספר והצפינה את כל הציונים והנתונים. הם השאירו מאחוריהם מערכת הגנה משובעת המבוססת על עקרונות הגנת הסייבר. רק מי שמכיר את חוקי הבטיחות ברשת יוכל לעבור את האתגרים, להשיג את קוד הנטרול ולשחרר את המערכת.</p>
+                <p>קבוצת האקרים אלמונית נעלה את שרתי בית הספר והצפינה את כל הציונים והנתונים. הם השאירו מאחוריהם מערכת הגנה  המבוססת על עקרונות הגנת הסייבר. רק מי שמכיר את חוקי הבטיחות ברשת יוכל לעבור את האתגרים, להשיג את קוד הנטרול ולשחרר את המערכת.</p>
             </div>
 
             <div class="info-card">
@@ -339,7 +339,7 @@
 
             <div class="info-card">
                 <h3>🦠 נוזקות ותוכנות זדוניות</h3>
-                <p>קבצים מסוכנים מגיעים לרוב בסיומות: <strong> .bat, .scr, .vbs</strong>. קבצים בטוחים יותר ממקורות רשמיים: <strong>.pdf, .docx, .jpg</strong>. תמיד הורידו ממקורות רשמיים בלבד ובדקו את כתובת האתר לפני ההורדה.</p>
+                <p>קבצים מסוכנים מגיעים לרוב בסיומות: <strong>.exe, .bat, .scr, .vbs</strong>. קבצים בטוחים יותר ממקורות רשמיים: <strong>.pdf, .docx, .jpg</strong>. תמיד הורידו ממקורות רשמיים בלבד ובדקו את כתובת האתר לפני ההורדה.</p>
             </div>
 
             <div class="info-card">
@@ -372,11 +372,24 @@
             <button class="action-btn" onclick="startRoom(1)">התחל בפריצה</button>
         </div>
 
-        <!-- חדר 1: משחק הזיכרון -->
+        <!-- חדר 1: מלכודת ה-Wi-Fi -->
         <div id="room1" class="hidden">
-            <h2>חדר 1: משחק הזיכרון הדיגיטלי</h2>
-            <p>מצאו את הזוגות המתאימים בין איומי הרשת לדרכי ההתגוננות כדי לפתוח את השער הראשון.</p>
-            <div class="memory-grid" id="memory-grid"></div>
+            <h2>חדר 1: לוחמי הרשת האלחוטית</h2>
+            <p>אתם במרכז מסחרי וצריכים לשלוח קובץ חשוב. בחרו רשת וודאו שאתם מוגנים!</p>
+            <div style="text-align:center; font-size:2rem; margin:10px 0;">🛍️</div>
+            <div id="wifi-list"></div>
+            <div class="vpn-row">
+                <div>
+                    <div class="vpn-label">🛡️ הפעל VPN</div>
+                    <div class="vpn-desc">מצפין את הגלישה שלך</div>
+                </div>
+                <div class="toggle" id="vpn-toggle" onclick="toggleVPN()">
+                    <div class="toggle-knob"></div>
+                </div>
+            </div>
+            <div id="vpn-status" style="font-size:0.85rem; color:var(--success); text-align:right; min-height:20px;"></div>
+            <br>
+            <button class="action-btn" id="wifi-send-btn" style="display:none;" onclick="confirmWifi()">📤 שלח את הקובץ</button>
         </div>
 
         <!-- חדר 2: משחק המיון -->
@@ -394,9 +407,8 @@
         <!-- חדר 3: טביעת הרגל הדיגיטלית -->
         <div id="room3" class="hidden">
             <h2>חדר 3: טביעת הרגל הדיגיטלית</h2>
-            <p>לפניכם פרופיל הרשת החברתית של "מיכל". <strong>לחצו על כל הפוסטים שחושפים מידע רגיש</strong> שעלול לשמש האקרים לפני שהם מנצלים אותו!</p>
+            <p>לפניכם כמה פרופילים ברשת. <strong>לחצו על כל הפוסטים שחושפים מידע רגיש</strong> שעלול לשמש האקרים לפני שהם מנצלים אותו!</p>
             <div id="fp-counter" style="font-size:0.9rem; color:var(--primary); margin-bottom:8px;"></div>
-            </div>
             <div id="posts-container"></div>
             <br>
             <button class="action-btn" id="fp-check-btn" onclick="checkFootprint()" style="display:none;">✅ סיימתי לנקות את הפרופיל</button>
@@ -419,24 +431,11 @@
             <div id="df-choices"></div>
         </div>
 
-        <!-- חדר 6: מלכודת ה-Wi-Fi -->
+        <!-- חדר 6: משחק הזיכרון -->
         <div id="room6" class="hidden">
-            <h2>חדר 6: לוחמי הרשת האלחוטית</h2>
-            <p>אתם במרכז מסחרי וצריכים לשלוח קובץ חשוב. בחרו רשת וודאו שאתם מוגנים!</p>
-            <div style="text-align:center; font-size:2rem; margin:10px 0;">🛍️</div>
-            <div id="wifi-list"></div>
-            <div class="vpn-row">
-                <div>
-                    <div class="vpn-label">🛡️ הפעל VPN</div>
-                    <div class="vpn-desc">מצפין את הגלישה שלך</div>
-                </div>
-                <div class="toggle" id="vpn-toggle" onclick="toggleVPN()">
-                    <div class="toggle-knob"></div>
-                </div>
-            </div>
-            <div id="vpn-status" style="font-size:0.85rem; color:var(--success); text-align:right; min-height:20px;"></div>
-            <br>
-            <button class="action-btn" id="wifi-send-btn" style="display:none;" onclick="confirmWifi()">📤 שלח את הקובץ</button>
+            <h2>חדר 6: משחק הזיכרון הדיגיטלי</h2>
+            <p>מצאו את הזוגות המתאימים בין איומי הרשת לדרכי ההתגוננות כדי לפתוח את השער הראשון.</p>
+            <div class="memory-grid" id="memory-grid"></div>
         </div>
 
         <!-- חדר 7: מנעול הקוד הסופי -->
@@ -580,6 +579,7 @@
         }, 1000);
     }
 
+
     function formatTime(secs) {
         let m = Math.floor(secs / 60), s = secs % 60;
         return (m > 0 ? m + ' דק\' ' : '') + s + ' שנ\'';
@@ -597,13 +597,13 @@
             }
             document.getElementById('room1').classList.remove('hidden');
             document.getElementById('room-display').innerText = '1/7';
-            initMemoryGame();
+            initWifiGame();
         }
         if(roomNum === 2) { document.getElementById('room2').classList.remove('hidden'); document.getElementById('room-display').innerText = '2/7'; initSortingGame(); }
         if(roomNum === 3) { document.getElementById('room3').classList.remove('hidden'); document.getElementById('room-display').innerText = '3/7'; initFootprintGame(); }
         if(roomNum === 4) { document.getElementById('room4').classList.remove('hidden'); document.getElementById('room-display').innerText = '4/7'; initMalwareGame(); }
         if(roomNum === 5) { document.getElementById('room5').classList.remove('hidden'); document.getElementById('room-display').innerText = '5/7'; initDeepfakeGame(); }
-        if(roomNum === 6) { document.getElementById('room6').classList.remove('hidden'); document.getElementById('room-display').innerText = '6/7'; initWifiGame(); }
+        if(roomNum === 6) { document.getElementById('room6').classList.remove('hidden'); document.getElementById('room-display').innerText = '6/7'; initMemoryGame(); }
         if(roomNum === 7) { document.getElementById('room7').classList.remove('hidden'); document.getElementById('room-display').innerText = '7/7'; }
         if(roomNum === 'win') { clearInterval(timerInterval); document.getElementById('victory-screen').classList.remove('hidden'); showVictory(); }
     }
@@ -635,8 +635,6 @@
         [
             { text: "מקור רשמי", pairId: 1 }, { text: "הורידו רק מאתר רשמי או חנות אפליקציות", pairId: 1 },
             { text: "סיומת קובץ", pairId: 2 }, { text: "בדקו סיומת לפני פתיחה (.exe מסוכנת)", pairId: 2 },
-            { text: "עדכונים רשמיים", pairId: 3 }, { text: "עדכונים מהמפיץ מורידים פירצות", pairId: 3 },
-            { text: "סרוק באנטי-וירוס", pairId: 4 }, { text: "סריקת קבצים לפני פתיחה", pairId: 4 }
         ]
     ];
 
@@ -792,7 +790,7 @@
             followers: "2,105",
             posts: [
                 { icon: "✈️", tag: "Instagram · לפני 10 ימים", text: "עוזבת לנסיעה! בחזרה בעוד שבועיים 🌴", isDangerous: true },
-                { icon: "❤️", tag: "Instagram · לפני יום", text: "אוהבת את החברה החדשה שלי 💕", isDangerous: false },
+                { icon: "❤️", tag: "Instagram · לפני יום", text: "אוהבת את החברה החדשה שלי 💕", isDangerous: true },
                 { icon: "😂", tag: "Twitter · לפני יומיים", text: "מה הדבר הכי מצחיק שקרה לכם השבוע? 😅", isDangerous: false }
             ]
         },
@@ -804,7 +802,7 @@
             posts: [
                 { icon: "👨‍💻", tag: "LinkedIn · לפני 4 ימים", text: "בגיל 15 כבר התחלתי לעבוד בחברת טכנולוגיה בתל אביב!", isDangerous: true },
                 { icon: "🔐", tag: "Twitter · לפני 3 ימים", text: "סיסמת ווטס שלי היא: Eli@1234", isDangerous: true },
-                { icon: "🎵", tag: "TikTok · אתמול", text: "סרטון מחדר השינה שלי 🎤", isDangerous: false }
+                { icon: "🎵", tag: "TikTok · אתמול", text: "סרטון מחדר הישן שלי 🎤", isDangerous: false }
             ]
         }
     ];
@@ -865,35 +863,69 @@
 
     function checkFootprint() {
         let correct = 0, wrong = 0;
-        fpSelected.forEach(i => { if(allPosts[i].isDangerous) correct++; else wrong++; });
+        let wrongPosts = [], missedPosts = [];
+        fpSelected.forEach(i => { 
+            if(allPosts[i].isDangerous) correct++; 
+            else { wrong++; wrongPosts.push(i); }
+        });
         let missed = dangerCount - correct;
+        
+        // Find which posts were missed
+        allPosts.forEach((post, idx) => {
+            if(post.isDangerous && !fpSelected.has(idx)) {
+                missedPosts.push(idx);
+            }
+        });
+        
         if(wrong === 0 && missed === 0) {
             addScore(150);
             showFeedback("🔓 מצוין! ניקיתם את הפרופילים! עוברים הלאה...", true);
             setTimeout(() => startRoom(4), 1500);
         } else {
+            // Show incorrect selections in red
+            wrongPosts.forEach(i => {
+                let posts = document.querySelectorAll('.post-item');
+                if(posts[i]) posts[i].style.borderColor = 'var(--danger)';
+            });
+            
+            // Show missed posts in green (highlight them as correct)
+            missedPosts.forEach(i => {
+                let posts = document.querySelectorAll('.post-item');
+                if(posts[i]) {
+                    posts[i].style.borderColor = 'var(--success)';
+                    posts[i].style.backgroundColor = 'rgba(46,196,182,0.15)';
+                }
+            });
+            
             let msg = '';
-            if(wrong > 0) msg += `${wrong} בחירות שגויות. `;
-            if(missed > 0) msg += `פספסתם ${missed} פוסטים מסוכנים.`;
-            showFeedback("❌ " + msg + " נסו שוב!", false);
+            if(wrong > 0) msg += `❌ ${wrong} בחירות שגויות (בריבוע אדום). `;
+            if(missed > 0) msg += `✅ פספסתם ${missed} פוסטים מסוכנים (בריבוע ירוק).`;
+            showFeedback(msg + " נסו שוב!", false);
         }
     }
 
     // ==================== חדר 4: מעבדת הנוזקות ====================
-    const malwareFiles = [
+    const allMalwareFiles = [
         { icon: "⚠️", name: "Chrome_Update_URGENT.exe", source: "update-chrome-now.ru", safe: false, scanResult: "🔴 נוזקה זוהתה: Trojan.Downloader · מקור לא מוכר · סיומת מסוכנת: .exe" },
         { icon: "📄", name: "עבודה_בגיאוגרפיה.pdf", source: "classroom.google.com", safe: true, scanResult: "🟢 קובץ נקי · מקור: Google Classroom מאומת · סיומת: .pdf" },
         { icon: "🎮", name: "Minecraft_FreeHack_v5.scr", source: "free-games-hacks.net", safe: false, scanResult: "🔴 נוזקה קריטית: Ransomware · אתר לא מאובטח · סיומת מסוכנת: .scr" },
-        { icon: "🖼️", name: "תמונת_הטיול.jpg", source: "נשלח מחבר בוואטסאפ", safe: true, scanResult: "🟢 קובץ נקי · תמונה רגילה · סיומת: .jpg" }
+        { icon: "🖼️", name: "תמונת_הטיול.jpg", source: "נשלח מחבר בוואטסאפ", safe: true, scanResult: "🟢 קובץ נקי · תמונה רגילה · סיומת: .jpg" },
+        { icon: "🕵️", name: "School_Report_2026.exe", source: "best-school-tools.com", safe: false, scanResult: "🔴 נוזקה זוהתה: Spyware.Infostealer · קובץ לא אמין · סיומת מסוכנת: .exe" },
+        { icon: "🎧", name: "Free_Music_Player.scr", source: "music-downloads.ru", safe: false, scanResult: "🔴 נוזקה קריטית: Adware.Bundle · אתר לא מאובטח · סיומת מסוכנת: .scr" },
+        { icon: "📝", name: "סיכומי_שיעורים.docx", source: "classmates-help.co.il", safe: true, scanResult: "🟢 קובץ נקי · מסמך Word תקני · סיומת: .docx" }
     ];
     let malwareDone = 0;
+    let activeMalwareFiles = [];
 
     function initMalwareGame() {
         malwareDone = 0;
-        document.getElementById('malware-remaining-text').innerText = `נותרו לבדיקה: ${malwareFiles.length} קבצים`;
+        activeMalwareFiles = [...allMalwareFiles];
+        shuffleArray(activeMalwareFiles);
+        activeMalwareFiles = activeMalwareFiles.slice(0, 4);
+        document.getElementById('malware-remaining-text').innerText = `נותרו לבדיקה: ${activeMalwareFiles.length} קבצים`;
         let container = document.getElementById('malware-cards');
         container.innerHTML = '';
-        malwareFiles.forEach((file, i) => {
+        activeMalwareFiles.forEach((file, i) => {
             let wrap = document.createElement('div');
             wrap.innerHTML = `
                 <div class="download-card" id="mcard-${i}">
@@ -920,16 +952,16 @@
     }
 
     function handleMalware(i, userDownloads) {
-        let file = malwareFiles[i];
+        let file = activeMalwareFiles[i];
         let correct = (file.safe && userDownloads) || (!file.safe && !userDownloads);
         if(correct) {
             addScore(50);
             document.getElementById('mcard-' + i).classList.add('done');
             malwareDone++;
-            let rem = malwareFiles.length - malwareDone;
+            let rem = activeMalwareFiles.length - malwareDone;
             document.getElementById('malware-remaining-text').innerText = `נותרו לבדיקה: ${rem} קבצים`;
             showFeedback("✅ " + (userDownloads ? "הורדה בטוחה!" : "מחיקה נכונה!"), true);
-            if(malwareDone >= malwareFiles.length) {
+            if(malwareDone >= activeMalwareFiles.length) {
                 setTimeout(() => { showFeedback("🔓 המעבדה נוקתה! עוברים הלאה...", true); setTimeout(() => startRoom(5), 1500); }, 600);
             }
         } else {
@@ -974,7 +1006,7 @@
             explanation: "✅ נכון! אתרים לא מוכרים עם שמות מסתוריים = פישינג קלאסי. תמיד אמתו!"
         },
         {
-            contact: "🎮 Discord · מישהו שלא אתה",
+            contact: "🎮 Discord ·  מישהו שלא אתה מכיר",
             message: "היי! צפיתי בסטרים שלך והם מדהימים! בואו נשחק יחד במולטיפלייר. הורידו את תוכנת הנגן הזאת כדי שנוכל לשתף מסך: gaming-overlay-pro.com/download",
             flags: "מחמאה חיצונית · בקשה להורדת תוכנה מ-URL · מקור לא מוכר · אתר חשוד",
             actions: [
@@ -997,7 +1029,7 @@
         },
         {
             contact: "אבא 👨 · טלפון לא מוכר",
-            message: "היי! אני בנסיעה בחו״ל ונפל לי הטלפון. אני משתמש בטלפון של חברון. אני חייב בדחיפות את קוד הגישה שלי ל-Duolingo כדי להמשיך בשיעורי השפה. שלח מהר!",
+            message: "היי! אני בנסיעה בחו'ל ונפל לי הטלפון. אני משתמש בטלפון של חברון. אני חייב בדחיפות את קוד הגישה שלי ל-Duolingo כדי להמשיך בשיעורי השפה. שלח מהר!",
             flags: "טלפון לא מוכר · בקשה לקוד גישה · סיפור מצורף · לחץ זמן",
             actions: [
                 { text: "🔐 שלח את קוד הגישה שלך", correct: false },
@@ -1005,15 +1037,53 @@
                 { text: "📲 שאל: 'אפליקציה זו יוצרת קוד ספציפי?'", correct: false }
             ],
             explanation: "✅ נכון! קודי גישה אינם שיתופיים אפילו עם בני משפחה. אבא אמיתי יבין את הסיכון!"
+        },
+        {
+            contact: "📱 הודעה מחבר חדש",
+            message: "ניסיתי להזמין אותך לעבור קורס חינם ב-Zoom עכשיו. לחצו על הקישור הזה כדי להצטרף למפגש: free-zoom-training.co.il/join",
+            flags: "חבר חדש · קישור לא ידוע · הזמנה לא מפורטת",
+            actions: [
+                { text: "✅ הצטרף עם הלינק", correct: false },
+                { text: "📞 שאל מי שלח לך את ההזמנה ולמה", correct: true },
+                { text: "📤 העבר לחברים", correct: false }
+            ],
+            explanation: "✅ נכון! הזמנות לא מוכרות עם קישורים לא רשמיים יכולות להיות מלכודת. תמיד אמת את המקור!"
+        },
+        {
+            contact: "⚠️ הודעת מערכת: חשבון מופעל מחדש",
+            message: "החשבון שלך נחסם! לחץ כאן כדי לאמת את הנתונים שלך בתוך 10 דקות: secure-account-check.net/verify",
+            flags: "איום בחסימת חשבון · זמן דוחק · קישור לא בטוח",
+            actions: [
+                { text: "🔒 אמת את החשבון מייד", correct: false },
+                { text: "📍 פנה לאתר הרשמי של השירות ולא ליחס קישור", correct: true },
+                { text: "💬 שלח תמיכה כדי לבדוק אם זה אמיתי", correct: false }
+            ],
+            explanation: "✅ נכון! הודעות לחץ זמן עם קישורים לא רשמיים הן בדרך כלל נרטיב פישינג. גש רק דרך האתר הרשמי!"
         }
     ];
     let dfIndex = 0;
+    let deepfakeSequence = [];
+    let currentDFActions = [];
 
-    function initDeepfakeGame() { dfIndex = 0; showDFScenario(); }
+    function shuffleArray(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+    }
+
+    function initDeepfakeGame() {
+        deepfakeSequence = [...deepfakeScenarios];
+        shuffleArray(deepfakeSequence);
+        deepfakeSequence = deepfakeSequence.slice(0, 4);
+        dfIndex = 0;
+        currentDFActions = [];
+        showDFScenario();
+    }
 
     function showDFScenario() {
-        document.getElementById('df-progress').innerText = `תרחיש ${dfIndex + 1} מתוך ${deepfakeScenarios.length}`;
-        let sc = deepfakeScenarios[dfIndex];
+        document.getElementById('df-progress').innerText = `תרחיש ${dfIndex + 1} מתוך ${deepfakeSequence.length}`;
+        let sc = deepfakeSequence[dfIndex];
         document.getElementById('df-content').innerHTML = `
             <div class="phone-header-sim">
                 <span style="font-size:1.3rem;">💬</span>
@@ -1027,7 +1097,11 @@
             <p style="font-size:0.95rem;">מה תעשה?</p>`;
         let choicesEl = document.getElementById('df-choices');
         choicesEl.innerHTML = '';
-        sc.actions.forEach((action, i) => {
+        if (!currentDFActions[dfIndex]) {
+            currentDFActions[dfIndex] = [...sc.actions];
+            shuffleArray(currentDFActions[dfIndex]);
+        }
+        currentDFActions[dfIndex].forEach((action, i) => {
             let btn = document.createElement('button');
             btn.className = 'deepfake-choice';
             btn.innerText = action.text;
@@ -1043,7 +1117,7 @@
             addScore(80);
             showFeedback(explanation, true);
             dfIndex++;
-            if(dfIndex >= deepfakeScenarios.length) {
+            if(dfIndex >= deepfakeSequence.length) {
                 setTimeout(() => { showFeedback("🔓 עמדת בפני כל מתקפות הדיפייק! עוברים הלאה...", true); setTimeout(() => startRoom(6), 1800); }, 1800);
             } else {
                 setTimeout(() => showDFScenario(), 2200);
@@ -1096,12 +1170,12 @@
         let net = wifiNetworks.find(n => n.id === selectedWifiId);
         if(net.safe) {
             addScore(120);
-            showFeedback("🔓 בחרת ברשת המאובטחת! מעולה! עוברים לחדר הסופי...", true);
-            setTimeout(() => startRoom(7), 1800);
+            showFeedback("🔓 בחרת ברשת המאובטחת! מעולה! עוברים הלאה...", true);
+            setTimeout(() => startRoom(2), 1800);
         } else if(vpnOn) {
             addScore(70);
             showFeedback("⚠️ הרשת מסוכנת, אבל ה-VPN מגן עליך! עוברים הלאה...", true);
-            setTimeout(() => startRoom(7), 2000);
+            setTimeout(() => startRoom(2), 2000);
         } else {
             showFeedback("❌ " + (net.id === 'w3' ? "זו רשת מזויפת של האקר!" : "רשת פתוחה ללא VPN – הסיסמה שלך נגנבה!") + " נסה שוב.", false);
         }
