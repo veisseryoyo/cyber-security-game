@@ -1,1246 +1,150 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>משימת סייבר: חדר הבריחה והידע המלא</title>
-    <style>
-        :root {
-            --primary: #00ffcc;
-            --secondary: #9d4edd;
-            --bg: #0b0c10;
-            --card-bg: #1f2833;
-            --text: #c5c6c7;
-            --success: #2ec4b6;
-            --danger: #e63946;
-            --light-bg: rgba(255, 255, 255, 0.05);
-        }
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111d2c"><title>מרכז ההגנה | משימת סייבר</title>
+  <style>
+:root{color-scheme:dark;--bg:#0b1420;--panel:#142334;--line:#2b4050;--text:#edf5f4;--muted:#afc2c5;--accent:#8fe0c3;--gold:#e8c982;--bad:#ffaaa2}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% -15%,#264456 0,transparent 48%),var(--bg);color:var(--text);font-family:Segoe UI,Arial,sans-serif;line-height:1.6}.shell{max-width:1240px;margin:auto;padding:0 36px}.topbar{height:88px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff17;gap:20px}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);font-size:19px;font-weight:750;line-height:1.25}.brand small{display:block;color:var(--muted);font-size:12px;font-weight:400;margin-top:3px}.brand-icon{display:grid;place-items:center;width:43px;height:43px;border:1px solid #7bc6b5;border-radius:13px;font-size:29px;color:var(--accent)}nav{display:flex;gap:8px}button{font:inherit;cursor:pointer}nav button{background:none;border:0;color:var(--muted);padding:12px 15px;border-radius:10px}nav button:hover,nav button[aria-current=page]{background:#ffffff0d;color:white}button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.view{display:none;animation:appear .3s ease}.view.active{display:block}.hero{min-height:490px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:30px}.eyebrow{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.03em}.pulse{display:inline-block;width:8px;height:8px;background:var(--accent);border-radius:50%;margin-left:6px;box-shadow:0 0 0 5px #8fe0c31a}.hero h1{font-size:clamp(38px,5vw,66px);line-height:1.17;letter-spacing:-.035em;margin:21px 0}.hero h1 em{font-style:normal;color:var(--accent)}.hero p{color:var(--muted);font-size:18px;max-width:550px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.primary,.secondary{min-height:48px;padding:11px 22px;border-radius:10px;font-weight:700;transition:transform .2s,background .2s,border-color .2s}.primary{background:var(--accent);border:1px solid var(--accent);color:#10251f}.primary:hover{background:#b2f1d9;transform:translateY(-2px)}.secondary{background:#ffffff08;border:1px solid #526878;color:var(--text)}.secondary:hover{border-color:var(--accent);background:#ffffff10}.hero-stats{display:flex;gap:26px;margin-top:42px;color:var(--muted);font-size:13px}.hero-stats b{display:block;color:var(--text);font-size:23px}.hero-art{position:relative;display:grid;place-items:center;height:360px}.orbit{position:absolute;border:1px solid #a4d9c833;border-radius:50%;width:270px;height:270px}.orbit-two{width:335px;height:335px;border-style:dashed;animation:spin 65s linear infinite}.shield{height:170px;width:155px;display:grid;place-items:center;border:1px solid #96d6c16b;background:linear-gradient(145deg,#41685e,#1b3941);border-radius:38% 38% 45% 45%;font-size:130px;color:#9be0c8;box-shadow:0 24px 90px #75c9ad22;position:relative;line-height:1}.shield span{position:absolute;font-size:40px}.art-label{position:absolute;bottom:24px;background:#1b3040;border:1px solid #45645f;border-radius:10px;padding:9px 15px;font-size:13px}.art-label i{display:inline-block;width:7px;height:7px;background:var(--accent);border-radius:50%;margin-right:7px}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:40px 0 22px}.section-heading h1{font-size:38px;margin:4px 0}.section-heading h2{font-size:26px;margin:4px 0}.section-heading p,.muted,.side-card p{color:var(--muted);margin:0}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.features article,.question-card,.side-card{background:linear-gradient(145deg,#182b3b,#132131);border:1px solid var(--line);border-radius:18px;padding:25px}.features article span{color:var(--accent);font-size:13px;font-weight:bold}.features h3{margin:14px 0 4px}.features p{margin:0;color:var(--muted)}footer{display:flex;justify-content:space-between;gap:12px;color:#8fa7aa;border-top:1px solid #ffffff17;margin-top:70px;padding:25px 0;font-size:13px}.trophy-count,.simulation-badge{padding:9px 15px;border:1px solid #756747;border-radius:10px;background:#e8c9820d;color:var(--gold);white-space:nowrap}.simulation-badge{color:var(--accent);border-color:#437265}.progress-head,.health-head{display:flex;justify-content:space-between;color:var(--muted);font-size:14px;margin-bottom:9px}.progress-track{height:8px;border-radius:10px;background:#2a3d49;overflow:hidden}.progress-track>div{height:100%;width:0;background:var(--accent);border-radius:10px;transition:width .35s}.game-layout,.play-layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:18px;margin-top:22px}.question-card{min-height:370px;padding:30px}.side-card h2{font-size:18px;margin:0 0 8px}.card-top{display:flex;justify-content:space-between;gap:10px;align-items:center}.tag{background:#8fe0c31a;color:var(--accent);border:1px solid #8fe0c340;padding:5px 11px;border-radius:7px;font-size:13px;font-weight:bold}.question-card h2{font-size:26px;margin:22px 0 8px}.question-text{color:var(--muted);font-size:17px;margin:0 0 23px}.options{display:grid;gap:10px}.option{display:flex;align-items:center;gap:12px;text-align:right;width:100%;padding:14px;border:1px solid #3b5160;border-radius:10px;background:#0d1c29;color:var(--text);transition:border-color .2s,background .2s}.option:hover,.option.selected{border-color:var(--accent);background:#203b3d}.option input{accent-color:#8fe0c3;width:18px;height:18px;flex-shrink:0}.answer-input{width:100%;background:#0d1c29;border:1px solid #536a76;border-radius:10px;padding:13px;color:white;font:inherit;margin-top:8px}.helper{font-size:13px;color:var(--muted);margin:8px 0}.feedback{min-height:28px;margin:14px 0 10px;font-weight:600}.feedback.good{color:var(--accent)}.feedback.bad{color:var(--bad)}.hidden{display:none!important}.trophy-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:7px;margin:20px 0}.trophy-grid span{display:grid;place-items:center;aspect-ratio:1;background:#0e1b28;border:1px solid #324653;border-radius:8px;filter:grayscale(1);opacity:.35;font-size:19px}.trophy-grid span.earned{filter:none;opacity:1;background:#e8c98216;border-color:#88744c;animation:pop .35s}.tip{border-right:3px solid #75ba9f;background:#8fe0c30b;padding:13px;margin-top:25px;border-radius:5px}.tip strong{color:var(--accent)}.tip p{font-size:14px;margin-top:4px}.completion{text-align:center;max-width:650px;margin:90px auto}.completion h1{font-size:38px;margin:10px}.completion p{color:var(--muted);font-size:18px}.big-trophy{display:block;font-size:80px}.centered{justify-content:center}.health-head{margin-top:25px}#sim-health{width:100%}@keyframes spin{to{transform:rotate(360deg)}}@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes pop{50%{transform:scale(1.2)}}@media(max-width:760px){.shell{padding:0 18px}.topbar{height:auto;padding:16px 0;display:block}.topbar nav{margin-top:15px;overflow:auto;white-space:nowrap}.hero{grid-template-columns:1fr;padding-top:45px;min-height:0}.hero-art{height:260px}.orbit{width:190px;height:190px}.orbit-two{width:240px;height:240px}.shield{transform:scale(.8)}.art-label{bottom:0}.features{grid-template-columns:1fr}.game-layout,.play-layout{grid-template-columns:1fr}.section-heading{align-items:start;flex-direction:column}.question-card{padding:22px}.hero-stats{gap:18px}footer{flex-direction:column}.side-card{order:2}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
+.entry-overlay{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:20px;background:#08111bef;overflow:auto}.entry-card{width:min(100%,540px);background:#142334;border:1px solid #456358;border-radius:18px;padding:30px;box-shadow:0 25px 100px #0008}.entry-card h1{margin:10px 0}.entry-card p{color:#afc2c5}.entry-card fieldset{border:1px solid #3b5160;border-radius:10px;margin:20px 0;padding:12px 16px}.entry-card fieldset label{display:block;margin:10px 0;cursor:pointer}.entry-card input[type=radio]{accent-color:#8fe0c3}.entry-card legend{padding:0 8px;color:#edf5f4}.entry-card .primary{width:100%}
 
-        .game-box {
-            width: 100%;
-            max-width: 750px;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 25px rgba(0, 255, 204, 0.2);
-            border: 2px solid var(--primary);
-        }
+/* שכבת עיצוב מרכז הבקרה */
+:root{--accent:#64e6ca;--line:#34586a;--text:#f3fbf9;--muted:#bfd0d3}
+body{background:radial-gradient(ellipse at 78% -8%,#246276 0,transparent 42%),radial-gradient(ellipse at 5% 50%,#162f4d 0,transparent 38%),#08121f}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(#91e6d005 1px,transparent 1px),linear-gradient(90deg,#91e6d005 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,#000,transparent 90%)}
+.topbar{border-bottom-color:#7be2c83b}.brand-icon{background:#64e6ca18;box-shadow:0 0 28px #64e6ca1b}.hero h1 em{color:#79f0d3;text-shadow:0 0 35px #65e0c037}
+.hero-art:before{content:"";position:absolute;width:290px;height:290px;border-radius:50%;background:#4fe8bd18;filter:blur(40px);animation:glow-breathe 4s ease-in-out infinite}.shield{box-shadow:0 0 0 14px #72e8c50a,0 0 65px #63e5be44;animation:shield-float 4s ease-in-out infinite}.orbit-one{animation:spin 32s linear infinite}.orbit-two{animation-duration:45s}
+.primary{box-shadow:0 6px 25px #39dcb540}.primary:hover{box-shadow:0 9px 30px #39dcb56b;transform:translateY(-3px)}.primary:active,.secondary:active{transform:scale(.98)}
+.features article,.question-card,.side-card{box-shadow:0 14px 40px #020b1855;border-color:#426176}.features article{transition:transform .25s,border-color .25s,box-shadow .25s}.features article:hover{transform:translateY(-6px);border-color:#64e6ca88;box-shadow:0 18px 44px #0007,0 0 22px #64e6ca16}
+.option{transition:transform .18s,border-color .18s,background .18s,box-shadow .18s}.option:hover:not(:disabled){transform:translateX(-4px);box-shadow:0 0 18px #64e6ca19}.progress-track>div{background:linear-gradient(90deg,#48cdb8,#b9ffde);box-shadow:0 0 18px #64e6ca99}
+.command-status{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:16px 20px;background:linear-gradient(110deg,#15384a,#142939);border:1px solid #3a6671;border-radius:14px;font-weight:700;box-shadow:0 8px 35px #0004}.command-status small{display:block;color:var(--muted);font-size:12px;font-weight:400}.status-pulse{display:inline-block;background:#6defca;border-radius:50%;width:9px;height:9px;box-shadow:0 0 0 5px #6defca20;animation:status-glow 2s infinite;margin-left:8px}.command-metrics{display:flex;gap:22px;color:#b9d2d3;font-size:13px}.command-metrics b{color:#f2fffb;font-size:19px;margin-right:5px}
+.control-grid{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;margin-top:18px}.console-main{overflow:hidden;border:1px solid #426877;border-radius:18px;background:#112131;box-shadow:0 20px 60px #0005}.console-top{display:flex;justify-content:space-between;gap:10px;padding:15px 22px;border-bottom:1px solid #3a5969;background:#193648}.console-label{font-size:13px;font-weight:800;color:#9aecd8}.severity{font-size:12px;color:#ffd491;background:#e8a44c1c;border:1px solid #dfb56666;border-radius:30px;padding:3px 10px}
+.incident-visual{position:relative;display:flex;align-items:center;gap:22px;min-height:172px;padding:24px 32px;overflow:hidden;background:radial-gradient(circle at 16% 50%,#36898254,transparent 36%),linear-gradient(115deg,#143c48,#102a3b);border-bottom:1px solid #4d78834a}.incident-visual:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 5px,#aaf7df08 6px);pointer-events:none}.radar{width:110px;height:110px;flex-shrink:0;position:relative;border:1px solid #72ecd08c;border-radius:50%;background:repeating-radial-gradient(circle,transparent 0 23px,#7cf0cf39 24px 25px);box-shadow:0 0 30px #57e2c12a}.radar:before,.radar:after{content:"";position:absolute;background:#8ef7d545}.radar:before{width:100%;height:1px;top:50%}.radar:after{height:100%;width:1px;right:50%}.radar span{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 78%,#5feaca70 100%);animation:spin 5s linear infinite}.radar i{position:absolute;width:8px;height:8px;top:25%;right:25%;border-radius:50%;background:#b4ffe7;box-shadow:0 0 15px #8affe0}
+.incident-visual-text{display:grid;gap:3px;z-index:1}.incident-visual-text small,.incident-visual-text span{font-size:12px;color:#b5d2d0}.incident-visual-text strong{font-size:22px}.signal-bars{margin-right:auto;height:55px;display:flex;align-items:center;gap:5px;direction:ltr}.signal-bars i{width:4px;height:26%;background:#80eed0;border-radius:3px;animation:signal 1.1s ease-in-out infinite alternate}.signal-bars i:nth-child(2n){animation-delay:-.5s;height:60%}.signal-bars i:nth-child(3n){animation-delay:-.8s;height:90%}
+.incident-body{padding:25px 30px 30px}.incident-meta{display:flex;justify-content:space-between;align-items:center;gap:10px}.incident-body h2{font-size:27px;margin:18px 0 7px}.sim-option{min-height:56px}.choice-number{display:grid;place-items:center;width:28px;height:28px;flex-shrink:0;border-radius:7px;background:#64e6ca19;color:#a9f6df;font-weight:700}.choice-arrow{margin-right:auto;color:#8ad7c6;font-size:21px}.sim-option:disabled{cursor:default;opacity:.62}.sim-option.choice-correct{border-color:#65e2bf;background:#235b4b;opacity:1}.sim-option.choice-wrong{border-color:#e88282;background:#6b292d;animation:shake .3s}.sim-nav{display:flex;gap:10px;flex-wrap:wrap}
+.console-side{display:grid;align-content:start;gap:16px}.side-title{display:flex;align-items:center;justify-content:space-between;gap:10px}.side-title h2{margin:0}.live-label{color:#8eead2;font-size:12px}.system-list{margin-top:22px;display:grid;gap:13px;font-size:13px}.system-list div{display:flex;justify-content:space-between;gap:8px;padding-bottom:11px;border-bottom:1px solid #ffffff14}.system-list b{color:#9cf1d5;font-size:12px}.log-card ol{padding:0 18px 0 0;color:#c3d7d7;font-size:13px}.log-card li{padding:5px 0;animation:appear .3s ease}.sim-note{padding:13px 16px;color:#adc8ca;border:1px dashed #47736e;border-radius:12px;font-size:13px;background:#59d4b808}
+@keyframes shield-float{50%{transform:translateY(-10px)}}@keyframes glow-breathe{50%{opacity:.45;transform:scale(1.15)}}@keyframes status-glow{50%{box-shadow:0 0 0 9px #6defca08,0 0 15px #6defca}}@keyframes signal{to{height:95%}}@keyframes shake{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
+@media(max-width:850px){.control-grid{grid-template-columns:1fr}.console-side{grid-template-columns:1fr 1fr}.sim-note{grid-column:1/-1}}
+@media(max-width:600px){.command-status{align-items:flex-start;flex-direction:column}.command-metrics{width:100%;justify-content:space-between;gap:6px}.incident-visual{padding:20px;gap:15px}.radar{width:80px;height:80px}.incident-visual-text strong{font-size:18px}.signal-bars{display:none}.incident-body{padding:22px}.console-side{grid-template-columns:1fr}.sim-note{grid-column:auto}.hero-art .shield{animation:none;transform:scale(.8)}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 
-        /* מערכת לשוניות */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.2);
-            padding-bottom: 15px;
-        }
 
-        .tab-btn {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid transparent;
-            padding: 10px 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .tab-btn.active {
-            border-color: var(--primary);
-            color: var(--primary);
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.2);
-        }
-
-        .tab-content { display: none; text-align: center; }
-        .tab-content.active { display: block; animation: fadeIn 0.4s ease; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h1 { color: var(--primary); margin-top: 0; text-shadow: 0 0 10px rgba(0,255,204,0.3); text-align: center; }
-        h2 { color: var(--secondary); text-align: center; }
-        p { line-height: 1.6; }
-
-        /* סגנון דף מידע */
-        .info-section { text-align: right; margin-bottom: 25px; }
-        .info-card {
-            background: var(--light-bg);
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-top: 15px;
-            border-right: 4px solid var(--primary);
-        }
-        .info-card h3 { margin-top: 0; color: var(--primary); }
-
-        .hidden { display: none !important; }
-        
-        button.action-btn {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s ease;
-        }
-        button.action-btn:hover {
-            background: var(--primary);
-            color: var(--bg);
-            box-shadow: 0 0 15px var(--primary);
-        }
-
-        /* משחק הזיכרון */
-        .memory-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 20px 0; }
-        .memory-card {
-            height: 100px; background: #111; border: 1px solid var(--secondary); border-radius: 8px;
-            display: flex; justify-content: center; align-items: center; font-size: 0.95rem; font-weight: bold;
-            cursor: pointer; color: transparent; user-select: none; transition: background 0.3s, color 0.1s; padding: 5px;
-        }
-        .memory-card.flipped { background: var(--secondary); color: white; }
-        .memory-card.matched { background: var(--success); color: var(--bg); cursor: default; border-color: var(--success); }
-
-        /* משחק המיון */
-        .sorting-container {
-            background: #111; padding: 25px; border-radius: 12px; margin: 20px 0;
-            border: 1px dashed var(--primary); min-height: 120px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-        }
-        .sort-btn-group { display: flex; gap: 20px; justify-content: center; }
-        .btn-safe { border-color: var(--success); color: var(--success); }
-        .btn-safe:hover { background: var(--success); color: #fff; box-shadow: 0 0 15px var(--success); }
-        .btn-danger { border-color: var(--danger); color: var(--danger); }
-        .btn-danger:hover { background: var(--danger); color: #fff; box-shadow: 0 0 15px var(--danger); }
-
-        /* המקלדת הנומרית */
-        .keypad { display: grid; grid-template-columns: repeat(3, 60px); gap: 10px; justify-content: center; margin: 20px 0; }
-        .key {
-            height: 60px; background: #111; border: 1px solid var(--primary); color: var(--primary);
-            font-size: 1.5rem; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer;
-        }
-        .key:active { background: var(--primary); color: #000; }
-        #code-display {
-            font-size: 2rem; letter-spacing: 10px; background: #000; padding: 10px; width: 180px;
-            margin: 0 auto 15px; border-radius: 5px; color: var(--danger); height: 40px;
-        }
-
-        #feedback { height: 25px; font-weight: bold; margin-top: 15px; text-align: center; }
-
-        /* === חדרים חדשים === */
-
-        /* חדר טביעת רגל */
-        .post-item {
-            background: #111; border-radius: 10px; padding: 12px; margin: 8px 0;
-            border: 2px solid transparent; cursor: pointer; transition: 0.3s; text-align: right;
-        }
-        .post-item:hover { border-color: var(--primary); }
-        .post-item.selected { border-color: var(--success); background: rgba(46,196,182,0.08); }
-        .post-tag { font-size: 0.8rem; color: var(--secondary); margin-bottom: 4px; }
-        .post-text { font-size: 0.95rem; }
-        .profile-header {
-            display: flex; align-items: center; gap: 12px; margin-bottom: 15px;
-            background: var(--light-bg); padding: 12px; border-radius: 10px; text-align: right;
-        }
-        .profile-avatar {
-            width: 48px; height: 48px; border-radius: 50%; font-size: 1.8rem;
-            background: var(--light-bg); display: flex; align-items: center; justify-content: center;
-        }
-        .profile-name { font-weight: bold; color: var(--primary); }
-        .profile-handle { font-size: 0.8rem; color: #888; }
-
-        /* חדר נוזקות */
-        .download-card {
-            background: #111; border-radius: 10px; padding: 14px; margin: 8px 0;
-            border: 1px solid #333; text-align: right;
-        }
-        .download-name { font-weight: bold; color: var(--text); margin-bottom: 4px; }
-        .download-source { font-size: 0.8rem; color: #888; margin-bottom: 8px; }
-        .scan-result {
-            display: none; font-size: 0.85rem; font-family: monospace;
-            background: #0b0c10; padding: 10px; border-radius: 6px; margin: 8px 0;
-        }
-        .malware-btns { display: none; gap: 12px; justify-content: flex-start; margin-top: 8px; }
-        .malware-btns.visible { display: flex; }
-        .btn-download { border-color: var(--success); color: var(--success); padding: 8px 18px; font-size: 0.95rem; }
-        .btn-download:hover { background: var(--success); color: #000; box-shadow: 0 0 15px var(--success); }
-        .btn-delete-file { border-color: var(--danger); color: var(--danger); padding: 8px 18px; font-size: 0.95rem; }
-        .btn-delete-file:hover { background: var(--danger); color: #fff; box-shadow: 0 0 15px var(--danger); }
-        .scan-btn-inline {
-            background: transparent; border: 1px solid var(--secondary); color: var(--secondary);
-            padding: 5px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; transition: 0.3s;
-        }
-        .scan-btn-inline:hover { background: var(--secondary); color: #fff; }
-        .download-card.done { opacity: 0.4; pointer-events: none; }
-
-        /* חדר דיפייק */
-        .phone-bubble {
-            background: #075e54; border-radius: 12px 12px 12px 2px;
-            padding: 14px; margin: 12px 0; text-align: right; font-size: 0.95rem; line-height: 1.6;
-        }
-        .phone-header-sim {
-            background: var(--light-bg); border-radius: 10px; padding: 10px 14px;
-            display: flex; gap: 10px; align-items: center; margin-bottom: 10px; text-align: right;
-        }
-        .warning-flags {
-            background: rgba(230,57,70,0.08); border: 1px solid var(--danger);
-            border-radius: 8px; padding: 10px 14px; margin: 10px 0; font-size: 0.85rem; text-align: right;
-        }
-        .warning-flags strong { color: var(--danger); }
-        .deepfake-choice {
-            background: #111; border: 2px solid #444; color: var(--text);
-            padding: 10px 16px; border-radius: 8px; cursor: pointer; transition: 0.3s;
-            font-size: 0.95rem; text-align: right; width: 100%; margin: 5px 0; display: block;
-        }
-        .deepfake-choice:hover { border-color: var(--primary); color: var(--primary); }
-        .deepfake-choice.correct { border-color: var(--success); background: rgba(46,196,182,0.1); color: var(--success); }
-        .deepfake-choice.wrong { border-color: var(--danger); background: rgba(230,57,70,0.1); color: var(--danger); }
-
-        /* חדר Wi-Fi */
-        .wifi-card {
-            background: #111; border-radius: 10px; padding: 14px; margin: 8px 0;
-            border: 2px solid #333; cursor: pointer; transition: 0.3s; text-align: right;
-        }
-        .wifi-card:hover { border-color: var(--primary); }
-        .wifi-card.selected { border-color: var(--primary); background: rgba(0,255,204,0.05); }
-        .wifi-name { font-weight: bold; color: var(--text); margin-bottom: 4px; }
-        .wifi-meta { font-size: 0.82rem; color: #888; }
-        .wifi-badge {
-            display: inline-block; font-size: 0.75rem; padding: 2px 8px; border-radius: 20px; margin-top: 5px;
-        }
-        .badge-open { background: rgba(230,57,70,0.15); color: var(--danger); border: 1px solid var(--danger); }
-        .badge-secured { background: rgba(46,196,182,0.15); color: var(--success); border: 1px solid var(--success); }
-        .badge-suspect { background: rgba(157,78,221,0.15); color: var(--secondary); border: 1px solid var(--secondary); }
-        .vpn-row {
-            display: flex; align-items: center; justify-content: space-between;
-            background: var(--light-bg); border-radius: 10px; padding: 12px 16px; margin: 12px 0;
-        }
-        .vpn-label { font-weight: bold; color: var(--text); text-align: right; }
-        .vpn-desc { font-size: 0.8rem; color: #888; text-align: right; }
-        .toggle {
-            width: 52px; height: 28px; background: #333; border-radius: 14px;
-            cursor: pointer; position: relative; transition: 0.3s; border: 2px solid #555; flex-shrink: 0;
-        }
-        .toggle.on { background: var(--success); border-color: var(--success); }
-        .toggle-knob {
-            width: 20px; height: 20px; background: #fff; border-radius: 50%;
-            position: absolute; top: 2px; right: 2px; transition: 0.3s;
-        }
-        .toggle.on .toggle-knob { right: 26px; }
-
-        /* תעודה */
-        .cert-wrapper {
-            border: 2px solid var(--primary); border-radius: 16px; padding: 28px;
-            margin-top: 20px; text-align: center;
-            background: linear-gradient(160deg, rgba(0,255,204,0.04), rgba(157,78,221,0.04));
-        }
-        .cert-wrapper::before {
-            content: ''; display: block; border: 1px dashed rgba(0,255,204,0.25);
-            border-radius: 10px; padding: 10px; margin: -18px; margin-bottom: 10px;
-        }
-        .cert-top-label { font-size: 0.8rem; letter-spacing: 3px; color: #888; text-transform: uppercase; margin-bottom: 6px; }
-        .cert-title-big { color: var(--primary); font-size: 1.7rem; font-weight: bold; text-shadow: 0 0 12px rgba(0,255,204,0.3); margin: 8px 0; }
-        .cert-student-name { font-size: 1.9rem; font-weight: bold; color: #fff; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 4px; margin: 10px 0; }
-        .cert-stats { display: flex; justify-content: center; gap: 30px; margin: 14px 0; flex-wrap: wrap; }
-        .cert-stat { text-align: center; }
-        .cert-stat-val { font-size: 1.3rem; font-weight: bold; color: var(--primary); }
-        .cert-stat-label { font-size: 0.75rem; color: #888; }
-        .cert-rooms-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 12px 0; }
-        .cert-room-chip {
-            font-size: 0.75rem; padding: 3px 10px; border-radius: 20px;
-            border: 1px solid var(--primary); color: var(--primary); background: rgba(0,255,204,0.06);
-        }
-        .cert-date { font-size: 0.75rem; color: #555; margin-top: 10px; }
-        .name-input { 
-            background: #111; border: 2px solid var(--primary); color: #fff;
-            padding: 10px 16px; border-radius: 8px; font-size: 1rem; text-align: center;
-            direction: rtl; width: 220px;
-        }
-        .name-input:focus { outline: none; box-shadow: 0 0 10px rgba(0,255,204,0.3); }
-
-        /* ניקוד וטיימר */
-        .scoreboard {
-            display: flex; justify-content: space-between; align-items: center;
-            background: var(--light-bg); border-radius: 8px; padding: 8px 16px;
-            margin-bottom: 18px; font-size: 0.9rem; border: 1px solid rgba(0,255,204,0.15);
-        }
-        .score-val { color: var(--primary); font-weight: bold; font-size: 1.1rem; }
-        .timer-val { color: #f4a261; font-weight: bold; }
-
-        @media print {
-            .tabs, .scoreboard, #intro-screen, #room1, #room2, #room3, #room4,
-            #room5, #room6, #room7, #feedback, .tab-content:not(.active) { display: none !important; }
-            body { background: white; color: black; }
-            .game-box { border: none; box-shadow: none; }
-            .cert-wrapper { border-color: #009977; }
-            .cert-title-big, .score-val { color: #009977; }
-            .cert-room-chip { color: #009977; border-color: #009977; }
-            .cert-student-name { color: #111; border-color: #009977; }
-        }
-
-    </style>
+</style>
 </head>
 <body>
+<div class="shell">
+  <header class="topbar"><a class="brand" href="#home" data-view="home"><span class="brand-icon" aria-hidden="true">◈</span><span>מרכז ההגנה<small>לומדים לחשוב כמו מגינים</small></span></a><nav aria-label="תפריט ראשי"><button data-view="home">ראשי</button><button data-view="game">המשימה</button><button data-view="playground">מגרש האימונים</button></nav></header>
+  <main id="main"><p id="player-greeting" class="eyebrow" aria-live="polite"></p>
+    <section id="home" class="view active">
+      <div class="hero"><div><span class="eyebrow"><span class="pulse"></span> מרכז אימונים דיגיטלי</span><h1>מוכנים להגן על<br><em>המרחב הדיגיטלי?</em></h1><p>חמישה עשר שערים, החלטות אמיתיות ואתגרים שילמדו אתכם לזהות סכנות ולהגיב בחוכמה.</p><div class="actions"><button class="primary" data-action="start">מתחילים במשימה <span aria-hidden="true">←</span></button><button class="secondary" data-view="playground">למגרש האימונים</button></div><div class="hero-stats"><span><b>15</b> שערים</span><span><b>15</b> גביעים לאיסוף</span><span><b>∞</b> הזדמנויות ללמוד</span></div></div><div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="shield">⬡<span>✓</span></div><div class="art-label">מערכת ההגנה מוכנה <i></i></div></div></div>
+      <div class="section-heading"><div><span class="eyebrow">לפני שיוצאים לדרך</span><h2>איך זה עובד?</h2></div><p>לא צריך ניסיון קודם. מתקדמים בקצב שלכם.</p></div><div class="features"><article><span>01</span><h3>קוראים את המצב</h3><p>בכל שער מחכה תרחיש חדש מעולם אבטחת המידע.</p></article><article><span>02</span><h3>בוחרים או כותבים</h3><p>עונים על שאלות בחירה ושאלות פתוחות, ומקבלים משוב מידי.</p></article><article><span>03</span><h3>אוספים גביעים</h3><p>כל שער כולל חמש שאלות. השלימו את כולן כדי לזכות בגביע.</p></article></div>
+    </section>
+    <section id="game" class="view" aria-labelledby="game-title"><div class="section-heading"><div><span class="eyebrow">מסלול ההכשרה</span><h1 id="game-title">משימת ההגנה</h1><p>קראו את התרחיש ובחרו את התגובה הבטוחה ביותר.</p></div><div class="trophy-count">🏆 <strong id="trophy-count">0</strong> / 15 גביעים</div></div><div class="progress-head"><span id="progress-label">שער 1 מתוך 15</span><span id="progress-percent">0% הושלמו</span></div><div class="progress-track"><div id="progress-bar"></div></div><div class="game-layout"><div class="question-card"><div class="card-top"><span id="gate-tag" class="tag">שער 01</span><span id="difficulty" class="muted"></span></div><h2 id="question-title"></h2><p id="question-text" class="question-text"></p><form id="answer-form"><div id="answer-area"></div><div id="feedback" class="feedback" role="status" aria-live="polite"></div><button id="submit-answer" class="primary" type="submit">בדיקת תשובה ←</button><button id="next-gate" class="primary hidden" type="button">לשער הבא ←</button></form></div><aside class="side-card"><h2>אוסף הגביעים</h2><p>כל שער שתעברו יוסיף גביע לאוסף שלכם.</p><div id="trophy-grid" class="trophy-grid" aria-label="התקדמות הגביעים"></div><div class="tip"><strong>טיפ למגינים</strong><p>גם טעות היא הזדמנות ללמוד. אפשר לנסות שוב בכל שלב.</p></div></aside></div></section>
+    <section id="complete" class="view"><div class="completion"><span class="big-trophy">🏆</span><span class="eyebrow">המשימה הושלמה</span><h1>כל הכבוד, מגיני הסייבר!</h1><p>עברתם את כל 15 השערים ואספתם את כל הגביעים. עכשיו אפשר להמשיך לתרגל במגרש האימונים.</p><div class="actions centered"><button class="primary" data-view="playground">למגרש האימונים ←</button><button class="secondary" data-action="restart">להתחיל מחדש</button></div></div></section>
+    <section id="playground" class="view" aria-labelledby="play-title">
+ <div class="section-heading play-heading"><div><span class="eyebrow">◈ יחידת אימון וסימולציה</span><h1 id="play-title">חדר הבקרה</h1><p>אתם אחראים להגנת הרשת. קראו את ההתראות, קבלו החלטות ועקבו אחר מצב המערכות.</p></div><span class="simulation-badge">● סימולציה מקומית בלבד</span></div>
+ <div class="command-status"><div><span class="status-pulse"></span> חדר הבקרה פעיל <small>תרגול בטוח · ללא חיבור למערכות</small></div><div class="command-metrics"><span>אירוע <b id="sim-counter">1 / 3</b></span><span>טופלו <b id="sim-resolved">0</b></span><span>נקודות <b id="sim-score">0</b></span></div></div>
+ <div class="control-grid">
+  <div class="console-main"><div class="console-top"><span class="console-label">◈ התראה נכנסת</span><span id="sim-severity" class="severity">רמת סיכון: גבוהה</span></div>
+   <div class="incident-visual" aria-hidden="true"><div class="radar"><span></span><i></i></div><div class="incident-visual-text"><small>מערכת זיהוי איומים</small><strong id="sim-system">בדיקת תעבורה</strong><span>הסימולציה פועלת</span></div><div class="signal-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+   <div class="incident-body"><div class="incident-meta"><span id="sim-step" class="tag">שלב 1</span><span class="muted">בחרו פעולה אחת</span></div><h2 id="sim-title"></h2><p id="sim-text" class="question-text"></p><div id="sim-actions" class="options"></div><div id="sim-feedback" class="feedback" role="status" aria-live="polite"></div><div class="sim-nav"><button id="sim-next" class="primary hidden" type="button">לשלב הבא ←</button><button id="sim-restart" class="secondary hidden" type="button">התחלת תרגול חדש ↻</button></div></div>
+  </div>
+  <aside class="console-side"><div class="side-card system-card"><div class="side-title"><h2>מצב מערכות</h2><span class="live-label">● בזמן אמת</span></div><div class="health-head"><span>רמת הגנה</span><strong id="sim-health-label">100%</strong></div><div class="progress-track"><div id="sim-health"></div></div><div class="system-list"><div><span>◈ רשת בית הספר</span><b id="sim-network">תקינה</b></div><div><span>◈ חשבונות משתמשים</span><b id="sim-accounts">תקינים</b></div><div><span>◈ קבצים ונתונים</span><b id="sim-files">מוגנים</b></div></div></div>
+   <div class="side-card log-card"><div class="side-title"><h2>יומן אירועים</h2><span class="live-label">● עדכני</span></div><ol id="sim-log" aria-label="יומן פעולות בסימולציה" aria-live="polite"></ol></div>
+   <div class="sim-note">◉ כל האירועים והפעולות כאן מדומים. לא נשלח מידע ולא מתבצע שינוי במערכת אמיתית.</div>
+  </aside>
+ </div>
+ </section>
+  </main><footer><span>מרכז ההגנה · לומדים להגן יחד</span><span>נבנה ללמידה ותרגול בטוח</span></footer>
+</div><script>
+'use strict';
+// תשובות פתוחות נבדקות לפי מילים ומשמעויות שהוגדרו מראש, ללא בינה מלאכותית.
+const gates = [
+  {title:'סיסמה בטוחה',text:'איזו סיסמה היא הבחירה הבטוחה ביותר לחשבון חדש?',options:['12345678','שם פרטי ותאריך לידה','משפט סיסמה ארוך וייחודי'],answer:2,explain:'סיסמה ארוכה וייחודית קשה יותר לניחוש, ואין להשתמש בה שוב בחשבונות אחרים.'},
+  {title:'הודעה מפתיעה',text:'קיבלתם הודעה על זכייה המבקשת ללחוץ מיד על קישור ולהזין סיסמה. מה עושים?',options:['מזינים את הסיסמה כדי לקבל את הפרס','לא לוחצים ובודקים דרך האתר הרשמי','מעבירים את ההודעה לחברים'],answer:1,explain:'לחץ וקישור חשוד הם סימני אזהרה. נכנסים לשירות דרך כתובת מוכרת.'},
+  {title:'הגנה נוספת',text:'איך נקראת שכבת ההגנה שמבקשת אמצעי נוסף מעבר לסיסמה?',open:true,groups:[['אימות','אמת'],['דו','שני','שניים','שלבי','שלבים','נוסף','כפול']],hint:'רמז: אימות בשני שלבים.',explain:'אימות דו־שלבי מוסיף בדיקה נוספת מעבר לסיסמה.'},
+  {title:'מה משתפים?',text:'איזה פרט עדיף לא לפרסם בפומבי?',options:['הצבע האהוב עליי','כתובת הבית ומיקום בזמן אמת','שם של ספר שאהבתי'],answer:1,explain:'כתובת ומיקום עלולים לחשוף מידע אישי ולפגוע בפרטיות.'},
+  {title:'רשת בבית קפה',text:'אתם צריכים להיכנס לחשבון רגיש ברשת ציבורית לא מוכרת. מה עדיף?',options:['להשתמש בחיבור הסלולרי האישי','להתחבר מיד לרשת פתוחה בלי לבדוק','לשלוח את הסיסמה למישהו שיתחבר במקומכם'],answer:0,explain:'חיבור סלולרי אישי הוא בדרך כלל בחירה טובה יותר מרשת ציבורית לא מוכרת.'},
+  {title:'קובץ חשוד',text:'מה כדאי לעשות לפני פתיחת קובץ מצורף בלתי צפוי מחבר?',open:true,groups:[['בדוק','לבדוק','לברר','אמת','לאמת','לוודא','ודא','לשאול','לשוחח','להתקשר'],['שולח','חבר','מקור','מוכר','טלפון','ישיר','אחר','נפרד','ערוץ']],hint:'רמז: ודאו עם השולח בערוץ אחר.',explain:'כדאי לאמת עם השולח בערוץ מוכר לפני פתיחת קובץ בלתי צפוי.'},
+  {title:'בקשת קוד',text:'מישהו מתקשר וטוען שהוא נציג הבנק ומבקש קוד חד־פעמי. מה עושים?',options:['מקריאים את הקוד','מנתקים ומתקשרים לבנק במספר הרשמי','שולחים את הקוד בהודעה'],answer:1,explain:'קוד חד־פעמי הוא אישי. מאמתים בקשות דרך מספר רשמי שאתם מצאתם.'},
+  {title:'הרשאות מיותרות',text:'יישומון פנס מבקש גישה להודעות ולאנשי קשר. מה הפעולה המתאימה?',options:['לאשר את כל ההרשאות','לדחות הרשאות לא נחוצות ולשקול הסרה','לשתף איתו גם סיסמאות'],answer:1,explain:'כדאי להעניק ליישומונים רק הרשאות שנחוצות לפעולתם.'},
+  {title:'התחזות קולית',text:'נשלחה הודעה קולית דחופה מקרוב משפחה שמבקש כסף ממספר לא מוכר. כיצד מאמתים?',open:true,groups:[['להתקשר','מתקשר','לצלצל','לשוחח','שיחה','טלפון','לבדוק','לאמת'],['מוכר','ידוע','קרוב','משפחה','רשמי','ישיר','אחר','נפרד','ערוץ','מספר']],hint:'רמז: צרו קשר במספר שאתם מכירים.',explain:'קול יכול להיות מזויף. כדאי ליצור קשר בערוץ מוכר ונפרד.'},
+  {title:'התקן שנמצא',text:'מצאתם התקן זיכרון לא מוכר ליד בית הספר. מה עושים?',options:['מחברים אותו למחשב כדי למצוא את הבעלים','מוסרים לאחראי בלי לחבר אותו','מנסים אותו בכל המחשבים'],answer:1,explain:'התקן לא מוכר עלול להיות מסוכן. מוסרים אותו לאחראי בלי לחברו.'},
+  {title:'עדכוני אבטחה',text:'התפרסם עדכון אבטחה חשוב למכשיר שלכם. מהי הבחירה הנכונה?',options:['להתקין ממקור רשמי בהקדם האפשרי','להתעלם תמיד מעדכונים','להוריד עדכון מקישור אקראי'],answer:0,explain:'עדכוני אבטחה רשמיים מתקנים לעיתים פרצות מוכרות.'},
+  {title:'שיתוף מסמך רגיש',text:'כיצד כדאי להגביל גישה למסמך אישי שמשתפים בענן?',open:true,groups:[['הגבל','להגביל','מוגבל','הרשאה','גישה','לשתף','שיתוף','רק','לאפשר'],['אנשים','מורשים','מסוימ','ספציפ','נבחר','מוכר','אישי','בודד','נדרש','מי שצריך']],hint:'רמז: הגישה צריכה להיות רק לאנשים הזקוקים לה.',explain:'נותנים גישה רק לאנשים שצריכים אותה, ובודקים את רמת ההרשאה.'},
+  {title:'חשד להדבקה',text:'מחשב ארגוני מציג הודעת כופר. מהי התגובה הראשונה המתאימה?',options:['לבודד מהרשת ולדווח מיד לאחראי','להמשיך לעבוד כרגיל','לשלוח את הקובץ לכל העובדים'],answer:0,explain:'בידוד מהרשת ודיווח מהיר יכולים לצמצם התפשטות ולסייע בטיפול.'},
+  {title:'בקשת העברה דחופה',text:'הודעה שנראית מהמנהל מבקשת לשנות פרטי תשלום בדחיפות. מה עושים?',options:['משנים מיד כי הבקשה דחופה','מאמתים בערוץ עצמאי מוכר ולפי נוהל','משיבים להודעה ומבקשים אישור באותו ערוץ'],answer:1,explain:'מאמתים בקשות חריגות בערוץ עצמאי מוכר ובהתאם לנוהל הארגון.'},
+  {title:'האירוע המשולב',text:'נראה שחשבון נפרץ ונשלחות ממנו הודעות חשודות. כתבו שתי פעולות ראשונות להגנה.',open:true,groups:[['סיסמ','חשבון','גישה','כניסה'],['החלף','להחליף','איפוס','לאפס','שנה','לשנות','חסום','לחסום','נתק','לנתק'],['דווח','לדווח','הודע','להודיע','אחראי','תמיכה','מנהל','אזהר','להזהיר','עדכן','לעדכן']],hint:'רמז: טפלו בגישה לחשבון ודווחו לאדם או לגורם המתאים.',explain:'יש לאבטח את החשבון, למשל באיפוס סיסמה או חסימת גישה, ולדווח לגורם המתאים.'}
+];
+const scenarios=[
+ {title:'הודעה חשודה בתיבת הדואר',text:'הגיעה הודעה המבקשת סיסמה דרך קישור לא מוכר. בחרו פעולת הגנה.',choices:['דיווח על ההודעה ובדיקת החשבון בערוץ מוכר','פתיחת הקישור והזנת הסיסמה','העברת ההודעה לכל אנשי הקשר'],answer:0,explain:'דיווח ואימות בערוץ מוכר מסייעים לצמצם את הסיכון.'},
+ {title:'גישה חריגה לחשבון',text:'התקבלה התראה על כניסה שלא זיהיתם. מה תעשו?',choices:['מתעלמים מההתראה','נכנסים דרך האתר הרשמי, מחליפים סיסמה ובודקים חיבורים','שולחים את הסיסמה לחבר לבדיקה'],answer:1,explain:'החלפת סיסמה ובדיקת החיבורים הן פעולות הגנה מתאימות.'},
+ {title:'מחשב חשוד ברשת',text:'בסימולציה, מחשב מציג סימני הדבקה ועלול לפגוע במחשבים אחרים.',choices:['מנתקים אותו מהרשת ומדווחים לאחראי','מחברים אותו למחשבים נוספים','ממשיכים לעבוד כרגיל'],answer:0,explain:'בידוד ודיווח מהיר מסייעים לצמצם התפשטות.'}
+];
+
+const extraBank=[["סיסמה ארוכה וייחודית|שם קצר","סיסמה שונה לכל חשבון|אותה סיסמה לכולם","מנהל סיסמאות מהימן|הודעה פומבית","להחליף סיסמה שנחשפה|להשאיר אותה כפי שהיא"],["לחץ למסור פרטים מיד|פנייה רגילה ללא בקשה","להיכנס דרך אתר רשמי|ללחוץ על קישור חשוד","לשמור סיסמאות וקודים לעצמנו|לשלוח אותם לזרים","לדווח למבוגר או לאחראי|להעביר את ההודעה לכולם"],["בדיקה נוספת מעבר לסיסמה|סיסמה קצרה יותר","לשמור קוד אימות אישי בסוד|לפרסם אותו","לבדוק חשבון אם התקבל קוד שלא ביקשנו|למסור את הקוד למתקשר","להשתמש ביישומון אימות|להסתמך על שם המשתמש בלבד"],["להימנע מפרסום מיקום בזמן אמת|לפרסם מיקום בזמן אמת","להבין שאנשים רבים עשויים לראות פרסום ציבורי|להניח שרק חברים רואים אותו","לבקש הסכמה לפני פרסום תמונת חבר|לפרסם בלי לשאול","לזכור שאחרים יכולים לשמור עותק|להניח שהפרסום נעלם מיד"],["לוודא שרשת בית הקפה מקורית|לבחור רשת אקראית","לשאול את צוות בית העסק על שם הרשת|להסתמך על שם דומה","להשתמש בחיבור סלולרי אישי|לשתף סיסמה עם זרים","להשתמש בחיבור מוצפן לאתר מוכר|להסתמך על שם הרשת בלבד"],["לאמת קובץ בלתי צפוי עם השולח|לפתוח מיד","לבדוק את מקור ההורדה|לבדוק רק את צבע הכפתור","לזכור שגם מסמכים עלולים להיות מסוכנים|להניח שמסמך תמיד בטוח","לא לפתוח קובץ חשוד ולדווח|להעביר אותו לכולם"],["לשמור קוד חד פעמי לעצמנו|למסור אותו לכל מתקשר","להתקשר לבנק במספר רשמי שמצאנו|להשתמש במספר שהמתקשר מסר","להיזהר מבקשת קוד תחת לחץ|להקריא קוד לכל מבקש","לפנות לשירות הרשמי אם קוד נחשף|לחכות בלי לעשות דבר"],["לאשר רק הרשאות נחוצות|לאשר את כל ההרשאות","לבדוק מקור והרשאות לפני התקנה|לבדוק רק את צבע הסמל","לדחות הרשאה מיותרת|לאשר אותה אוטומטית","לבדוק הרשאות בהגדרות המכשיר|להניח שלא ניתן לבדוק אותן"],["לזכור שאפשר לזייף קול ותמונה|להאמין שקול מוכר מוכיח זהות","לזהות דחיפות ובקשת כסף חריגה כסימן אזהרה|לסמוך על לחץ ודחיפות","להתקשר למספר מוכר באופן עצמאי|לסמוך רק על ההקלטה","לאמת בערוץ נפרד לפני העברת כסף|להעביר מיד"],["לא לחבר התקן לא מוכר|לחבר אותו למחשב","למסור התקן שנמצא לאחראי|לנסות אותו בכל המחשבים","לזכור שמראה חיצוני לא מוכיח בטיחות|להניח שהתקן יפה בטוח","לדווח אם חיברנו התקן חשוד|להסתיר את האירוע"],["להתקין עדכוני אבטחה רשמיים|להתעלם מכל העדכונים","להוריד עדכונים ממקור רשמי|להשתמש בקישור אקראי","לטפל בעדכון חשוב בהקדם|לדחות אותו לתמיד","לדאוג לגיבוי מתאים לפני עדכון|לפרסם סיסמה"],["לתת גישה רק למי שזקוק לה|לשתף עם כולם","לבחור הרשאת צפייה כשלא נדרשת עריכה|לתת הרשאת עריכה לכולם","לבדוק נמענים והרשאות|לבדוק רק את שם הקובץ","להסיר גישה שאינה נחוצה|להשאיר הרשאות לתמיד"],["לבודד מחשב חשוד ולדווח|להתעלם","לבצע בידוד כדי לצמצם התפשטות|לחבר אותו לעוד מחשבים","לפנות לצוות אבטחה או תמיכה|לפנות לשולח ההודעה החשודה","לתעד מה קרה ומתי|לפרסם סיסמאות"],["לאמת בקשה חריגה בערוץ נפרד|לסמוך רק על ההודעה","לעצור ולבדוק כשמבקשים לעקוף נוהל|לעקוף את הנוהל מיד","לזכור שערוץ התקשורת עצמו עלול להיפרץ|להניח שכל הודעה אמינה","לוודא שינוי תשלום לפני ביצוע|לאשר בלי לבדוק"],["לאבטח חשבון שנפרץ ולדווח|להשאיר את הגישה פתוחה","להזהיר אנשי קשר על הודעות חשודות|להעביר את הקישור הלאה","לבדוק חיבורים והגדרות שחזור|לבדוק רק את צבע הרקע","להפעיל אימות נוסף|לפרסם את הסיסמה החדשה"]];
+const questionsByGate=gates.map((g,i)=>[g,...extraBank[i].map((pair,j)=>{const choices=pair.split('|');return {title:g.title,text:['איזו בחירה מגינה עליכם?','מהי הפעולה הנכונה?','איך תתנהגו במצב הזה?','איזו אפשרות בטוחה יותר?'][j],options:j%2?[choices[1],choices[0]]:choices,answer:j%2?1:0,explain:'התשובה הנכונה: '+choices[0]+'.'};})]);
+const good=['מעולה! תשובה נכונה.','כל הכבוד, ממשיכים להתקדם!','יפה מאוד! זו התשובה הנכונה.','מצוין, החלטה טובה.'];
+const bad=['אופס, זו לא התשובה שחיפשנו. נסו שוב.','כמעט! כדאי לחשוב על זה שוב.','לא בדיוק. קחו רגע ונסו שוב.','עוד לא, אבל אתם בדרך הנכונה.'];
+const $=id=>document.getElementById(id),pick=a=>a[Math.floor(Math.random()*a.length)];
+let gate=0,question=0,completed=0,answered=false,sim=0,health=100,simAnswered=false,playerName='',consent=false;
+function store(){if(!consent)return;try{localStorage.setItem('cyber-local-v2',JSON.stringify({name:playerName,completed,gate,question}));}catch(_){}}
+function show(view){document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===view));document.querySelectorAll('nav button').forEach(x=>x.setAttribute('aria-current',x.dataset.view===view?'page':'false'));window.scrollTo(0,0);if(view==='game'){if(completed===15){show('complete');return;}renderGate();}if(view==='playground'&&!simInitialized){renderSim();simInitialized=true;}}
+function renderGate(){answered=false;const g=questionsByGate[gate][question];$('question-title').textContent=g.title;$('question-text').textContent=g.text;$('gate-tag').textContent='שער '+(gate+1)+' · שאלה '+(question+1)+' מתוך 5';$('difficulty').textContent=gate<5?'רמת קושי: התחלה':gate<10?'רמת קושי: מתקדמים':'רמת קושי: מומחים';$('progress-label').textContent='שער '+(gate+1)+' מתוך 15';$('progress-percent').textContent=Math.round((completed*5+question)/75*100)+'% הושלמו';$('progress-bar').style.width=(completed*5+question)/75*100+'%';$('trophy-count').textContent=completed;$('trophy-grid').innerHTML=Array.from({length:15},(_,i)=>'<span class="'+(i<completed?'earned':'')+'" aria-label="'+(i<completed?'גביע הושג':'גביע נעול')+'">🏆</span>').join('');$('feedback').textContent='';$('feedback').className='feedback';$('next-gate').classList.add('hidden');$('submit-answer').classList.remove('hidden');if(g.open){$('answer-area').innerHTML='<label for="open-answer">התשובה שלכם</label><input id="open-answer" class="answer-input" autocomplete="off" placeholder="כתבו כאן את התשובה"><p class="helper">הבדיקה מזהה מילות מפתח. אם תשובה נכונה לא מתקבלת, נסו ניסוח אחר.</p><p class="helper"></p>';$('answer-area').lastElementChild.textContent=g.hint;}else{$('answer-area').innerHTML='<div class="options">'+g.options.map((o,i)=>'<label class="option"><input type="radio" name="answer" value="'+i+'"><span>'+o+'</span></label>').join('')+'</div>';}}
+$('answer-form').addEventListener('submit',e=>{e.preventDefault();if(answered)return;const g=questionsByGate[gate][question];let correct=false;if(g.open){const value=$('open-answer').value.trim().replace(/[־–—-]/g,' ').replace(/[\u0591-\u05c7]/g,'');if(!value){feedback('כדאי לכתוב תשובה לפני הבדיקה.',false);return;}correct=g.groups.every(group=>group.some(word=>value.includes(word)));}else{const selected=document.querySelector('input[name="answer"]:checked');if(!selected){feedback('בחרו תשובה כדי להמשיך.',false);return;}correct=Number(selected.value)===g.answer;}if(!correct){feedback(pick(bad)+(g.open?' '+g.hint:''),false);return;}answered=true;const finished=question===4;if(finished){completed=Math.max(completed,gate+1);$('trophy-count').textContent=completed;$('trophy-grid').children[gate].classList.add('earned');}feedback(pick(good)+' '+g.explain+(finished?' זכיתם בגביע לשער הזה!':''),true);$('submit-answer').classList.add('hidden');$('next-gate').classList.remove('hidden');$('next-gate').textContent=finished?(gate===14?'לסיום המשימה ←':'לשער הבא ←'):'לשאלה הבאה ←';});
+function feedback(message,ok){$('feedback').textContent=message;$('feedback').className='feedback '+(ok?'good':'bad');}
+$('next-gate').addEventListener('click',()=>{if(question<4){question++;store();renderGate();}else if(gate===14){store();show('complete');}else{gate++;question=0;store();renderGate();}});
+
+const missions=[
+ {system:'הגנת דואר', title:'הודעה חשודה בתיבת הדואר', steps:[
+  {text:'הגיעה הודעה בהולה שמבקשת להזין סיסמה בקישור לא מוכר. מה עושים קודם?',choices:['לא לוחצים, ומדווחים על ההודעה','פותחים את הקישור ומזינים סיסמה','מעבירים את ההודעה לכל התלמידים'],answer:0,explain:'עצירה ודיווח עוזרים למנוע מההודעה להגיע לאנשים נוספים.',log:'ההודעה סומנה לבדיקה',state:'הודעה חשודה'},
+  {text:'ההודעה נראית כאילו נשלחה משירות מוכר. איך אפשר לבדוק אותה?',choices:['מאמתים דרך האתר או היישומון הרשמי','משיבים להודעה ומוסרים קוד','סומכים על שם השולח בלבד'],answer:0,explain:'נכנסים לשירות באופן עצמאי במקום להשתמש בקישור חשוד.',log:'בוצע אימות בערוץ מוכר',state:'נבדק'}]},
+ {system:'הגנת חשבונות', title:'כניסה חריגה לחשבון', steps:[
+  {text:'התקבלה התראה על התחברות שלא זיהיתם. מה הצעד הראשון?',choices:['מתעלמים ומחכים','נכנסים דרך האתר הרשמי ומחליפים סיסמה','שולחים סיסמה לחבר לבדיקה'],answer:1,explain:'שינוי סיסמה דרך השירות הרשמי מקשה על שימוש נוסף בחשבון.',log:'הגישה לחשבון אובטחה',state:'בטיפול'},
+  {text:'הסיסמה הוחלפה. מה עוד כדאי לבדוק?',choices:['חיבורים פעילים ואמצעי שחזור, ולהפעיל אימות נוסף','לפרסם את הסיסמה החדשה','לבטל את כל אמצעי האבטחה'],answer:0,explain:'בדיקת החיבורים ואימות נוסף מחזקים את החשבון.',log:'החשבון נבדק והוגן',state:'מאובטחים'}]},
+ {system:'הגנת תחנות', title:'מחשב חשוד ברשת', steps:[
+  {text:'מחשב מציג סימני הדבקה ועלול להשפיע על מחשבים אחרים. מה עושים?',choices:['מחברים אותו למחשבים נוספים','מנתקים מהרשת ומדווחים לאחראי','ממשיכים לעבוד כרגיל'],answer:1,explain:'בידוד ודיווח יכולים לצמצם התפשטות ולעזור בטיפול.',log:'התחנה בודדה מהרשת',state:'תחנה מבודדת'},
+  {text:'התחנה בודדה. מה עושים כעת?',choices:['מעדכנים את הגורם האחראי ומתעדים את הסימנים','מחברים מיד מחדש בלי בדיקה','מוחקים ראיות ומסתירים את האירוע'],answer:0,explain:'דיווח ותיעוד מסייעים לגורם המתאים לבדוק ולהחליט כיצד לשחזר.',log:'האירוע תועד והועבר לטיפול',state:'בטיפול'}]}
+];
+let simStep=0, simScore=0, simResolved=0, simFinished=false, simInitialized=false;
+function simLog(message){const item=document.createElement('li');item.textContent=message;const log=$('sim-log');log.prepend(item);while(log.children.length>5)log.lastElementChild.remove();}
+function renderSim(){
+ const mission=missions[sim],step=mission.steps[simStep];simAnswered=false;
+ $('sim-counter').textContent=(sim+1)+' / '+missions.length;$('sim-resolved').textContent=simResolved;$('sim-score').textContent=simScore;
+ $('sim-system').textContent=mission.system;$('sim-title').textContent=mission.title;$('sim-text').textContent=step.text;
+ $('sim-step').textContent='שלב '+(simStep+1)+' מתוך '+mission.steps.length;
+ $('sim-severity').textContent=sim===2?'רמת סיכון: קריטית':'רמת סיכון: גבוהה';
+ $('sim-actions').innerHTML=step.choices.map((choice,i)=>'<button class="option sim-option" type="button" data-choice="'+i+'"><span class="choice-number">'+(i+1)+'</span><span>'+choice+'</span><span class="choice-arrow" aria-hidden="true">←</span></button>').join('');
+ $('sim-feedback').textContent='';$('sim-feedback').className='feedback';$('sim-next').classList.add('hidden');$('sim-restart').classList.toggle('hidden',!simFinished);
+ $('sim-health').style.width=health+'%';$('sim-health-label').textContent=health+'%';
+ if(!$('sim-log').children.length)simLog('חדר הבקרה מוכן לקבלת אירועים');
+}
+$('sim-actions').addEventListener('click',e=>{
+ const button=e.target.closest('button[data-choice]');if(!button||simAnswered||simFinished)return;
+ const step=missions[sim].steps[simStep];
+ if(Number(button.dataset.choice)!==step.answer){
+  health=Math.max(0,health-15);$('sim-health').style.width=health+'%';$('sim-health-label').textContent=health+'%';
+  $('sim-feedback').textContent='הפעולה לא מתאימה לאירוע. רמת ההגנה ירדה — אפשר לחשוב ולנסות שוב.';$('sim-feedback').className='feedback bad';button.classList.add('choice-wrong');simLog('נבחרה פעולה לא מתאימה · רמת ההגנה ירדה');
+  if(health===0){simFinished=true;$('sim-feedback').textContent='רמת ההגנה הגיעה לאפס. אפשר להתחיל מחדש ולנסות דרך אחרת.';$('sim-restart').classList.remove('hidden');$('sim-actions').querySelectorAll('button').forEach(b=>b.disabled=true);simLog('התרגול הסתיים · אפשר להתחיל מחדש');}
+  return;
+ }
+ simAnswered=true;simScore+=100;$('sim-score').textContent=simScore;button.classList.add('choice-correct');$('sim-actions').querySelectorAll('button').forEach(b=>b.disabled=true);
+ $('sim-feedback').textContent='פעולה נכונה! '+step.explain;$('sim-feedback').className='feedback good';simLog(step.log);
+ if(sim===0)$('sim-network').textContent=step.state;if(sim===1)$('sim-accounts').textContent=step.state;if(sim===2)$('sim-files').textContent=step.state;
+ if(simStep===missions[sim].steps.length-1){simResolved++;$('sim-resolved').textContent=simResolved;simLog('האירוע טופל בהצלחה');}
+ if(sim===missions.length-1&&simStep===missions[sim].steps.length-1){simFinished=true;$('sim-feedback').textContent+=' כל האירועים טופלו!';$('sim-restart').classList.remove('hidden');simLog('כל התרגיל הושלם');}
+ else{$('sim-next').textContent=simStep===missions[sim].steps.length-1?'לאירוע הבא ←':'לשלב הבא ←';$('sim-next').classList.remove('hidden');}
+});
+$('sim-next').addEventListener('click',()=>{if(simStep<missions[sim].steps.length-1)simStep++;else{sim++;simStep=0;}renderSim();});
+$('sim-restart').addEventListener('click',()=>{sim=0;simStep=0;health=100;simScore=0;simResolved=0;simFinished=false;$('sim-log').innerHTML='';$('sim-network').textContent='תקינה';$('sim-accounts').textContent='תקינים';$('sim-files').textContent='מוגנים';renderSim();});
+
+document.addEventListener('click',e=>{const v=e.target.closest('[data-view]');if(v){e.preventDefault();show(v.dataset.view);}const a=e.target.closest('[data-action]');if(a){if(a.dataset.action==='restart'){completed=0;gate=0;question=0;store();}show('game');}});
+const overlay=document.createElement('div');overlay.className='entry-overlay';overlay.innerHTML='<form class="entry-card" id="entry-form" aria-labelledby="entry-title"><span class="eyebrow">ברוכים הבאים למרכז ההגנה</span><h1 id="entry-title">איך קוראים לכם?</h1><p>השם יוצג במשחק בלבד. לא נשלח מידע לשרת או למסד נתונים.</p><label for="player-name">שם השחקן או השחקנית</label><input id="player-name" class="answer-input" maxlength="40" required autocomplete="name"><fieldset><legend>בחירת שמירה במכשיר</legend><p>המשחק אינו משתמש בעוגיות. באישור, השם וההתקדמות יישמרו באחסון המקומי של הדפדפן במכשיר הזה. בסירוב אפשר לשחק, אך הנתונים יימחקו בסגירת העמוד.</p><label><input type="radio" name="storage" value="yes" required> אישור שמירה מקומית</label><label><input type="radio" name="storage" value="no" required> סירוב לשמירה מקומית</label></fieldset><button class="primary" type="submit">כניסה למשחק ←</button></form>';document.body.appendChild(overlay);
+$('entry-form').addEventListener('submit',e=>{e.preventDefault();const name=$('player-name').value.trim();if(!name){$('player-name').setCustomValidity('יש להזין שם.');$('player-name').reportValidity();return;}$('player-name').setCustomValidity('');const choice=document.querySelector('input[name="storage"]:checked');if(!choice)return;consent=choice.value==='yes';playerName=name;try{if(consent){const old=JSON.parse(localStorage.getItem('cyber-local-v2')||'null');if(old&&old.name===name){completed=Math.max(0,Math.min(15,Number(old.completed)||0));gate=Math.min(completed,14);question=completed<15&&Number(old.gate)===gate?Math.max(0,Math.min(4,Number(old.question)||0)):0;}store();}else{localStorage.removeItem('cyber-local-v2');localStorage.removeItem('cyber-gates');}}catch(_){}$('player-greeting').textContent='שלום, '+playerName+'!';overlay.remove();show('home');});
+$('player-name').addEventListener('input',()=>{$('player-name').setCustomValidity('');});
+show('home');$('player-name').focus();
 
-<div class="game-box">
-    <!-- תפריט לשוניות עליון -->
-    <div class="tabs">
-        <button class="tab-btn active" id="tab-link-info" onclick="switchTab('info-tab')">📋 דף רקע ומידע</button>
-        <button class="tab-btn" id="tab-link-game" onclick="switchTab('game-tab')">🔐 חדר הבריחה</button>
-    </div>
-
-    <!-- לשונית 1: דף רקע ומידע -->
-    <div id="info-tab" class="tab-content active">
-        <h1>🌐 מרכז המידע: הגנה במרחב הדיגיטלי</h1>
-        <p>קראו בעיון את חומרי הרקע. המידע כאן יעזור לכם לא רק לגלוש בבטחה, אלא גם יספק לכם רמזים קריטיים לפיצוח מנעול הקוד בהמשך!</p>
-        
-        <div class="info-section">
-            <div class="info-card">
-                <h3>🚨 רקע המשימה: מתקפת הסייבר</h3>
-                <p>קבוצת האקרים אלמונית נעלה את שרתי בית הספר והצפינה את כל הציונים והנתונים. הם השאירו מאחוריהם מערכת הגנה  המבוססת על עקרונות הגנת הסייבר. רק מי שמכיר את חוקי הבטיחות ברשת יוכל לעבור את האתגרים, להשיג את קוד הנטרול ולשחרר את המערכת.</p>
-            </div>
-
-            <div class="info-card">
-                <h3>🎣 איום הפישינג (דיוג) וקישורים חשודים</h3>
-                <p>פישינג הוא שיטה שבה תוקפים מתחזים לחברות מוכרות (כמו גוגל, בנקים או חברות משלוחים) ושולחים הודעות מבהילות או מפתות (כמו "זכית באייפון" או "חשבונך נחסם"). המטרה שלהם היא לגרום לכם ללחוץ על <strong>קישור מזויף</strong> ולהקליד בו את הסיסמה או הפרטים האישיים שלכם.</p>
-            </div>
-
-            <div class="info-card">
-                <h3>🧱 חומת הסיסמאות והמנעול הכפול</h3>
-                <p>סיסמה חלשה (כמו השם שלכם, או "123456") מקבלת ציון בטיחות נמוך מאוד וניתן לפרוץ אותה בשניות. סיסמה חזקה באמת חייבת לשלב אותיות גדולות וקטנות, מספרים וסימנים מיוחדים.</p>
-                <p>כדי להתמגן באמת, מפעילים בכל האפליקציות <strong>אימות דו-שלבי (2FA)</strong>. זהו מנגנון הגנה בעל <strong>שני שלבים</strong>: מעבר לסיסמה הרגילה, המערכת דורשת קוד זמני שנשלח ישירות לטלפון הנייד שלכם, מה שמונע מהאקרים להיכנס גם אם הם גילו את הסיסמה.</p>
-            </div>
-
-            <div class="info-card">
-                <h3>🆘 קו ההגנה הלאומי - מוקד 105</h3>
-                <p>בכל מקרה של פגיעה, סחיטה, בריונות, שיימינג או חשיפה לתוכן מאיים ברשת, יש למי לפנות. מדינת ישראל מפעילה את <strong>מוקד 105</strong> - המטה הלאומי להגנה על ילדים ברשת. המוקד מאויש על ידי שוטרים ומומחים 24/7 ומסייע בטיפול מיידי באירועים פוגעניים.</p>
-            </div>
-
-            <div class="info-card">
-                <h3>👣 טביעת הרגל הדיגיטלית</h3>
-                <p>כל מה שמפרסמים ברשת נשאר שם לנצח ויכול לשמש נגדנו. מידע רגיש שכדאי להסתיר: <strong>כתובת הבית, מיקום בזמן אמת, תאריך לידה מלא, שם בית הספר ותמונות מהבית</strong>. האקרים משתמשים במידע זה להנדסה חברתית ולמתקפות ממוקדות.</p>
-            </div>
-
-            <div class="info-card">
-                <h3>🦠 נוזקות ותוכנות זדוניות</h3>
-                <p>קבצים מסוכנים מגיעים לרוב בסיומות: <strong>.exe, .bat, .scr, .vbs</strong>. קבצים בטוחים יותר ממקורות רשמיים: <strong>.pdf, .docx, .jpg</strong>. תמיד הורידו ממקורות רשמיים בלבד ובדקו את כתובת האתר לפני ההורדה.</p>
-            </div>
-
-            <div class="info-card">
-                <h3>🤖 דיפייק והתחזות בעזרת AI</h3>
-                <p>טכנולוגיית AI מאפשרת לזייף קולות ופנים. סימני אזהרה: <strong>לחץ זמן קיצוני, בקשה להעברת כסף או קוד, הודעה ממספר לא מוכר</strong>. הפתרון תמיד: התקשרו ישירות למספר המוכר לכם כדי לאמת!</p>
-            </div>
-
-            <div class="info-card">
-                <h3>📶 סכנות Wi-Fi ציבורי ו-VPN</h3>
-                <p>רשתות Wi-Fi פתוחות (ללא סיסמה) מאפשרות להאקרים לצותת ולגנוב סיסמאות. <strong>VPN</strong> (רשת פרטית וירטואלית) מצפינה את הגלישה ומגינה עליכם גם ברשתות ציבוריות. תמיד העדיפו רשתות מאובטחות עם סיסמה.</p>
-            </div>
-        </div>
-        <button class="action-btn" onclick="switchTab('game-tab')">עברו לחדר הבריחה 🚀</button>
-    </div>
-
-    <!-- לשונית 2: המשחק -->
-    <div id="game-tab" class="tab-content">
-
-        <!-- לוח ניקוד וטיימר -->
-        <div class="scoreboard hidden" id="scoreboard">
-            <div>⭐ ניקוד: <span class="score-val" id="score-display">0</span></div>
-            <div>🏠 חדר: <span class="score-val" id="room-display">-</span></div>
-            <div>⏱ <span class="timer-val" id="timer-display">00:00</span></div>
-        </div>
-
-        <!-- מסך פתיחה של המשחק -->
-        <div id="intro-screen">
-            <h1>🔐 חדר הבריחה הדיגיטלי</h1>
-            <p>הגעתם למסך הפיקוד. לפניכם <strong>7 חדרים נעולים</strong>. עברו אותם אחד אחד כדי להציל את המערכת ולקבל תעודת לוחם/ת סייבר!</p>
-            <button class="action-btn" onclick="startRoom(1)">התחל בפריצה</button>
-        </div>
-
-        <!-- חדר 1: מלכודת ה-Wi-Fi -->
-        <div id="room1" class="hidden">
-            <h2>חדר 1: לוחמי הרשת האלחוטית</h2>
-            <p>אתם במרכז מסחרי וצריכים לשלוח קובץ חשוב. בחרו רשת וודאו שאתם מוגנים!</p>
-            <div style="text-align:center; font-size:2rem; margin:10px 0;">🛍️</div>
-            <div id="wifi-list"></div>
-            <div class="vpn-row">
-                <div>
-                    <div class="vpn-label">🛡️ הפעל VPN</div>
-                    <div class="vpn-desc">מצפין את הגלישה שלך</div>
-                </div>
-                <div class="toggle" id="vpn-toggle" onclick="toggleVPN()">
-                    <div class="toggle-knob"></div>
-                </div>
-            </div>
-            <div id="vpn-status" style="font-size:0.85rem; color:var(--success); text-align:right; min-height:20px;"></div>
-            <br>
-            <button class="action-btn" id="wifi-send-btn" style="display:none;" onclick="confirmWifi()">📤 שלח את הקובץ</button>
-        </div>
-
-        <!-- חדר 2: משחק המיון -->
-        <div id="room2" class="hidden">
-            <h2>חדר 2: מסננת הסייבר</h2>
-            <p>לפניכם הודעות ומצבים מהרשת. מיינו אותם במהירות: האם המצב <strong>בטוח</strong> או <strong>חשוד/מסוכן</strong>?</p>
-            <div id="sort-progress" style="font-size: 0.9rem; color: var(--primary);"></div>
-            <div class="sorting-container" id="scenarios-box">טוען מצב...</div>
-            <div class="sort-btn-group">
-                <button class="btn-safe action-btn" style="padding: 10px 20px;" onclick="handleSort(true)">🟢 בטוח לגמרי</button>
-                <button class="btn-danger action-btn" style="padding: 10px 20px;" onclick="handleSort(false)">🔴 חשוד / מסוכן</button>
-            </div>
-        </div>
-
-        <!-- חדר 3: טביעת הרגל הדיגיטלית -->
-        <div id="room3" class="hidden">
-            <h2>חדר 3: טביעת הרגל הדיגיטלית</h2>
-            <p>לפניכם כמה פרופילים ברשת. <strong>לחצו על כל הפוסטים שחושפים מידע רגיש</strong> שעלול לשמש האקרים לפני שהם מנצלים אותו!</p>
-            <div id="fp-counter" style="font-size:0.9rem; color:var(--primary); margin-bottom:8px;"></div>
-            <div id="posts-container"></div>
-            <br>
-            <button class="action-btn" id="fp-check-btn" onclick="checkFootprint()" style="display:none;">✅ סיימתי לנקות את הפרופיל</button>
-        </div>
-
-        <!-- חדר 4: מעבדת הנוזקות -->
-        <div id="room4" class="hidden">
-            <h2>חדר 4: מעבדת האנטי-וירוס</h2>
-            <p>לפניכם 4 קבצים. לחצו <strong>סרוק</strong> כדי לבדוק כל קובץ, ואז החליטו: הורד או מחק!</p>
-            <div id="malware-remaining-text" style="font-size:0.9rem; color:var(--primary); margin-bottom:10px;"></div>
-            <div id="malware-cards"></div>
-        </div>
-
-        <!-- חדר 5: דיפייק ובינה מלאכותית -->
-        <div id="room5" class="hidden">
-            <h2>חדר 5: הנדסה חברתית ו-AI</h2>
-            <p>תקבלו מספר הודעות חשודות. עבור כל אחת – בחרו את <strong>פעולת המניעה הנכונה</strong>!</p>
-            <div id="df-progress" style="font-size:0.9rem; color:var(--primary); margin-bottom:10px;"></div>
-            <div id="df-content"></div>
-            <div id="df-choices"></div>
-        </div>
-
-        <!-- חדר 6: משחק הזיכרון -->
-        <div id="room6" class="hidden">
-            <h2>חדר 6: משחק הזיכרון הדיגיטלי</h2>
-            <p>מצאו את הזוגות המתאימים בין איומי הרשת לדרכי ההתגוננות כדי לפתוח את השער הראשון.</p>
-            <div class="memory-grid" id="memory-grid"></div>
-        </div>
-
-        <!-- חדר 7: מנעול הקוד הסופי -->
-        <div id="room7" class="hidden">
-            <h2>חדר 7: מנעול הקוד הסופי</h2>
-            <p>כדי לנטרל את הווירוס, עליכם לגלות קוד בן 3 ספרות בעזרת המידע שקראתם בדף הרקע:</p>
-            <div style="text-align: right; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 8px; margin-bottom: 15px; font-size: 0.95rem;">
-                📌 <strong>ספרה ראשונה:</strong> מספר המוקד הלאומי להגנה על ילדים ברשת פחות 100.<br>
-                📌 <strong>ספרה שנייה:</strong> כמה שלבים יש במנגנון האימות הדו-שלבי?<br>
-                📌 <strong>ספרה שלישית:</strong> אם הסיסמה המורכבת "A@b3#k9" קיבלה ציון בטיחות מעולה, איזה ציון מגיע לסיסמה חלשה ונפוצה כמו "123456"?
-            </div>
-            <div id="code-display"></div>
-            <div class="keypad">
-                <div class="key" onclick="pressKey('1')">1</div><div class="key" onclick="pressKey('2')">2</div><div class="key" onclick="pressKey('3')">3</div>
-                <div class="key" onclick="pressKey('4')">4</div><div class="key" onclick="pressKey('5')">5</div><div class="key" onclick="pressKey('6')">6</div>
-                <div class="key" onclick="pressKey('7')">7</div><div class="key" onclick="pressKey('8')">8</div><div class="key" onclick="pressKey('9')">9</div>
-                <div class="key" style="border:none;"></div><div class="key" onclick="pressKey('0')">0</div><div class="key" onclick="clearCode()" style="font-size:1rem; color:var(--danger); border-color:var(--danger)">C</div>
-            </div>
-        </div>
-
-        <!-- מסך ניצחון -->
-        <div id="victory-screen" class="hidden">
-            <h1 style="color: var(--success); font-size: 3rem;">🏆 המערכת שוחררה! 🏆</h1>
-            <p>הצלחתם לפצח את כל החדרים, להביס את ההאקר ולהוכיח שאתם אלופי אבטחה דיגיטלית!</p>
-            <p>⏱ זמן סיום: <strong id="final-time">-</strong> &nbsp;|&nbsp; ⭐ ניקוד: <strong id="final-score">0</strong> &nbsp;|&nbsp; <span id="final-rank"></span></p>
-            <div id="supabase-status" style="font-size:0.85rem; color:#888; margin: 8px 0;">שומר נתונים...</div>
-            <div style="margin: 20px 0;">
-                <p>הזינו את שמכם לתעודה:</p>
-                <input type="text" class="name-input" id="player-name" placeholder="שם מלא" maxlength="30" />
-                <br><br>
-                <button class="action-btn" onclick="generateCert()">🎖️ צור תעודת לוחם סייבר</button>
-            </div>
-            <div id="cert-area" class="hidden">
-                <div class="cert-wrapper" id="cert-box">
-                    <div class="cert-top-label">🛡️ מרכז הסייבר הלאומי לנוער</div>
-                    <div class="cert-title-big">תעודת לוחם/ת סייבר</div>
-                    <div style="color: var(--text);">מוענקת בגאווה לידי</div>
-                    <div class="cert-student-name" id="cert-name-display">—</div>
-                    <div style="font-size:2.5rem; margin: 8px 0;">🏅</div>
-                    <div class="cert-stats">
-                        <div class="cert-stat"><div class="cert-stat-val" id="cert-score">0</div><div class="cert-stat-label">נקודות</div></div>
-                        <div class="cert-stat"><div class="cert-stat-val" id="cert-time">-</div><div class="cert-stat-label">זמן סיום</div></div>
-                        <div class="cert-stat"><div class="cert-stat-val" id="cert-rank-display">-</div><div class="cert-stat-label">דרגה</div></div>
-                    </div>
-                    <div class="cert-rooms-list">
-                        <span class="cert-room-chip">✅ זיכרון דיגיטלי</span>
-                        <span class="cert-room-chip">✅ מסננת סייבר</span>
-                        <span class="cert-room-chip">✅ טביעת רגל</span>
-                        <span class="cert-room-chip">✅ מעבדת נוזקות</span>
-                        <span class="cert-room-chip">✅ AI ודיפייק</span>
-                        <span class="cert-room-chip">✅ מלכודת Wi-Fi</span>
-                        <span class="cert-room-chip">✅ קוד סופי</span>
-                    </div>
-                    <div class="cert-date" id="cert-date"></div>
-                </div>
-                <br>
-                <button class="action-btn" onclick="window.print()">🖨️ הדפס תעודה</button>
-                &nbsp;
-                <button class="action-btn" onclick="location.reload()">שחק שוב</button>
-            </div>
-            <br id="no-cert-spacer">
-            <button class="action-btn" id="play-again-btn" onclick="location.reload()">שחק שוב</button>
-        </div>
-
-        <!-- משוב כללי -->
-        <div id="feedback"></div>
-    </div>
-
-</div>
-
-<script>
-    let feedbackBox = document.getElementById('feedback');
-    let score = 0;
-    let timerInterval = null;
-    let startTime = null;
-    let elapsedSeconds = 0;
-    let vpnOn = false;
-    let selectedWifiId = null;
-    let mistakes = []; // מעקב טעויות
-
-    // Supabase
-    const SUPABASE_URL = 'https://obojacrugcevuoqhjqpj.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_kh3ajY3cqd7sQ8XCyTLubw_KSrX4KLa';
-
-    async function saveResultToSupabase() {
-        try {
-            const res = await fetch(`${SUPABASE_URL}/rest/v1/results`, {
-                method: 'POST',
-                headers: {
-                    'apikey': SUPABASE_KEY,
-                    'Authorization': `Bearer ${SUPABASE_KEY}`,
-                    'Content-Type': 'application/json',
-                    'Prefer': 'return=minimal'
-                },
-                body: JSON.stringify({
-                    score: score,
-                    time_seconds: elapsedSeconds,
-                    mistakes: JSON.stringify(mistakes)
-                })
-            });
-            if(!res.ok) {
-                const errText = await res.text();
-                console.error('Supabase error:', res.status, errText);
-                document.getElementById('supabase-status').innerText = '⚠️ שגיאה בשמירה: ' + res.status + ' – ' + errText;
-            } else {
-                document.getElementById('supabase-status').innerText = '✅ הנתונים נשמרו בהצלחה!';
-            }
-        } catch(e) {
-            console.error('שגיאת רשת:', e);
-            document.getElementById('supabase-status').innerText = '⚠️ שגיאת רשת: ' + e.message;
-        }
-    }
-
-    // ניהול לשוניות
-    function switchTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-        document.getElementById(tabId).classList.add('active');
-        if(tabId === 'info-tab') document.getElementById('tab-link-info').classList.add('active');
-        if(tabId === 'game-tab') document.getElementById('tab-link-game').classList.add('active');
-    }
-
-    function showFeedback(text, isSuccess) {
-        feedbackBox.innerText = text;
-        feedbackBox.style.color = isSuccess ? 'var(--success)' : 'var(--danger)';
-        if(!isSuccess) setTimeout(() => feedbackBox.innerText = '', 2000);
-    }
-
-    function addScore(pts) {
-        score += pts;
-        document.getElementById('score-display').innerText = score;
-    }
-
-    function startTimer() {
-        startTime = Date.now();
-        timerInterval = setInterval(() => {
-            elapsedSeconds = Math.floor((Date.now() - startTime) / 1000);
-            let m = String(Math.floor(elapsedSeconds / 60)).padStart(2, '0');
-            let s = String(elapsedSeconds % 60).padStart(2, '0');
-            document.getElementById('timer-display').innerText = m + ':' + s;
-        }, 1000);
-    }
-
-
-    function formatTime(secs) {
-        let m = Math.floor(secs / 60), s = secs % 60;
-        return (m > 0 ? m + ' דק\' ' : '') + s + ' שנ\'';
-    }
-
-    function startRoom(roomNum) {
-        ['intro-screen','room1','room2','room3','room4','room5','room6','room7','victory-screen']
-            .forEach(id => document.getElementById(id).classList.add('hidden'));
-        feedbackBox.innerText = '';
-
-        if(roomNum === 1) {
-            if(!timerInterval) {
-                document.getElementById('scoreboard').classList.remove('hidden');
-                startTimer();
-            }
-            document.getElementById('room1').classList.remove('hidden');
-            document.getElementById('room-display').innerText = '1/7';
-            initWifiGame();
-        }
-        if(roomNum === 2) { document.getElementById('room2').classList.remove('hidden'); document.getElementById('room-display').innerText = '2/7'; initSortingGame(); }
-        if(roomNum === 3) { document.getElementById('room3').classList.remove('hidden'); document.getElementById('room-display').innerText = '3/7'; initFootprintGame(); }
-        if(roomNum === 4) { document.getElementById('room4').classList.remove('hidden'); document.getElementById('room-display').innerText = '4/7'; initMalwareGame(); }
-        if(roomNum === 5) { document.getElementById('room5').classList.remove('hidden'); document.getElementById('room-display').innerText = '5/7'; initDeepfakeGame(); }
-        if(roomNum === 6) { document.getElementById('room6').classList.remove('hidden'); document.getElementById('room-display').innerText = '6/7'; initMemoryGame(); }
-        if(roomNum === 7) { document.getElementById('room7').classList.remove('hidden'); document.getElementById('room-display').innerText = '7/7'; }
-        if(roomNum === 'win') { clearInterval(timerInterval); document.getElementById('victory-screen').classList.remove('hidden'); showVictory(); }
-    }
-
-    // ==================== חדר 1: משחק הזיכרון ====================
-    const memoryDataSets = [
-        // סט 1: יסודות ההגנה
-        [
-            { text: "דיוג (פישינג)", pairId: 1 }, { text: "קישור מזויף במייל", pairId: 1 },
-            { text: "סיסמה חזקה", pairId: 2 }, { text: "אותיות, מספרים וסימנים", pairId: 2 },
-            { text: "מוקד 105", pairId: 3 }, { text: "דיווח על פגיעה ברשת", pairId: 3 },
-            { text: "רשת ווַיי-פַיי ציבורית", pairId: 4 }, { text: "סכנת גניבת סיסמאות", pairId: 4 }
-        ],
-        // סט 2: טכנולוגיות הגנה מתקדמות
-        [
-            { text: "רשת פרטית וירטואלית", pairId: 1 }, { text: "הצפנת הגלישה והנתונים", pairId: 1 },
-            { text: "אימות דו-שלבי", pairId: 2 }, { text: "קוד זמני על הטלפון", pairId: 2 },
-            { text: "תוכנה זדונית", pairId: 3 }, { text: "תוכנה גוננבת נתונים", pairId: 3 },
-            { text: "דיפייק", pairId: 4 }, { text: "התחזות לפנים וקול בעזרת בינה מלאכותית", pairId: 4 }
-        ],
-        // סט 3: VPN והגנה ברשת
-        [
-            { text: "כתובת IP", pairId: 1 }, { text: "הכתובת היחודית של המחשב ברשת", pairId: 1 },
-            { text: "הצפנה", pairId: 2 }, { text: "קידוד נתונים כדי להסתיר אותם", pairId: 2 },
-            { text: "שרת VPN מהימן", pairId: 3 }, { text: "הגנה מפני מעקבים והאקרים", pairId: 3 },
-            { text: "VPN חינם", pairId: 4 }, { text: "סכנה: יכול לגנוב נתונים", pairId: 4 }
-        ],
-        // סט 4: הורדות ועדכונים בטוחים
-        [
-            { text: "מקור רשמי", pairId: 1 }, { text: "הורידו רק מאתר רשמי או חנות אפליקציות", pairId: 1 },
-            { text: "סיומת קובץ", pairId: 2 }, { text: "בדקו סיומת לפני פתיחה (.exe מסוכנת)", pairId: 2 },
-        ]
-    ];
-
-    let memoryData = [];
-    let flippedCards = [];
-    let matchedPairs = 0;
-    let totalPairs = 0;
-
-    function initMemoryGame() {
-        const grid = document.getElementById('memory-grid');
-        grid.innerHTML = '';
-        flippedCards = [];
-        matchedPairs = 0;
-
-        // בחר בדיוק 4 סטים שונים להצגה (דגימה ללא החלפה)
-        const totalAvailable = memoryDataSets.length;
-        let indices = Array.from({length: totalAvailable}, (_, i) => i);
-        // ערבוב אינדקסים
-        indices.sort(() => Math.random() - 0.5);
-        const pickCount = Math.min(4, totalAvailable);
-        const selectedSets = indices.slice(0, pickCount).map(i => memoryDataSets[i]);
-
-        // בניית מערך כרטיסים משולב עם מזהי קבוצה ייחודיים לכל זוג
-        let combined = [];
-        let groupCounter = 0;
-        selectedSets.forEach(set => {
-            const ids = [...new Set(set.map(c => c.pairId))];
-            ids.forEach(id => {
-                groupCounter++;
-                set.filter(c => c.pairId === id).forEach(card => {
-                    combined.push({ text: card.text, groupId: groupCounter });
-                });
-            });
-        });
-
-        // הגבל ל-4 זוגות (8 כרטיסים) כדי להציג 2 שורות × 4 כרטיסים
-        const uniqueGroups = [...new Set(combined.map(c => c.groupId))];
-        uniqueGroups.sort(() => Math.random() - 0.5);
-        const chosenGroups = uniqueGroups.slice(0, 4);
-        combined = combined.filter(c => chosenGroups.includes(c.groupId));
-        totalPairs = chosenGroups.length;
-
-        // ערבוב ותצוגה
-        let shuffled = combined.sort(() => Math.random() - 0.5);
-        shuffled.forEach((card, index) => {
-            const cardEl = document.createElement('div');
-            cardEl.className = 'memory-card';
-            cardEl.innerText = card.text;
-            cardEl.dataset.groupId = card.groupId;
-            cardEl.dataset.index = index;
-            cardEl.onclick = () => flipCard(cardEl);
-            grid.appendChild(cardEl);
-        });
-    }
-
-    function flipCard(card) {
-        if(card.classList.contains('flipped') || card.classList.contains('matched') || flippedCards.length >= 2) return;
-        card.classList.add('flipped');
-        flippedCards.push(card);
-        if(flippedCards.length === 2) {
-            if(flippedCards[0].dataset.groupId === flippedCards[1].dataset.groupId) {
-                flippedCards[0].classList.add('matched');
-                flippedCards[1].classList.add('matched');
-                flippedCards = [];
-                matchedPairs++;
-                addScore(50);
-                if(matchedPairs === totalPairs) {
-                    showFeedback("🔓 השער הראשון נפתח! עוברים לחדר הבא...", true);
-                    setTimeout(() => startRoom(2), 1500);
-                }
-            } else {
-                setTimeout(() => {
-                    flippedCards[0].classList.remove('flipped');
-                    flippedCards[1].classList.remove('flipped');
-                    flippedCards = [];
-                }, 1000);
-            }
-        }
-    }
-
-    // ==================== חדר 2: משחק המיון ====================
-    const allScenarios = [
-        { text: "הודעה מסיבוס/גוגל: 'החשבון שלך נחסם, לחץ כאן לשחרור והזן סיסמה'", isSafe: false },
-        { text: "חבר מהכיתה שולח לך סרטון מטיול שהייתם בו שבוע שעבר", isSafe: true },
-        { text: "אפליקציית פנקס רשימות מבקשת גישה לאנשי קשר, מצלמה ומיקום", isSafe: false },
-        { text: "הודעה בוואטסאפ: 'שלחתי לך קוד בטעות, תעביר לי אותו מהר'", isSafe: false },
-        { text: "אתר רשמי של משרד החינוך (עם סיומת gov.il) מבקש הזדהות משרד החינוך", isSafe: true },
-        { text: "אפליקציית ספר דיגיטלי מהספריה הלאומית שלוש לחץ על סימן הביטחון באתר", isSafe: true },
-        { text: "הודעה מ'בנק לאומי': 'עודכן: בדיקה דחיפה נדרשת עכשיו או יוסד החשבון בעוד 24 שעות'", isSafe: false },
-        { text: "מורה שלך שולח קובץ טקסט עם שיעורי בית דרך דוא״ל בעל כתובת @school.ac.il", isSafe: true },
-    ];
-    let scenarios = [];
-    let currentScenarioIdx = 0;
-
-    function initSortingGame() {
-        // בחר דגימה אקראית של עד 5 תרחישים ללא חזרות
-        const indices = Array.from({ length: allScenarios.length }, (_, i) => i);
-        indices.sort(() => Math.random() - 0.5);
-        const pickCount = Math.min(5, allScenarios.length);
-        scenarios = indices.slice(0, pickCount).map(i => allScenarios[i]);
-        currentScenarioIdx = 0;
-        showScenario();
-    }
-
-    function showScenario() {
-        document.getElementById('sort-progress').innerText = `איום ${currentScenarioIdx + 1} מתוך ${scenarios.length}`;
-        document.getElementById('scenarios-box').innerText = scenarios[currentScenarioIdx].text;
-    }
-
-    function handleSort(userSaidSafe) {
-        let current = scenarios[currentScenarioIdx];
-        if(userSaidSafe === current.isSafe) {
-            addScore(40);
-            currentScenarioIdx++;
-            if(currentScenarioIdx >= scenarios.length) {
-                showFeedback("🔓 השער השני נפתח! ממשיכים...", true);
-                setTimeout(() => startRoom(3), 1500);
-            } else { showScenario(); }
-        } else {
-            showFeedback("❌ זיהוי שגוי! המערכת זיהתה סיכון. נסה שוב.", false);
-            mistakes.push('מסננת סייבר: ' + current.text.substring(0, 30));
-        }
-    }
-
-    // ==================== חדר 3: טביעת הרגל הדיגיטלית ====================
-    const profiles = [
-        {
-            name: "מיכל כהן",
-            avatar: "👧",
-            handle: "@michal_real",
-            followers: "847",
-            posts: [
-                { icon: "📍", tag: "Instagram · לפני שעה", text: "יצאנו לאכול! רחוב הרצל 42, תל אביב 🍕 מי בא?", isDangerous: true },
-                { icon: "🎂", tag: "Facebook · אתמול", text: "היום יום הולדת שלי! 14 בנובמבר 2010 – 14 שנה!! 🎉", isDangerous: true },
-                { icon: "🏠", tag: "Snapchat · לפני 5 ימים", text: "אוהבת את החדר החדש שלי! תראו את החלון 🪟 נוף לרחוב מהקומה השנייה", isDangerous: true }
-            ]
-        },
-        {
-            name: "עדן לוי",
-            avatar: "👦",
-            handle: "@eden.levi",
-            followers: "1,230",
-            posts: [
-                { icon: "🏫", tag: "TikTok · לפני 3 ימים", text: "הבאתי לכם סיור בבית הספר שלי! חיפה 😍", isDangerous: true },
-                { icon: "🎓", tag: "Facebook · לפני שבוע", text: "מתחיל בבית הספר חדש - 'תיכון רמז בתל אביב'", isDangerous: true },
-                { icon: "🌅", tag: "Instagram · לפני שבוע", text: "שקיעה יפה היום! 🌺", isDangerous: false }
-            ]
-        },
-        {
-            name: "שרה גדליהו",
-            avatar: "👩",
-            handle: "@sarah_travel",
-            followers: "2,105",
-            posts: [
-                { icon: "✈️", tag: "Instagram · לפני 10 ימים", text: "עוזבת לנסיעה! בחזרה בעוד שבועיים 🌴", isDangerous: true },
-                { icon: "❤️", tag: "Instagram · לפני יום", text: "אוהבת את החברה החדשה שלי 💕", isDangerous: true },
-                { icon: "😂", tag: "Twitter · לפני יומיים", text: "מה הדבר הכי מצחיק שקרה לכם השבוע? 😅", isDangerous: false }
-            ]
-        },
-        {
-            name: "אלי מימון",
-            avatar: "👱",
-            handle: "@eli_tech",
-            followers: "892",
-            posts: [
-                { icon: "👨‍💻", tag: "LinkedIn · לפני 4 ימים", text: "בגיל 15 כבר התחלתי לעבוד בחברת טכנולוגיה בתל אביב!", isDangerous: true },
-                { icon: "🔐", tag: "Twitter · לפני 3 ימים", text: "סיסמת ווטס שלי היא: Eli@1234", isDangerous: true },
-                { icon: "🎵", tag: "TikTok · אתמול", text: "סרטון מחדר הישן שלי 🎤", isDangerous: false }
-            ]
-        }
-    ];
-    
-    let allPosts = [];
-    let dangerCount = 0;
-    let fpSelected = new Set();
-
-    function initFootprintGame() {
-        fpSelected.clear();
-        allPosts = [];
-        dangerCount = 0;
-        
-        // איסוף כל הפוסטים עם מזהה פרופיל
-        profiles.forEach((profile, profileIdx) => {
-            profile.posts.forEach((post) => {
-                allPosts.push({ ...post, profileIdx });
-                if(post.isDangerous) dangerCount++;
-            });
-        });
-        
-        document.getElementById('fp-counter').innerText = `זיהיתם: 0 / ${dangerCount} פוסטים מסוכנים`;
-        document.getElementById('fp-check-btn').style.display = 'none';
-        let container = document.getElementById('posts-container');
-        container.innerHTML = '';
-        
-        // הצגת כל הפרופילים ופוסטים שלהם
-        profiles.forEach((profile, profileIdx) => {
-            // כותרת פרופיל
-            let profileHeader = document.createElement('div');
-            profileHeader.className = 'profile-header';
-            profileHeader.style.marginTop = '15px';
-            profileHeader.innerHTML = `
-                <div class="profile-avatar">${profile.avatar}</div>
-                <div style="text-align:right;">
-                    <div class="profile-name">${profile.name}</div>
-                    <div class="profile-handle">${profile.handle} · ${profile.followers} עוקבים</div>
-                </div>
-            `;
-            container.appendChild(profileHeader);
-            
-            // פוסטים של הפרופיל
-            profile.posts.forEach((post, postIdx) => {
-                let postIdx_global = allPosts.findIndex(p => p.profileIdx === profileIdx && p.text === post.text);
-                let div = document.createElement('div');
-                div.className = 'post-item';
-                div.innerHTML = `<div class="post-tag">${post.icon} ${post.tag}</div><div class="post-text">${post.text}</div>`;
-                div.onclick = () => {
-                    if(fpSelected.has(postIdx_global)) { fpSelected.delete(postIdx_global); div.classList.remove('selected'); }
-                    else { fpSelected.add(postIdx_global); div.classList.add('selected'); }
-                    document.getElementById('fp-counter').innerText = `זיהיתם: ${fpSelected.size} / ${dangerCount} פוסטים מסוכנים`;
-                    document.getElementById('fp-check-btn').style.display = fpSelected.size > 0 ? 'inline-block' : 'none';
-                };
-                container.appendChild(div);
-            });
-        });
-    }
-
-    function checkFootprint() {
-        let correct = 0, wrong = 0;
-        let wrongPosts = [], missedPosts = [];
-        fpSelected.forEach(i => { 
-            if(allPosts[i].isDangerous) correct++; 
-            else { wrong++; wrongPosts.push(i); }
-        });
-        let missed = dangerCount - correct;
-        
-        // Find which posts were missed
-        allPosts.forEach((post, idx) => {
-            if(post.isDangerous && !fpSelected.has(idx)) {
-                missedPosts.push(idx);
-            }
-        });
-        
-        if(wrong === 0 && missed === 0) {
-            addScore(150);
-            showFeedback("🔓 מצוין! ניקיתם את הפרופילים! עוברים הלאה...", true);
-            setTimeout(() => startRoom(4), 1500);
-        } else {
-            // Show incorrect selections in red
-            wrongPosts.forEach(i => {
-                let posts = document.querySelectorAll('.post-item');
-                if(posts[i]) posts[i].style.borderColor = 'var(--danger)';
-            });
-            
-            // Show missed posts in green (highlight them as correct)
-            missedPosts.forEach(i => {
-                let posts = document.querySelectorAll('.post-item');
-                if(posts[i]) {
-                    posts[i].style.borderColor = 'var(--success)';
-                    posts[i].style.backgroundColor = 'rgba(46,196,182,0.15)';
-                }
-            });
-            
-            let msg = '';
-            if(wrong > 0) msg += `❌ ${wrong} בחירות שגויות (בריבוע אדום). `;
-            if(missed > 0) msg += `✅ פספסתם ${missed} פוסטים מסוכנים (בריבוע ירוק).`;
-            showFeedback(msg + " נסו שוב!", false);
-        }
-    }
-
-    // ==================== חדר 4: מעבדת הנוזקות ====================
-    const allMalwareFiles = [
-        { icon: "⚠️", name: "Chrome_Update_URGENT.exe", source: "update-chrome-now.ru", safe: false, scanResult: "🔴 נוזקה זוהתה: Trojan.Downloader · מקור לא מוכר · סיומת מסוכנת: .exe" },
-        { icon: "📄", name: "עבודה_בגיאוגרפיה.pdf", source: "classroom.google.com", safe: true, scanResult: "🟢 קובץ נקי · מקור: Google Classroom מאומת · סיומת: .pdf" },
-        { icon: "🎮", name: "Minecraft_FreeHack_v5.scr", source: "free-games-hacks.net", safe: false, scanResult: "🔴 נוזקה קריטית: Ransomware · אתר לא מאובטח · סיומת מסוכנת: .scr" },
-        { icon: "🖼️", name: "תמונת_הטיול.jpg", source: "נשלח מחבר בוואטסאפ", safe: true, scanResult: "🟢 קובץ נקי · תמונה רגילה · סיומת: .jpg" },
-        { icon: "🕵️", name: "School_Report_2026.exe", source: "best-school-tools.com", safe: false, scanResult: "🔴 נוזקה זוהתה: Spyware.Infostealer · קובץ לא אמין · סיומת מסוכנת: .exe" },
-        { icon: "🎧", name: "Free_Music_Player.scr", source: "music-downloads.ru", safe: false, scanResult: "🔴 נוזקה קריטית: Adware.Bundle · אתר לא מאובטח · סיומת מסוכנת: .scr" },
-        { icon: "📝", name: "סיכומי_שיעורים.docx", source: "classmates-help.co.il", safe: true, scanResult: "🟢 קובץ נקי · מסמך Word תקני · סיומת: .docx" }
-    ];
-    let malwareDone = 0;
-    let activeMalwareFiles = [];
-
-    function initMalwareGame() {
-        malwareDone = 0;
-        activeMalwareFiles = [...allMalwareFiles];
-        shuffleArray(activeMalwareFiles);
-        activeMalwareFiles = activeMalwareFiles.slice(0, 4);
-        document.getElementById('malware-remaining-text').innerText = `נותרו לבדיקה: ${activeMalwareFiles.length} קבצים`;
-        let container = document.getElementById('malware-cards');
-        container.innerHTML = '';
-        activeMalwareFiles.forEach((file, i) => {
-            let wrap = document.createElement('div');
-            wrap.innerHTML = `
-                <div class="download-card" id="mcard-${i}">
-                    <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-                        <div>
-                            <div class="download-name">${file.icon} ${file.name}</div>
-                            <div class="download-source">📎 ${file.source}</div>
-                        </div>
-                        <button class="scan-btn-inline" onclick="scanFile(${i})">🔍 סרוק</button>
-                    </div>
-                    <div class="scan-result" id="scan-${i}">${file.scanResult}</div>
-                    <div class="malware-btns" id="mbtns-${i}">
-                        <button class="action-btn btn-download" onclick="handleMalware(${i}, true)">⬇️ הורד</button>
-                        <button class="action-btn btn-delete-file" onclick="handleMalware(${i}, false)">🗑️ מחק</button>
-                    </div>
-                </div>`;
-            container.appendChild(wrap);
-        });
-    }
-
-    function scanFile(i) {
-        document.getElementById('scan-' + i).style.display = 'block';
-        document.getElementById('mbtns-' + i).classList.add('visible');
-    }
-
-    function handleMalware(i, userDownloads) {
-        let file = activeMalwareFiles[i];
-        let correct = (file.safe && userDownloads) || (!file.safe && !userDownloads);
-        if(correct) {
-            addScore(50);
-            document.getElementById('mcard-' + i).classList.add('done');
-            malwareDone++;
-            let rem = activeMalwareFiles.length - malwareDone;
-            document.getElementById('malware-remaining-text').innerText = `נותרו לבדיקה: ${rem} קבצים`;
-            showFeedback("✅ " + (userDownloads ? "הורדה בטוחה!" : "מחיקה נכונה!"), true);
-            if(malwareDone >= activeMalwareFiles.length) {
-                setTimeout(() => { showFeedback("🔓 המעבדה נוקתה! עוברים הלאה...", true); setTimeout(() => startRoom(5), 1500); }, 600);
-            }
-        } else {
-            showFeedback("❌ " + (userDownloads ? "הורדת קובץ מסוכן!" : "מחקת קובץ תקין!") + " נסה שוב.", false);
-            mistakes.push('נוזקות: ' + file.name);
-        }
-    }
-
-    // ==================== חדר 5: דיפייק ו-AI ====================
-    const deepfakeScenarios = [
-        {
-            contact: "אמא 👩 · ממספר לא מוכר",
-            message: "מיכל יקרה, אני בבנק עכשיו ואנחנו צריכים בדחיפות את קוד הכרטיס שלי. שלחי לי מהר, יש תור מחכה לי ואני לא יכולה לדבר בטלפון!",
-            flags: "לחץ זמן · בקשה לקוד · ממספר לא מוכר · 'לא יכולה לדבר'",
-            actions: [
-                { text: "📤 שלחי את הקוד מהר", correct: false },
-                { text: "📞 התקשרי ישירות לאמא למספר השמור בטלפון", correct: true },
-                { text: "💬 שאלי 'איזה קוד?'", correct: false }
-            ],
-            explanation: "✅ נכון! תמיד אמתו ישירות. אמא אמיתית לא תבקש קוד בהודעה – זה עשוי להיות דיפייק!"
-        },
-        {
-            contact: "מספר לא מוכר: 050-1234567",
-            message: "היי! אני יוסי מהכיתה שלך. קרה לי משהו נורא ואני צריך שתעביר לי 200 שקל דרך ביט. אני מחזיר לך מחר, מהר, זה דחוף!",
-            flags: "מספר לא מוכר · בקשת כסף · לחץ זמן · 'מחר אחזיר'",
-            actions: [
-                { text: "💰 שלח 200 ₪ דרך ביט מיד", correct: false },
-                { text: "📞 סגור ויצור קשר עם יוסי דרך המספר שיש לך", correct: true },
-                { text: "🙋 שאל 'באיזו כיתה אנחנו?'", correct: false }
-            ],
-            explanation: "✅ נכון! מספר לא מוכר + בקשת כסף = דגל אדום. תמיד אמתו דרך ערוץ מוכר!"
-        },
-        {
-            contact: "📹 קישור נשלח מ'חבר'",
-            message: "קובץ בשם 'אתה_חייב_לראות_זאת.mp4' קיבלת קישור לאתר: videos-free-share.xyz/watch?id=82739",
-            flags: "שם קובץ מסתורי · אתר לא מוכר · מקור לא ברור",
-            actions: [
-                { text: "▶️ לחץ על הקישור לצפייה", correct: false },
-                { text: "🔍 בדוק עם החבר ישירות אם הוא שלח", correct: true },
-                { text: "📤 שתף עם חברים נוספים", correct: false }
-            ],
-            explanation: "✅ נכון! אתרים לא מוכרים עם שמות מסתוריים = פישינג קלאסי. תמיד אמתו!"
-        },
-        {
-            contact: "🎮 Discord ·  מישהו שלא אתה מכיר",
-            message: "היי! צפיתי בסטרים שלך והם מדהימים! בואו נשחק יחד במולטיפלייר. הורידו את תוכנת הנגן הזאת כדי שנוכל לשתף מסך: gaming-overlay-pro.com/download",
-            flags: "מחמאה חיצונית · בקשה להורדת תוכנה מ-URL · מקור לא מוכר · אתר חשוד",
-            actions: [
-                { text: "⬇️ הורד את התוכנה מהקישור", correct: false },
-                { text: "❌ סגור את ההודעה ולעולם אל תורד תוכנות מ-URLs", correct: true },
-                { text: "✍️ שאל: 'מה הקוד של הגיים?'", correct: false }
-            ],
-            explanation: "✅ נכון! בקשה להורדת תוכנה = דגל אדום ענק. תוכנות יש להוריד רק מ-AppStore/PlayStore!"
-        },
-        {
-            contact: "📧 Telegram · אדמין בוט",
-            message: "🎁 ברכה! נבחרת לזכות ב-500 ₪ במתנה יומית! לחץ כאן כדי לתבוע: t.me/claim-free-money?token=7f3k9",
-            flags: "הצעה בלתי סבירה · קישור חיצוני · בוט לא מוכר · טוקן בקישור",
-            actions: [
-                { text: "🔗 לחץ על הקישור לתביעה", correct: false },
-                { text: "🗑️ מחק את ההודעה – זה spam לא אמיתי", correct: true },
-                { text: "💬 שאל את הבוט: 'אני בטוח?'", correct: false }
-            ],
-            explanation: "✅ נכון! זוגות בחינם בלתי סבירות = סכנה. אם נראה טוב מכדי להיות אמיתי, כנראה שזה לא!"
-        },
-        {
-            contact: "אבא 👨 · טלפון לא מוכר",
-            message: "היי! אני בנסיעה בחו'ל ונפל לי הטלפון. אני משתמש בטלפון של חברון. אני חייב בדחיפות את קוד הגישה שלי ל-Duolingo כדי להמשיך בשיעורי השפה. שלח מהר!",
-            flags: "טלפון לא מוכר · בקשה לקוד גישה · סיפור מצורף · לחץ זמן",
-            actions: [
-                { text: "🔐 שלח את קוד הגישה שלך", correct: false },
-                { text: "📞 התקשר לאבא למספר הבית או הנייד שלו לאימות", correct: true },
-                { text: "📲 שאל: 'אפליקציה זו יוצרת קוד ספציפי?'", correct: false }
-            ],
-            explanation: "✅ נכון! קודי גישה אינם שיתופיים אפילו עם בני משפחה. אבא אמיתי יבין את הסיכון!"
-        },
-        {
-            contact: "📱 הודעה מחבר חדש",
-            message: "ניסיתי להזמין אותך לעבור קורס חינם ב-Zoom עכשיו. לחצו על הקישור הזה כדי להצטרף למפגש: free-zoom-training.co.il/join",
-            flags: "חבר חדש · קישור לא ידוע · הזמנה לא מפורטת",
-            actions: [
-                { text: "✅ הצטרף עם הלינק", correct: false },
-                { text: "📞 שאל מי שלח לך את ההזמנה ולמה", correct: true },
-                { text: "📤 העבר לחברים", correct: false }
-            ],
-            explanation: "✅ נכון! הזמנות לא מוכרות עם קישורים לא רשמיים יכולות להיות מלכודת. תמיד אמת את המקור!"
-        },
-        {
-            contact: "⚠️ הודעת מערכת: חשבון מופעל מחדש",
-            message: "החשבון שלך נחסם! לחץ כאן כדי לאמת את הנתונים שלך בתוך 10 דקות: secure-account-check.net/verify",
-            flags: "איום בחסימת חשבון · זמן דוחק · קישור לא בטוח",
-            actions: [
-                { text: "🔒 אמת את החשבון מייד", correct: false },
-                { text: "📍 פנה לאתר הרשמי של השירות ולא ליחס קישור", correct: true },
-                { text: "💬 שלח תמיכה כדי לבדוק אם זה אמיתי", correct: false }
-            ],
-            explanation: "✅ נכון! הודעות לחץ זמן עם קישורים לא רשמיים הן בדרך כלל נרטיב פישינג. גש רק דרך האתר הרשמי!"
-        }
-    ];
-    let dfIndex = 0;
-    let deepfakeSequence = [];
-    let currentDFActions = [];
-
-    function shuffleArray(arr) {
-        for (let i = arr.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [arr[i], arr[j]] = [arr[j], arr[i]];
-        }
-    }
-
-    function initDeepfakeGame() {
-        deepfakeSequence = [...deepfakeScenarios];
-        shuffleArray(deepfakeSequence);
-        deepfakeSequence = deepfakeSequence.slice(0, 4);
-        dfIndex = 0;
-        currentDFActions = [];
-        showDFScenario();
-    }
-
-    function showDFScenario() {
-        document.getElementById('df-progress').innerText = `תרחיש ${dfIndex + 1} מתוך ${deepfakeSequence.length}`;
-        let sc = deepfakeSequence[dfIndex];
-        document.getElementById('df-content').innerHTML = `
-            <div class="phone-header-sim">
-                <span style="font-size:1.3rem;">💬</span>
-                <div style="text-align:right;">
-                    <div style="font-weight:bold; color:var(--text);">${sc.contact}</div>
-                    <div style="font-size:0.8rem; color:var(--danger);">⚠️ ${sc.flags}</div>
-                </div>
-            </div>
-            <div class="phone-bubble">${sc.message}</div>
-            <div class="warning-flags"><strong>🚩 סימני אזהרה:</strong> ${sc.flags.split(' · ').join(' · ')}</div>
-            <p style="font-size:0.95rem;">מה תעשה?</p>`;
-        let choicesEl = document.getElementById('df-choices');
-        choicesEl.innerHTML = '';
-        if (!currentDFActions[dfIndex]) {
-            currentDFActions[dfIndex] = [...sc.actions];
-            shuffleArray(currentDFActions[dfIndex]);
-        }
-        currentDFActions[dfIndex].forEach((action, i) => {
-            let btn = document.createElement('button');
-            btn.className = 'deepfake-choice';
-            btn.innerText = action.text;
-            btn.onclick = () => handleDFChoice(action.correct, btn, sc.explanation, sc.contact, choicesEl);
-            choicesEl.appendChild(btn);
-        });
-    }
-
-    function handleDFChoice(isCorrect, btn, explanation, contact, choicesEl) {
-        choicesEl.querySelectorAll('.deepfake-choice').forEach(b => b.onclick = null);
-        if(isCorrect) {
-            btn.classList.add('correct');
-            addScore(80);
-            showFeedback(explanation, true);
-            dfIndex++;
-            if(dfIndex >= deepfakeSequence.length) {
-                setTimeout(() => { showFeedback("🔓 עמדת בפני כל מתקפות הדיפייק! עוברים הלאה...", true); setTimeout(() => startRoom(6), 1800); }, 1800);
-            } else {
-                setTimeout(() => showDFScenario(), 2200);
-            }
-        } else {
-            btn.classList.add('wrong');
-            showFeedback("❌ לא נכון. " + explanation, false);
-            mistakes.push('דיפייק: ' + contact);
-            setTimeout(() => { choicesEl.querySelectorAll('.deepfake-choice').forEach(b => { b.classList.remove('wrong'); b.onclick = null; }); showDFScenario(); }, 2500);
-        }
-    }
-
-    // ==================== חדר 6: מלכודת ה-Wi-Fi ====================
-    const wifiNetworks = [
-        { id: 'w1', name: 'Free_Mall_WiFi', meta: 'רשת ציבורית · 312 מחוברים · ללא סיסמה', badge: 'badge-open', badgeText: '🔓 פתוחה – מסוכנת', safe: false },
-        { id: 'w2', name: 'Super_Café_Private', meta: 'רשת מאובטחת · סיסמה על הקבלה · WPA2', badge: 'badge-secured', badgeText: '🔒 מאובטחת', safe: true },
-        { id: 'w3', name: 'Free_HighSpeed_Internet_NoPassword', meta: 'רשת חשודה · מקור לא ידוע · אין סיסמה', badge: 'badge-suspect', badgeText: '☠️ חשודה מאוד', safe: false }
-    ];
-
-    function initWifiGame() {
-        vpnOn = false; selectedWifiId = null;
-        document.getElementById('vpn-toggle').classList.remove('on');
-        document.getElementById('vpn-status').innerText = '';
-        document.getElementById('wifi-send-btn').style.display = 'none';
-        let list = document.getElementById('wifi-list');
-        list.innerHTML = '';
-        wifiNetworks.forEach(net => {
-            let div = document.createElement('div');
-            div.className = 'wifi-card';
-            div.id = net.id;
-            div.innerHTML = `<div class="wifi-name">📶 ${net.name}</div><div class="wifi-meta">${net.meta}</div><span class="wifi-badge ${net.badge}">${net.badgeText}</span>`;
-            div.onclick = () => {
-                document.querySelectorAll('.wifi-card').forEach(c => c.classList.remove('selected'));
-                div.classList.add('selected');
-                selectedWifiId = net.id;
-                document.getElementById('wifi-send-btn').style.display = 'inline-block';
-            };
-            list.appendChild(div);
-        });
-    }
-
-    function toggleVPN() {
-        vpnOn = !vpnOn;
-        document.getElementById('vpn-toggle').classList.toggle('on', vpnOn);
-        document.getElementById('vpn-status').innerText = vpnOn ? '🛡️ VPN פעיל – הגלישה שלך מוצפנת!' : '';
-    }
-
-    function confirmWifi() {
-        if(!selectedWifiId) return;
-        let net = wifiNetworks.find(n => n.id === selectedWifiId);
-        if(net.safe) {
-            addScore(120);
-            showFeedback("🔓 בחרת ברשת המאובטחת! מעולה! עוברים הלאה...", true);
-            setTimeout(() => startRoom(2), 1800);
-        } else if(vpnOn) {
-            addScore(70);
-            showFeedback("⚠️ הרשת מסוכנת, אבל ה-VPN מגן עליך! עוברים הלאה...", true);
-            setTimeout(() => startRoom(2), 2000);
-        } else {
-            showFeedback("❌ " + (net.id === 'w3' ? "זו רשת מזויפת של האקר!" : "רשת פתוחה ללא VPN – הסיסמה שלך נגנבה!") + " נסה שוב.", false);
-        }
-    }
-
-    // ==================== חדר 7: פיצוח הקוד הסופי ====================
-    const correctCode = "520";
-    let currentInputCode = "";
-
-    function pressKey(num) {
-        if(currentInputCode.length >= 3) return;
-        currentInputCode += num;
-        document.getElementById('code-display').innerText = currentInputCode;
-        if(currentInputCode.length === 3) {
-            if(currentInputCode === correctCode) {
-                addScore(200);
-                showFeedback("🔓 הקוד נכון! הנגיף הושמד!", true);
-                setTimeout(() => startRoom('win'), 1200);
-            } else {
-                showFeedback("❌ קוד שגוי! המערכת ננעלה. נקה ונסה שוב.", false);
-                document.getElementById('code-display').style.color = 'var(--danger)';
-            }
-        }
-    }
-
-    function clearCode() {
-        currentInputCode = "";
-        document.getElementById('code-display').innerText = "";
-        document.getElementById('code-display').style.color = 'var(--danger)';
-    }
-
-    // ==================== מסך ניצחון ותעודה ====================
-    function getRank(sc) {
-        if(sc >= 900) return '🥇 מומחה סייבר עליון';
-        if(sc >= 600) return '🥈 לוחם/ת סייבר בכיר/ה';
-        if(sc >= 300) return '🥉 לוחם/ת סייבר';
-        return '🎖️ מתמחה בסייבר';
-    }
-
-    function showVictory() {
-        let timeStr = formatTime(elapsedSeconds);
-        let rank = getRank(score);
-        document.getElementById('final-time').innerText = timeStr;
-        document.getElementById('final-score').innerText = score;
-        document.getElementById('final-rank').innerText = rank;
-        saveResultToSupabase();
-    }
-
-    function generateCert() {
-        let name = document.getElementById('player-name').value.trim() || 'גיבור/ת הסייבר';
-        let rank = getRank(score);
-        let timeStr = formatTime(elapsedSeconds);
-        let now = new Date();
-        let dateStr = now.toLocaleDateString('he-IL');
-        document.getElementById('cert-name-display').innerText = name;
-        document.getElementById('cert-score').innerText = score;
-        document.getElementById('cert-time').innerText = timeStr;
-        document.getElementById('cert-rank-display').innerText = rank;
-        document.getElementById('cert-date').innerText = 'הוענק ב-' + dateStr + ' · משימת סייבר: חדר הבריחה';
-        document.getElementById('cert-area').classList.remove('hidden');
-        document.getElementById('no-cert-spacer').style.display = 'none';
-        document.getElementById('play-again-btn').style.display = 'none';
-        document.getElementById('cert-area').scrollIntoView({ behavior: 'smooth' });
-    }
 </script>
+</body></html>
 
-</body>
-</html>
+
